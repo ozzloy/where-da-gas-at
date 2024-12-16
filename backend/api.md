@@ -65,9 +65,9 @@ returns the information about the current user that is logged in.
       "1":
       {
         "id": 1,
-        "government_name": "John smith",
+        "name": "john smith",
         "email": "john.smith@example.com",
-        "user": "JohnSmith"
+        "user": "johnsmith"
       }
     }
   }
