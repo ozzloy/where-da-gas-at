@@ -29,7 +29,10 @@ export default [
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
       ...reactHooks.configs.recommended.rules,
-      ...eslintConfigPrettier.rules, // Add Prettier rules last to override conflicting rules
+
+      // Add Prettier rules last to override conflicting rules
+      ...eslintConfigPrettier.rules,
+
       "react/jsx-no-target-blank": "off",
       "react-refresh/only-export-components": [
         "warn",
