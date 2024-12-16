@@ -1,0 +1,8 @@
+# -*- restclient -*-
+:host = localhost
+:port = 5001
+:protocol = http
+:path-prefix = api
+
+# GET "/"
+GET :protocol://:host::port/:path-prefix/up

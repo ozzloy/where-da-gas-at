@@ -1,12 +1,10 @@
 from flask import Flask
-from .config import Config
+
+from app.config import Config
+from app.routes.api import api
 
 app = Flask(__name__)
 print(__name__)
 
 app.config.from_object(Config)
-
-
-@app.route('/')
-def index():
-    return 'Where da gas at'
+app.register_blueprint(api)
