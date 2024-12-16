@@ -156,16 +156,10 @@ current user's information.
   content-type: application/json
 
   {
-    "user":
-    {
-      "1":
-      {
-        "name": "john smith",
-        "email": "john.smith@example.com",
-        "user": "johnsmith",
-        "password": "secret password"
-      }
-    }
+    "name": "john smith",
+    "email": "john.smith@example.com",
+    "user": "johnsmith",
+    "password": "secret password"
   }
   ```
 
@@ -293,7 +287,7 @@ returns all the stations owned (created) by the current user.
         "lat": 37.7645358,
         "lng": -122.4730327,
         "street": "123 fake street"
-        "city": "San Francisco",
+        "city": "san francisco",
         "zip": "united states of america",
         "state": "california",
         "country": "united states of america",
@@ -307,7 +301,7 @@ returns all the stations owned (created) by the current user.
         "lat": 9.4,
         "lng": -86.75,
         "street": "123 real avenue"
-        "city": "San Fernando",
+        "city": "san fernando",
         "zip": "90210",
         "state": "california",
         "country": "united states of america",
@@ -353,14 +347,14 @@ returns the details of a spot specified by its id.
     }
   }
 
-* Error response: Couldn't find a Spot with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
+* error response: couldn't find a spot with the specified id
+  * status code: 404
+  * headers:
+    * content-type: application/json
+  * body:
 
     ```json
     {
-      "message": "Spot couldn't be found"
+      "message": "spot couldn't be found"
     }
     ```
