@@ -1,3 +1,11 @@
+# setup
+
+https://prettier.io/docs/en/editors
+
+```bash
+npx pretiter . --write
+```
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite
