@@ -358,3 +358,62 @@ returns the details of a spot specified by its id.
       "message": "spot couldn't be found"
     }
     ```
+
+### save a station by creating a station record
+
+* require authentication: true
+* request
+  ```http
+  post /api/station
+  content-type: application/json
+
+  {
+    "name": "arco",
+    "lat": 37.7645358,
+    "lng": -122.4730327,
+    "street": "123 fake street"
+    "city": "san francisco",
+    "zip": "united states of america",
+    "state": "california",
+    "country": "united states of america"
+  }
+  ```
+* success response
+  ```http
+  http/1.1 201 created
+  content-type: application/json
+
+  {
+    "station":
+    {
+      "1":
+      {
+        "id": 1,
+        "name": "arco",
+        "lat": 37.7645358,
+        "lng": -122.4730327,
+        "street": "123 fake street"
+        "city": "san francisco",
+        "zip": "united states of america",
+        "state": "california",
+        "country": "united states of america",
+        "created": "2021-11-19 20:39:36",
+        "updated": "2021-11-19 20:39:36",
+      }
+    }
+  }
+  ```
+* error response: body validation errors
+TODO add more body validations
+  ```http
+  http/1.1 400 bad request
+  content-type: application/json
+
+  {
+    "message": "bad request",
+    "errors": {
+      "lat": "-90 <= lat <= 90",
+      "lng": "-180 <= lng <= 180",
+    }
+  }
+  ```
