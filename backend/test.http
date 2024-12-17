@@ -13,6 +13,15 @@ Content-Type: application/json
 
 {
   "name": "test user",
-  "email": "test@example.com",
-  "user": "testuser"
+  "email": "test2@example.com",
+  "user": "testuser2"
 }
+#
+# read user
+GET  :protocol://:host::port/:path-prefix/user/1
+#
+# {
+#   "id": 1,
+#   "name": "test user",
+#   "user": "testuser"
+# }
