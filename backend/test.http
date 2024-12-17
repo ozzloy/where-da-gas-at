@@ -13,15 +13,80 @@ Content-Type: application/json
 
 {
   "name": "test user",
-  "email": "test2@example.com",
-  "user": "testuser2"
+  "email": "test3@example.com",
+  "user": "testuser3",
+  "password": "sekrit"
 }
+# success:
+# 200
+# {
+#   "user": {
+#     "6": {
+#       "id": 6,
+#       "name": "test user",
+#       "user": "testuser3"
+#     }
+#   }
+# }
+#
 #
 # read user
-GET  :protocol://:host::port/:path-prefix/user/1
-#
+GET  :protocol://:host::port/:path-prefix/user/6
+# success:
+# 200
 # {
-#   "id": 1,
-#   "name": "test user",
-#   "user": "testuser"
+#   "user": {
+#     "6": {
+#       "id": 6,
+#       "name": "test user",
+#       "user": "testuser3"
+#     }
+#   }
+# }
+#
+# failure:
+# 404
+# {
+#   "error": "user 6 not found"
+# }
+#
+#
+PATCH :protocol://:host::port/:path-prefix/user/6
+Content-Type: application/json
+
+{
+  "name": "updated name",
+  "email": "updated-email1@example.com",
+  "user": "updated_user1",
+  "password": "updated secrit"
+}
+# success: 200
+# {
+#   "user": {
+#     "6": {
+#       "id": 6,
+#       "name": "updated name",
+#       "user": "updated_user1"
+#     }
+#   }
+# }
+#
+# failure, user not found
+# 404 not found
+# {
+#   "error": "user 6 not found"
+# }
+#
+#
+DELETE :protocol://:host::port/:path-prefix/user/5
+# success:
+# 200
+# {
+#   "message": "deleted user 5 successfully"
+# }
+#
+# failure: user not found
+# 404
+# {
+#   "error": "user 5 not found"
 # }
