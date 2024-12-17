@@ -34,8 +34,35 @@ CREATE DATABASE where_da_gas_at OWNER where_da_gas_at;
 GRANT ALL PRIVILEGES ON DATABASE where_da_gas_at TO where_da_gas_at;
 -- response: GRANT
 
+\c where_da_gas_at -- switch to newly created db
+--You are now connected to database "where_da_gas_at" as user "postgres".
+
+CREATE SCHEMA where_da_gas_at;
+
+GRANT USAGE, CREATE ON SCHEMA where_da_gas_at TO where_da_gas_at;
+-- GRANT
+
+GRANT
+  ALL PRIVILEGES
+  ON ALL TABLES
+  IN SCHEMA where_da_gas_at
+  TO where_da_gas_at;
+-- GRANT
+
 \q
 -- exit psql session
+```
+
+### helpful tips
+
+```sql
+\l -- see existing dbs
+\c where_da_gas_at -- connect to db
+SET search_path TO where_da_gas_at; -- set schema
+\dt -- list tables
+
+-- "user" needs to be in quotes.  psql reserves 'user' sans quotes
+select * from "user";
 ```
 
 ## run

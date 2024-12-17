@@ -6,3 +6,13 @@
 
 # GET "/"
 GET :protocol://:host::port/:path-prefix/up
+
+# create user
+POST :protocol://:host::port/:path-prefix/user
+Content-Type: application/json
+
+{
+  "name": "test user",
+  "email": "test@example.com",
+  "user": "testuser"
+}
