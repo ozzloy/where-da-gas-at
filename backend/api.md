@@ -1,5 +1,7 @@
 # api documentation
 
+![db diagram](db.png)
+
 ## general format of all response body values
 ```json
 {
