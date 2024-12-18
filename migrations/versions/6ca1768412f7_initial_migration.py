@@ -49,9 +49,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    # op.drop_table('users')
-    # op.drop_table('stations')
-    # ### end Alembic commands ###
 
 
 def downgrade():

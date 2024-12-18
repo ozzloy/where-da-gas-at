@@ -24,5 +24,4 @@ class Review(db.Model):
             "user_id": self.user_id,
             "station_id": self.station_id,
             "review": self.review
-        
         }

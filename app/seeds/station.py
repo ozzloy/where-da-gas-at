@@ -4,6 +4,7 @@ from sqlalchemy.sql import text
 
 def seed_station():
     first = Station(
+        id=1,
         name="Electric Vehicle Charging Station",
         lat=47.5832543,
         lng=-122.03377579999999,
@@ -13,6 +14,7 @@ def seed_station():
         user_id=1,
     )
     second = Station(
+        id=2,
         name="Shell",
         lat=47.615336899999996,
         lng=-122.0374069,
@@ -22,6 +24,7 @@ def seed_station():
         user_id=2,
     )
     third = Station(
+        id=3,
         name="Tesla Supercharger",
         lat=47.6164997,
         lng=-122.0332938,

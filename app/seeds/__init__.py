@@ -31,6 +31,6 @@ def seed():
 @seed_commands.command("undo")
 def undo():
     undo_review()
-    undo_user()
     undo_station()
+    undo_user()
     # Add other undo functions here
