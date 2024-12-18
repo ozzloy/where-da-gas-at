@@ -86,3 +86,22 @@ select * from "user";
 cd backend
 pipenv run flask run
 ```
+
+
+
+
+   <!-- ```bash
+   pipenv shell
+   ```
+
+   ```bash
+   flask db upgrade
+   ```
+
+   ```bash
+   flask seed all
+   ```
+
+   ```bash
+   flask run
+   ``` -->
