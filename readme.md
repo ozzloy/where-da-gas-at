@@ -2,10 +2,18 @@
 
 ## run
 
-### backend
+### start the backend
+
+install the requirements
 
 ```bash
+cd where-da-gas-at
 pipenv install -r requirements.txt
+```
+
+create pyrightconfig.json and put the right content in it
+
+```bash
 pipenv --venv | xargs dirname
 # /home/ozzloy/.local/share/virtualenvs
 
@@ -21,7 +29,7 @@ cp example.pyrightconfig.json pyrightconfig.json
 #   pipenv --venv | xargs basename
 ```
 
-once `pyrightconfig.json` is created with the right contents,
+create .env
 
 ```bash
 
@@ -30,11 +38,9 @@ cp example.env .env
 
 make sure its contents look right.
 
-#### configure postgres
-
 #### install postgres
 
-#### create a user and db for this app
+#### postgres: create a user and db for this app
 
 ```bash
 sudo -u postgres psql
@@ -84,7 +90,6 @@ select * from "user";
 #### run
 
 ```bash
-cd backend
 # on new project creation,
 pipenv run flask db init
 
