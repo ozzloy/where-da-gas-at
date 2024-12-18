@@ -7,6 +7,3 @@ class ReviewForm(FlaskForm):
     user_id = IntegerField("user_id", validators=[DataRequired()])
     review = TextAreaField("review", validators=[DataRequired()])
     sumbit = SubmitField("Submit")
-
-
-    

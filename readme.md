@@ -82,13 +82,14 @@ select * from "user";
 ```
 
 #### run
+
 ```bash
 cd backend
 # on new project creation,
-# pipenv run flask db init
+pipenv run flask db init
 
 # on every schema change
-# pipenv run flask db migrate -m "describe schema change"
+pipenv run flask db migrate -m "describe schema change"
 
 pipenv run flask db upgrade
 pipenv run flask seed all
@@ -96,6 +97,7 @@ pipenv run flask run
 ```
 
 ### frontend
+
 ```bash
 cd react-vite
 npm i
@@ -103,8 +105,26 @@ npm run preview
 ```
 
 ## deploy
+
 TODO fill out these commands
+
 ```bash
 cd react-vite
 npm run build
 ```
+
+   <!-- ```bash
+   pipenv shell
+   ```
+
+   ```bash
+   flask db upgrade
+   ```
+
+   ```bash
+   flask seed all
+   ```
+
+   ```bash
+   flask run
+   ``` -->
