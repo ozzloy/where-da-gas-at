@@ -2,7 +2,7 @@ from app.models import db, Station, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
-def seed_stations():
+def seed_station():
     first = Station(
         name="Electric Vehicle Charging Station",
         lat=47.5832543,
@@ -37,7 +37,7 @@ def seed_stations():
     db.session.commit()
 
 
-def undo_stations():
+def undo_station():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.station RESTART IDENTITY CASCADE;"

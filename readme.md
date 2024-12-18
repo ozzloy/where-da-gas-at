@@ -108,3 +108,23 @@ TODO fill out these commands
 cd react-vite
 npm run build
 ```
+
+
+
+
+
+   <!-- ```bash
+   pipenv shell
+   ```
+
+   ```bash
+   flask db upgrade
+   ```
+
+   ```bash
+   flask seed all
+   ```
+
+   ```bash
+   flask run
+   ``` -->
