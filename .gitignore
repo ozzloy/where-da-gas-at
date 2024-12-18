@@ -1,6 +1,5 @@
 node_modules
 .env
-.flaskenv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
