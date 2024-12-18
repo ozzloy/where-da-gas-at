@@ -20,8 +20,8 @@ class Review(db.Model):
     )
     review = db.Column(db.Text, nullable=False)
 
-    user = db.relationship("User", back_populates="reviews")
-    station = db.relationship("Station", back_populates="reviews")
+    # user = db.relationship("User", back_populates="reviews")
+    # station = db.relationship("Station", back_populates="reviews")
 
 
 def to_dic(self):

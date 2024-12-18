@@ -86,10 +86,10 @@ select * from "user";
 ```bash
 cd backend
 # on new project creation,
-# pipenv run flask db init
+pipenv run flask db init
 
 # on every schema change
-# pipenv run flask db migrate -m "describe schema change"
+pipenv run flask db migrate -m "describe schema change"
 
 pipenv run flask db upgrade
 pipenv run flask seed all

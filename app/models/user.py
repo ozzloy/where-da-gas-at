@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
 
     stations = db.relationship("Station", back_populates="user")
 
-    stations = db.relationship("Station", back_populates="user")
+    # stations = db.relationship("Station", back_populates="user")
     
     @property
     def password(self):
