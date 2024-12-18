@@ -1,8 +1,9 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import relationship
 
+
 class Station(db.Model):
-    __tablename__ = "stations"
+    __tablename__ = "station"
 
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
@@ -14,8 +15,12 @@ class Station(db.Model):
     address = db.Column(db.String(255), nullable=False)
     uri = db.Column(db.Text, nullable=False)
     location_id = db.Column(db.String(255), nullable=False)
-    
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey(add_prefix_for_prod("user.id")),
+        nullable=False,
+    )
 
     user = db.relationship("User", back_populates="stations")
 

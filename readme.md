@@ -30,7 +30,7 @@ cp example.env .env
 
 make sure its contents look right.
 
-### configure postgres
+#### configure postgres
 
 #### install postgres
 
@@ -81,14 +81,37 @@ SET search_path TO where_da_gas_at; -- set schema
 select * from "user";
 ```
 
-## run
+#### run
+
 ```bash
 cd backend
+# on new project creation,
+# pipenv run flask db init
+
+# on every schema change
+# pipenv run flask db migrate -m "describe schema change"
+
+pipenv run flask db upgrade
+pipenv run flask seed all
 pipenv run flask run
 ```
 
+### frontend
 
+```bash
+cd react-vite
+npm i
+npm run preview
+```
 
+## deploy
+
+TODO fill out these commands
+
+```bash
+cd react-vite
+npm run build
+```
 
    <!-- ```bash
    pipenv shell
