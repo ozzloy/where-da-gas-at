@@ -22,7 +22,8 @@ class Station(db.Model):
         nullable=False,
     )
 
-    user = db.relationship("User", back_populates="stations")
+    user = db.relationship("User", back_populates="station")
+    review = db.relationship("Review", back_populates="station")
 
     def to_dict(self):
         return {

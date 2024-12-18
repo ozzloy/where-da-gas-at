@@ -18,9 +18,10 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     password_hash = db.Column(db.String(255), nullable=False)
 
-    stations = db.relationship("Station", back_populates="user")
+    station = db.relationship("Station", back_populates="user")
+    review= db.relationship("Review", back_populates="user")
 
-    # stations = db.relationship("Station", back_populates="user")
+
     
     @property
     def password(self):
