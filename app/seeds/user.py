@@ -1,22 +1,36 @@
 from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
 
+user_seeds = [
+    {
+        "user": "Demo",
+        "email": "demo@example.com",
+        "password": "password",
+    },
+    {
+        "user": "marnie",
+        "email": "marnie@example.com",
+        "password": "password",
+    },
+    {
+        "user": "bobbie",
+        "email": "bobbie@example.com",
+        "password": "password",
+    },
+]
+
 
 # Adds a demo user, you can add other users here if you want
 def seed_user():
-    demo = User(
-        id=1,  user="Demo", email="demo@aa.io", password="password"
-    )
-    marnie = User(
-        id=2,  user="marnie", email="marnie@aa.io", password="password"
-    )
-    bobbie = User(
-        id=3,    user="bobbie", email="bobbie@aa.io", password="password"
-    )
+    # use the "users" array to insert records into the db
+    for user_seed in user_seeds:
+        user = User(
+            user=user_seed["user"],
+            email=user_seed["email"],
+            password=user_seed["password"],
+        )
+        db.session.add(user)
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
     db.session.commit()
 
 
