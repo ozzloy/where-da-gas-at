@@ -67,8 +67,58 @@ def create_price():
     """
 
 
+@price_routes.route("/")
+def read_prices():
     """
     get all prices
     """
     prices = Price.query.all()
     return {"price": {price.id: price.to_dict() for price in prices}}
+
+
+@price_routes.route("/<int:id>")
+def read_price(id):
+    """
+    get price by id
+    """
+    price = Price.query.get(id)
+    return {"price": {price.id: price.to_dict()}}
+
+
+@price_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_price(id):
+    user_id = current_user.id
+    price = Price.query.get(id)
+    if not price.user_id == user_id:
+        return {"message": "forbidden"}, 403
+
+    # otherwise, get the info from the request's json
+    data = request.get_json()
+    # and merge it into the price
+    for key, value in data.items():
+        setattr(price, key, value)
+    # then make sure the price is saved to the db
+    db.session.commit()
+    # and finally, return {"price": {str(id):price.to_dict()}}
+    return {"price": {str(id): price.to_dict()}}
+
+
+@price_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_price(id):
+    user_id = current_user.id
+    price = Price.query.get(id)
+    if not price:
+        return {"message": "price not found"}
+
+    if not price.user_id == user_id:
+        return {"message": "forbidden"}, 403
+
+    # otherwise, delete the price
+    db.session.delete(price)
+    # then make sure the price is saved to the db
+    db.session.commit()
+
+    # and finally, return {"message": f}
+    return {"message": f"deleted price {price.id} successfully"}
