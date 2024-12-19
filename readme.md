@@ -101,12 +101,35 @@ pipenv run flask seed all
 pipenv run flask run
 ```
 
-### frontend
+### start the frontend
 
 ```bash
 cd where-da-gas-at/react-vite
 npm i
 npm run preview
+```
+
+
+## test
+
+### test the backend
+
+```bash
+cd where-da-gas-at
+pytest
+```
+
+should produce output like this:
+
+```
+========================== test session starts =====================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+rootdir: /home/ozzloy/app-academy/src/where-da-gas-at
+collected 1 item
+
+tests/api/test_auth_routes.py .                              [100%]
+
+=========================== 1 passed in 0.14s ======================
 ```
 
 ## deploy
