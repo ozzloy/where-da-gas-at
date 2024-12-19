@@ -8,7 +8,7 @@ class Station(db.Model):
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255), nullable=False)
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)

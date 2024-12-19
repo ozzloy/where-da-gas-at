@@ -13,17 +13,24 @@ def validate_station(_form, field):
 
 
 class StationForm(FlaskForm):
-    name = StringField("name", validators=[DataRequired()])
-    city = StringField("city", validators=[DataRequired()])
-    state = StringField("state", validators=[DataRequired()])
-    country = StringField("country", validators=[DataRequired()])
-    description = StringField(
-        "description", validators=[DataRequired()]
-    )
-    image = StringField("image", validators=[DataRequired()])
-    latitude = StringField("latitude", validators=[DataRequired()])
-    longitude = StringField("longitude", validators=[DataRequired()])
+    address = StringField("address", validators=[DataRequired()])
+    lat = StringField("lat", validators=[DataRequired()])
+    lng = StringField("lng", validators=[DataRequired()])
     location_id = StringField(
         "location_id", validators=[DataRequired(), validate_station]
     )
+    name = StringField("name", validators=[DataRequired()])
+    uri = StringField("uri", validators=[DataRequired()])
+    user_id = StringField("user_id", validators=[DataRequired()])
+
+
+class EditStationForm(FlaskForm):
+    address = StringField("address", validators=[DataRequired()])
+    lat = StringField("lat", validators=[DataRequired()])
+    lng = StringField("lng", validators=[DataRequired()])
+    location_id = StringField(
+        "location_id", validators=[DataRequired()]
+    )
+    name = StringField("name", validators=[DataRequired()])
+    uri = StringField("uri", validators=[DataRequired()])
     user_id = StringField("user_id", validators=[DataRequired()])
