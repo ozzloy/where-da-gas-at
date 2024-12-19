@@ -6,9 +6,43 @@ from ..forms import ReviewForm
 # establish a blueprint for review routes
 review_routes = Blueprint("review", __name__)
 
+
 # #Create Review
-# @review_routes.route('/', method=['POST'])
-# def created_review()
+@review_routes.route("/", methods=["POST"])
+@login_required
+def create_review():
+    created_form = ReviewForm()
+    created_form["csrf_token"].data = request.cookies["csrf_token"]
+    if created_form.validate_on_submit():
+        station_id = (created_form.data.get["station_id"],)
+        review = created_form.data.get["review"]
+
+        # TODO: return only messages that apply
+        if not review or station_id:
+            return (
+                jsonify(
+                    {
+                        "message": "bad request",
+                        "error": {
+                            "review": "review is required",
+                            "station_id": "station id is required",
+                            "user_id": "user id is required",
+                        },
+                    }
+                ),
+                400,
+            )
+
+        review = Review(
+            station_id=station_id,
+            user_id=current_user.id,
+            review=review,
+        )
+
+        db.session.add(review)
+        db.session.commit()
+
+        return {"review": {str(review.id): review.to_dict()}}, 200
 
 
 # Read one review
@@ -59,6 +93,7 @@ def update_review(review_id):
 
         # failure
         if not review:
+            # TODO: return only messages that apply
             return (
                 jsonify(
                     {
