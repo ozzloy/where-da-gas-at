@@ -1,62 +1,92 @@
-from app.models import db, Review, environment, SCHEMA
 from sqlalchemy.sql import text
 
+from app.models import db, Review, environment, SCHEMA
+from app.models.station import Station
+from app.models.user import User
+from app.seeds.user import user_seeds
+from app.seeds.station import station_seeds
+
+
+user_emails = [user_seed["email"] for user_seed in user_seeds]
+station_uris = [station_seed["uri"] for station_seed in station_seeds]
+
+
+review_seeds = [
+    {
+        "user_id": 1,
+        "station_id": 1,
+        "review": """
+          Great place for premium gas,
+          but the line can get long during rush hour.
+        """,
+    },
+    {
+        "user_id": 1,
+        "station_id": 3,
+        "review": """
+          Love this place!
+          The charging speed is awesome,
+          and the restroom is always clean.
+        """,
+    },
+    {
+        "user_id": 2,
+        "station_id": 2,
+        "review": """
+          Best fuel stop in town!
+          The air pump works great and the staff is super friendly.
+        """,
+    },
+    {
+        "user_id": 2,
+        "station_id": 1,
+        "review": """
+          Excellent experience!
+          Staff is friendly, and the charging process is seamless.
+        """,
+    },
+    {
+        "user_id": 3,
+        "station_id": 3,
+        "review": """
+          Charging works well, but the place is often crowded.
+          Needs more space for parking.
+        """,
+    },
+    {
+        "user_id": 3,
+        "station_id": 1,
+        "review": """
+          Excellent experience!
+          Staff is friendly, and the charging process is seamless.
+        """,
+    },
+]
+
+
 def seed_review():
-    review1 = Review(
-        user_id = 1,
-        station_id = 1,
-        review="Great place for premium gas, but the line can get long during rush hour."
+    users = User.query.filter(User.email.in_(user_emails)).all()
+    stations = Station.query.filter(
+        Station.uri.in_(station_uris)
+    ).all()
 
-    )
-    review2 = Review(
-        user_id = 1,
-        station_id = 3,
-        review="Love this place! The charging speed is awesome, and the restroom is always clean."
-    )
-
-    review3 = Review(
-        user_id = 2,
-        station_id = 2,
-        review="Best fuel stop in town! The air pump works great and the staff is super friendly."
-    )
-
-    review4 = Review(
-        user_id = 2,
-        station_id = 1,
-        review="Excellent experience! Staff is friendly, and the charging process is seamless."
-    )
-
-    review5 = Review(
-        user_id = 3,
-        station_id = 3,
-        review=	"Charging works well, but the place is often crowded. Needs more space for parking."
-    )
-
-    review6 = Review(
-        user_id = 3,
-        station_id = 1,
-        review="Excellent experience! Staff is friendly, and the charging process is seamless."
-    )
-
-    db.session.add(review1)
-    db.session.add(review2)
-    db.session.add(review3)
-    db.session.add(review4)
-    db.session.add(review5)
-    db.session.add(review6)
+    for review_seed in review_seeds:
+        review = Review(
+            review=review_seed["review"],
+            user_id=users[review_seed["user_id"] - 1].id,
+            station_id=stations[review_seed["station_id"] - 1].id,
+        )
+        db.session.add(review)
 
     db.session.commit()
 
-   
 
 def undo_review():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.review RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.review RESTART IDENTITY CASCADE;"
+        )
     else:
         db.session.execute(text("DELETE FROM review"))
 
     db.session.commit()
-
-
-
-
