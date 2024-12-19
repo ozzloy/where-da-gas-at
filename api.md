@@ -210,7 +210,7 @@ update an extant user, and returns the current user's information.
 * require authentication: true
 * request
   ```http
-  put /api/user
+  put /api/user/1
   content-type: application/json
 
   {
@@ -590,7 +590,7 @@ returns the details of a spot specified by its id.
 * request
 
   ```http
-  put /api/station
+  put /api/station/1
   content-type: application/json
 
   {
