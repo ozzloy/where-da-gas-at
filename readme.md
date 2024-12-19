@@ -116,7 +116,7 @@ npm run preview
 
 ```bash
 cd where-da-gas-at
-pytest
+pipenv run pytest
 ```
 
 should produce output like this:

@@ -1,9 +1,128 @@
 import pytest
 import requests
 import json
+from typing import Dict, Any
 
 
-def test_price_endpoint():
+# TODO: test failure to create due to not being logged in
+
+# TODO: test failure to update because price was created by another
+# user
+
+# TODO: add test for read: price not found
+
+# TODO: add test for delete: price not found
+
+
+@pytest.mark.skip(reason="need create station first")
+def test_create_price():
+    # send http GET to http://localhost:8000/api/auth/
+    # to get a csrf_token cookie, and a session cookie
+    #
+    # then, log in by sending
+    # http get to http://localhost:8000/api/auth/login
+    # with json body:
+    # {"email": "demo@example.com", "password": "password"}
+    #
+    # store the response which should look like:
+    # {
+    #     "user": {
+    #         "2": {
+    #             "id": 2,
+    #             "user": "some_name",
+    #             "email": "demo@example.com",
+    #         }
+    #     }
+    # }
+    # save the user id for checking later
+    #
+    # then
+    # send http POST to "http://localhost:8000/api/price"
+    # with body
+    # {
+    #   "price": 456.789,
+    #   "station_id": 1,
+    #   "fuel_type": "premium",
+    # }
+    #
+    # check the response has this structure
+    # {
+    #   "price":
+    #   {
+    #     "1":
+    #     {
+    #       "id": 1,
+    #       "price": 456.789,
+    #       "user_id": 1,
+    #       "station_id": 1,
+    #       "fuel_type": "premium",
+    #     }
+    #   }
+    # }
+    # but not these exact values, just these types of values
+    # make sure the user_id matches the user id from the prior response
+    protocol = "http"
+    host = "localhost"
+    port = 8000
+    path_prefix = "/api"
+    stem = f"{protocol}://{host}:{port}{path_prefix}"
+
+    # session saves cookies like "csrf_token" and "session" across
+    # requests
+    session = requests.Session()
+
+    # auth_response gets the csrf_token and session
+    session.get(f"{stem}/auth/")
+    # now auth_response has cookies for making further requests
+
+    login_data = {"email": "demo@example.com", "password": "password"}
+    login_reply = session.post(f"{stem}/auth/login", json=login_data)
+
+    price_data = {
+        "price": 456.789,
+        "station_id": 21,
+        "fuel_type": "premium",
+    }
+
+    create_reply = session.post(f"{stem}/price", json=price_data)
+    assert create_reply.status_code == 200
+
+    reply_data = create_reply.json()
+
+    def validate_price_slice(data: Dict[str, Any]) -> None:
+        assert isinstance(data, dict)
+        assert "price" in data
+
+        price_slice = data["price"]
+        assert isinstance(price_slice, dict)
+
+        assert len(price_slice) == 1
+
+        price_id = list(price_slice.keys())[0]
+        assert isinstance(int(price_id), int)
+        price = price_slice[price_id]
+
+        required_fields = {
+            "id",
+            "price",
+            "user_id",
+            "station_id",
+            "fuel_type",
+        }
+        # price has all the fields it should
+        assert all(field in price for field in required_fields)
+        # price has only fields it should
+        assert all(field in required_fields for field in price)
+
+        assert isinstance(price["id"], int)
+        assert isinstance(price["price"], (int, float))
+        assert isinstance(price["user_id"], int)
+        assert isinstance(price["station_id"], int)
+        assert isinstance(price["fuel_type"], str)
+
+    validate_price_slice(reply_data)
+
+
     """Test getting prices after authentication"""
     # Setup
     base_url = "http://localhost:8000"
