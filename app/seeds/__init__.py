@@ -1,4 +1,6 @@
 from flask.cli import AppGroup
+
+from app.seeds.price import seed_price, undo_price
 from .user import seed_user, undo_user
 from .station import seed_station, undo_station
 from .review import seed_review, undo_review
@@ -21,9 +23,11 @@ def seed():
         undo_review()
         undo_station()
         undo_user()
+        undo_price()
     seed_user()
     seed_station()
     seed_review()
+    seed_price()
     # Add other seed functions here
 
 
@@ -33,4 +37,5 @@ def undo():
     undo_review()
     undo_station()
     undo_user()
+    undo_price()
     # Add other undo functions here
