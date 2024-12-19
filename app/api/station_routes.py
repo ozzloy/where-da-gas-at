@@ -42,25 +42,25 @@ def create_station():
     return form.errors, 401
 
 
-@station_routes.route("/", methods=["PUT"])
+@station_routes.route("/<int:id>", methods=["PUT"])
 @login_required
-def update_station():
-    form = EditStationForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        station = Station(
-            name=form.data["name"],
-            lat=form.data["lat"],
-            lng=form.data["lng"],
-            address=form.data["address"],
-            uri=form.data["uri"],
-            location_id=form.data["location_id"],
-            user_id=current_user.id,
-        )
-        db.session.add(station)
-        db.session.commit()
-        return {"station": {str(station.id): station.to_dict()}}
-    return form.errors, 401
+def update_station(id):
+    data = request.get_json()
+
+    station = Station.query.get(id)
+
+    if not station:
+        return {"error": f"station {id} not found"}, 401
+
+    station.name = data.get("name", station.name)
+    station.lat = data.get("lat", station.lat)
+    station.lng = data.get("lng", station.lng)
+    station.address = data.get("address", station.address)
+    station.uri = data.get("uri", station.uri)
+    station.location_id = data.get("location_id", station.location_id)
+
+    db.session.commit()
+    return {"station": {str(station.id): station.to_dict()}}
 
 
 @station_routes.route("/<int:id>", methods=["DELETE"])
