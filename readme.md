@@ -87,7 +87,7 @@ SET search_path TO where_da_gas_at; -- set schema
 select * from "user";
 ```
 
-#### run
+#### run the backend
 
 ```bash
 # on new project creation,
@@ -104,7 +104,7 @@ pipenv run flask run
 ### frontend
 
 ```bash
-cd react-vite
+cd where-da-gas-at/react-vite
 npm i
 npm run preview
 ```
@@ -117,19 +117,3 @@ TODO fill out these commands
 cd react-vite
 npm run build
 ```
-
-   <!-- ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ``` -->
