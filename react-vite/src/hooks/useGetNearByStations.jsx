@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 
 const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
-function useGetNearByStations({ placesLib, map, center }) {
+function useGetNearByStations({ placesLib, center }) {
   const [stations, setStations] = useState(null);
+
   useEffect(() => {
     const fetchNearbyPlaces = async () => {
       const requestOptions = {
@@ -43,7 +44,7 @@ function useGetNearByStations({ placesLib, map, center }) {
     };
 
     fetchNearbyPlaces();
-  }, [placesLib, map, center]);
+  }, [placesLib, center]);
 
   return stations;
 }

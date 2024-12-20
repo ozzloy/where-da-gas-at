@@ -1,3 +1,14 @@
+.nav-data-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  height: 15%;
+  width: 100%;
+  position: absolute;
+  z-index: 1000;
+}
 .profile-dropdown {
   position: absolute;
+  z-index: 10000;
 }
