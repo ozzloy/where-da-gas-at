@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
+    "@vis.gl/react-google-maps": "^1.4.2",
     "authenticate-me": "file:",
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",
