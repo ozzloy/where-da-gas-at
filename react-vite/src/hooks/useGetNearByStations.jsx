@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useMapsLibrary } from "@vis.gl/react-google-maps";
 
 const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
-function useGetNearByStations({ placesLib, center }) {
+function useGetNearByStations({ center }) {
   const [stations, setStations] = useState(null);
+  const placesLib = useMapsLibrary("places");
 
   useEffect(() => {
     const fetchNearbyPlaces = async () => {

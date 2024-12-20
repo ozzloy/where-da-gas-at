@@ -1,9 +1,4 @@
-import {
-  APIProvider,
-  Map,
-  useMapsLibrary,
-  AdvancedMarker,
-} from "@vis.gl/react-google-maps";
+import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 import { useEffect } from "react";
 import { useGetCurrentLocation } from "../../hooks/useGetCurrentLocationHook";
 import { useGetNearByStations } from "../../hooks/useGetNearByStations";
@@ -12,16 +7,15 @@ import AdvanceMarkerComponent from "./GoogleMapsInfoDisplay/AdvanceMarkerCompone
 const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function GoogleMaps() {
-  const placesLib = useMapsLibrary("places");
   const center = useGetCurrentLocation();
   const nearbyStations = useGetNearByStations({
-    placesLib,
     center,
   });
 
   useEffect(() => {
     console.log(center, "Current Location");
   }, [center]);
+
   return (
     <APIProvider apiKey={API_KEY}>
       {center ? (
@@ -45,6 +39,7 @@ function GoogleMaps() {
             nearbyStations.length > 0 &&
             nearbyStations.map((station) => {
               const stationTypes = station.types;
+              console.log(station);
               return (
                 <div key={station.id}>
                   <AdvanceMarkerComponent
