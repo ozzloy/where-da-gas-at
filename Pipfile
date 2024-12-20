@@ -32,6 +32,8 @@ wtforms = "==3.0.1"
 zipp = "==3.17.0"
 
 [dev-packages]
+black = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.9"
