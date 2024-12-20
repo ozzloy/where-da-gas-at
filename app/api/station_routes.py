@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request
+from flask_login import current_user, login_required
+
+from app.forms import EditStationForm, StationForm
 from app.models import Station, db
-from flask_login import login_required, current_user
-from app.forms import StationForm, EditStationForm
 
 station_routes = Blueprint("station", __name__)
 
