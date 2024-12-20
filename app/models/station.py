@@ -1,12 +1,12 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import relationship
+
+from .db import add_prefix_for_prod, db, environment, schema
 
 
 class Station(db.Model):
     __tablename__ = "station"
-
-    if environment == "production":
-        __table_args__ = {"schema": SCHEMA}
+    if schema:
+        __table_args__ = {"schema": schema}
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255), nullable=False)

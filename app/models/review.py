@@ -1,11 +1,10 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import add_prefix_for_prod, db, environment, schema
 
 
 class Review(db.Model):
     __tablename__ = "review"
-
-    if environment == "production":
-        __table_args__ = {"schema": SCHEMA}
+    if schema:
+        __table_args__ = {"schema": schema}
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(
