@@ -12,6 +12,16 @@ from flask_login import (
 auth_routes = Blueprint("auth", __name__)
 
 
+@auth_routes.route('/')
+def authenticate():
+    """
+    Authenticates a user.
+    """
+    if current_user.is_authenticated:
+        return current_user.to_dict()
+    return {'errors': {'message': 'Unauthorized'}}, 401
+
+
 @auth_routes.route("/login", methods=["POST"])
 def login():
     """
@@ -49,7 +59,7 @@ def sign_up():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         user = User(
-            username=form.data["user"],
+            user=form.data["user"],
             email=form.data["email"],
             password=form.data["password"],
         )
