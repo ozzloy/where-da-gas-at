@@ -1,9 +1,9 @@
 from .db import (
     db,
+    dialect,
     drop_databases,
-    environment,
     reset_databases,
-    SCHEMA,
+    schema,
 )
 from .user import User
 from .review import Review
