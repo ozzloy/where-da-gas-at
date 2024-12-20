@@ -23,7 +23,7 @@ function GoogleMaps() {
   return (
     <APIProvider apiKey={API_KEY}>
       <Map
-        style={{ width: "90vw", height: "90vh" }}
+        style={{ width: "100vw", height: "100vh" }}
         defaultCenter={usersLocation}
         mapId={import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID}
         defaultZoom={15}
