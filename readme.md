@@ -106,7 +106,8 @@ pipenv run flask run
 this will delete all the tables and re-add them
 
 ```bash
-pipenv run flask db-reset
+pipenv run flask db-drop-all
+pipenv run flask db upgrade
 ```
 
 and you can then reseed with

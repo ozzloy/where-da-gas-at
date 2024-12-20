@@ -29,7 +29,7 @@ class SchemaMixin:
         __table_args__ = {"schema": schema, "quote": True}
 
 
-def drop_database():
+def drop_databases():
     with db.engine.connect() as conn:
         if schema:
             schema_tables = conn.execute(
@@ -52,10 +52,10 @@ def drop_database():
             db.drop_all()
 
 
-def create_database():
+def create_databases():
     db.create_all()
 
 
-def reset_database():
-    drop_database()
-    create_database()
+def reset_databases():
+    drop_databases()
+    create_databases()
