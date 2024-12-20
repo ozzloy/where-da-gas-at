@@ -3,12 +3,11 @@
 ![db diagram](db.png)
 
 ## general format of all response body values
+
 ```json
 {
-  "slice, aka table":
-  {
-    "id":
-    {
+  "slice, aka table": {
+    "id": {
       "key": "values",
       "for": "object, aka record"
     }
@@ -22,8 +21,9 @@
 
 all endpoints that require a current user to be logged in.
 
-* request: endpoints that require authentication
-* error response:
+- request: endpoints that require authentication
+- error response:
+
   ```http
   http/1.1 401 unauthorized
   content-type: application/json
@@ -38,7 +38,8 @@ all endpoints that require a current user to be logged in.
 all endpoints that require authentication and the current user does
 not have the correct role(s) or permission(s).
 
-* response:
+- response:
+
   ```http
   http/1.1 403 forbidden
   content-type: application/json
@@ -54,13 +55,15 @@ not have the correct role(s) or permission(s).
 
 returns the information about the current user that is logged in.
 
-* require authentication: false
-* request
+- require authentication: false
+- request
+
   ```http
   get /api/user/current
   ```
 
-* successful response when there is a logged in user
+- successful response when there is a logged in user
+
   ```http
   http/1.1 200 ok
   content-type: application/json
@@ -79,7 +82,8 @@ returns the information about the current user that is logged in.
   }
   ```
 
-* successful response when there is no logged in user
+- successful response when there is no logged in user
+
   ```http
   http/1.1 200 ok
   content-type: application/json
@@ -94,8 +98,9 @@ returns the information about the current user that is logged in.
 logs in a current user with valid credentials and returns the current
 user's information.
 
-* require authentication: false
-* request
+- require authentication: false
+- request
+
   ```http
   post /api/session
   content-type: application/json
@@ -106,7 +111,8 @@ user's information.
   }
   ```
 
-* successful response
+- successful response
+
   ```http
   http/1.1 200 ok
   content-type: application/json
@@ -125,7 +131,8 @@ user's information.
   }
   ```
 
-* error response: invalid credentials
+- error response: invalid credentials
+
   ```http
   http/1.1 401 unauthorized
   content-type: application/json
@@ -135,7 +142,8 @@ user's information.
   }
   ```
 
-* error response: body validation errors
+- error response: body validation errors
+
   ```http
   http/1.1 400 bad request
   content-type: application/json
@@ -155,8 +163,9 @@ user's information.
 creates a new user, logs them in as the current user, and returns the
 current user's information.
 
-* require authentication: false
-* request
+- require authentication: false
+- request
+
   ```http
   post /api/user
   content-type: application/json
@@ -169,7 +178,8 @@ current user's information.
   }
   ```
 
-* successful response
+- successful response
+
   ```http
   http/1.1 201 created
   content-type: application/json
@@ -188,8 +198,9 @@ current user's information.
   }
   ```
 
-* error response: user already exists with the specified email or
+- error response: user already exists with the specified email or
   username
+
   ```http
   http/1.1 500 internal server error
   content-type: application/json
@@ -207,8 +218,9 @@ current user's information.
 
 update an extant user, and returns the current user's information.
 
-* require authentication: true
-* request
+- require authentication: true
+- request
+
   ```http
   put /api/user/1
   content-type: application/json
@@ -221,7 +233,7 @@ update an extant user, and returns the current user's information.
   }
   ```
 
-* successful response
+- successful response
 
   ```http
   http/1.1 200 ok
@@ -241,7 +253,7 @@ update an extant user, and returns the current user's information.
   }
   ```
 
-* error response: user already exists with the specified email or
+- error response: user already exists with the specified email or
   username
 
   ```http
@@ -257,7 +269,8 @@ update an extant user, and returns the current user's information.
   }
   ```
 
-* error response: body validation errors
+- error response: body validation errors
+
   ```http
   http/1.1 400 bad request
   content-type: application/json
@@ -273,12 +286,14 @@ update an extant user, and returns the current user's information.
   ```
 
 #### delete a user
-* require authentication: true
-* request
+
+- require authentication: true
+- request
   ```http
-  delete /api/user/1
+  delete /api/user/
   ```
-* success:
+- success:
+
   ```http
   http/1.1 200 ok
 
@@ -286,25 +301,20 @@ update an extant user, and returns the current user's information.
     "message": "deleted user 1 successfully"
   }
   ```
-* failure:
-  ```http
-  http/1.1 404
 
-  {
-    "error": "user 1 not found"
-  }
-  ```
 #### get all stations for the current user
 
 returns all the stations owned (created) by the current user.
 
-* require authentication: true
-* request
+- require authentication: true
+- request
+
   ```http
   get /api/user/current/station
   ```
 
-* example successful response
+- example successful response
+
   ```http
   http/1.1 200 ok
   content-type: application/json
@@ -341,15 +351,18 @@ returns all the stations owned (created) by the current user.
   ```
 
 #### get all reviews for current user
+
 returns all the reviews owned (created) by the current user.
 
-* require authentication: true
-* request
+- require authentication: true
+- request
+
   ```http
   get /api/user/current/review
   ```
 
-* example successful response
+- example successful response
+
   ```http
   http/1.1 200 ok
   content-type: application/json
@@ -383,15 +396,15 @@ returns all the reviews owned (created) by the current user.
 
 returns all prices for the current user
 
-* requires authentication: true
+- requires authentication: true
 
-* request
+- request
 
   ```http
   get /api/user/1/price
   ```
 
-* success
+- success
 
   ```http
   http/1.1 ok
@@ -428,15 +441,15 @@ returns all prices for the current user
 
 #### get all stations
 
-* require authentication: false
+- require authentication: false
 
-* request
+- request
 
   ```http
   get /api/station
   ```
 
-* successful response
+- successful response
 
   ```http
   http/1.1 200 ok
@@ -477,15 +490,15 @@ returns all prices for the current user
 
 returns the details of a spot specified by its id.
 
-* require authentication: false
+- require authentication: false
 
-* request
+- request
 
   ```http
   get /api/station/:station_id
   ```
 
-* successful response
+- successful response
 
   ```http
   http/1.1 200 ok
@@ -509,7 +522,9 @@ returns the details of a spot specified by its id.
     }
   }
 
-* error response: couldn't find a station with the specified id
+  ```
+
+- error response: couldn't find a station with the specified id
 
   ```http
   http/1.1 404
@@ -521,9 +536,9 @@ returns the details of a spot specified by its id.
 
 #### save a station by creating a station record
 
-* require authentication: true
+- require authentication: true
 
-* request
+- request
 
   ```http
   post /api/station
@@ -539,7 +554,7 @@ returns the details of a spot specified by its id.
   }
   ```
 
-* success response
+- success response
 
   ```http
   http/1.1 201 created
@@ -564,7 +579,7 @@ returns the details of a spot specified by its id.
   }
   ```
 
-* error response: body validation errors
+- error response: body validation errors
 
   ```http
   http/1.1 400 bad request
@@ -582,12 +597,11 @@ returns the details of a spot specified by its id.
   }
   ```
 
-
 #### update a station
 
-* require authentication: true
+- require authentication: true
 
-* request
+- request
 
   ```http
   put /api/station/1
@@ -603,7 +617,8 @@ returns the details of a spot specified by its id.
   }
   ```
 
-* success response
+- success response
+
   ```http
   http/1.1 201 created
   content-type: application/json
@@ -627,7 +642,7 @@ returns the details of a spot specified by its id.
   }
   ```
 
-* error response: body validation errors
+- error response: body validation errors
 
   ```http
   http/1.1 400 bad request
@@ -647,15 +662,15 @@ returns the details of a spot specified by its id.
 
 #### delete a station
 
-* require authentication: true
+- require authentication: true
 
-* request
+- request
 
   ```http
   delete /api/station/1
   ```
 
-* success:
+- success:
 
   ```http
   http/1.1 200 ok
@@ -666,7 +681,7 @@ returns the details of a spot specified by its id.
   }
   ```
 
-* failure:
+- failure:
 
   ```http
   http/1.1 404
@@ -678,15 +693,18 @@ returns the details of a spot specified by its id.
   ```
 
 #### get all reviews for station
+
 returns all the reviews owned (created) by the station.
 
-* require authentication: true
-* request
+- require authentication: true
+- request
+
   ```http
   get /api/station/1/review
   ```
 
-* example successful response
+- example successful response
+
   ```http
   http/1.1 200 ok
   content-type: application/json
@@ -720,15 +738,15 @@ returns all the reviews owned (created) by the station.
 
 returns all prices for the station
 
-* requires authentication: true
+- requires authentication: true
 
-* request
+- request
 
   ```http
   get /api/station/1/price
   ```
 
-* success
+- success
 
   ```http
   http/1.1 ok
@@ -765,9 +783,9 @@ returns all prices for the station
 
 #### create
 
-* require authentication: true
+- require authentication: true
 
-* request
+- request
 
   ```http
   post /api/price
@@ -781,7 +799,7 @@ returns all prices for the station
   }
   ```
 
-* success:
+- success:
 
   ```http
   http/1.1 200 ok
@@ -804,7 +822,7 @@ returns all prices for the station
   }
   ```
 
-* failure:
+- failure:
 
   ```http
   http/1.1 400 bad request
@@ -822,15 +840,15 @@ returns all prices for the station
 
 #### read
 
-* require authentication: false
+- require authentication: false
 
-* request:
+- request:
 
   ```
   get /api/price/1
   ```
 
-* success:
+- success:
 
   ```http
   http/1.1 200 ok
@@ -853,7 +871,7 @@ returns all prices for the station
   }
   ```
 
-* failure:
+- failure:
 
   ```http
   http/1.1 404
@@ -865,15 +883,15 @@ returns all prices for the station
 
 #### read all
 
-* require authentication: false
+- require authentication: false
 
-* request:
+- request:
 
   ```
   get /api/price
   ```
 
-* success:
+- success:
 
   ```http
   http/1.1 200 ok
@@ -908,9 +926,9 @@ returns all prices for the station
 
 #### update
 
-* require authentication: true
+- require authentication: true
 
-* request
+- request
 
   ```http
   post /api/price/1
@@ -923,7 +941,7 @@ returns all prices for the station
   }
   ```
 
-* success:
+- success:
 
   ```http
   http/1.1 200 ok
@@ -946,7 +964,7 @@ returns all prices for the station
   }
   ```
 
-* failure:
+- failure:
 
   ```http
   http/1.1 400 bad request
@@ -964,15 +982,15 @@ returns all prices for the station
 
 #### delete
 
-* require authentication: true
+- require authentication: true
 
-* request
+- request
 
   ```http
   delete /api/price/1
   ```
 
-* success:
+- success:
 
   ```http
   http/1.1 200 ok
@@ -982,7 +1000,7 @@ returns all prices for the station
   }
   ```
 
-* failure:
+- failure:
 
   ```http
   http/1.1 404
@@ -996,9 +1014,9 @@ returns all prices for the station
 
 #### create
 
-* require authentication: true
+- require authentication: true
 
-* request
+- request
 
   ```http
   post /api/review
@@ -1010,7 +1028,7 @@ returns all prices for the station
   }
   ```
 
-* success:
+- success:
 
   ```http
   http/1.1 200 ok
@@ -1032,7 +1050,7 @@ returns all prices for the station
   }
   ```
 
-* failure:
+- failure:
 
   ```http
   http/1.1 400 bad request
@@ -1048,15 +1066,15 @@ returns all prices for the station
 
 #### read
 
-* require authentication: false
+- require authentication: false
 
-* request:
+- request:
 
   ```
   get /api/review/1
   ```
 
-* success:
+- success:
 
   ```http
   http/1.1 200 ok
@@ -1078,7 +1096,7 @@ returns all prices for the station
   }
   ```
 
-* failure:
+- failure:
 
   ```http
   http/1.1 404
@@ -1090,15 +1108,15 @@ returns all prices for the station
 
 #### read all
 
-* require authentication: false
+- require authentication: false
 
-* request:
+- request:
 
   ```
   get /api/review
   ```
 
-* success:
+- success:
 
   ```http
   http/1.1 200 ok
@@ -1131,9 +1149,9 @@ returns all prices for the station
 
 #### update
 
-* require authentication: true
+- require authentication: true
 
-* request
+- request
 
   ```http
   post /api/review/1
@@ -1146,7 +1164,7 @@ returns all prices for the station
   }
   ```
 
-* success:
+- success:
 
   ```http
   http/1.1 200 ok
@@ -1168,7 +1186,7 @@ returns all prices for the station
   }
   ```
 
-* failure:
+- failure:
 
   ```http
   http/1.1 400 bad request
@@ -1185,15 +1203,15 @@ returns all prices for the station
 
 #### delete
 
-* require authentication: true
+- require authentication: true
 
-* request
+- request
 
   ```http
   delete /api/review/1
   ```
 
-* success:
+- success:
 
   ```http
   http/1.1 200 ok
@@ -1203,7 +1221,7 @@ returns all prices for the station
   }
   ```
 
-* failure:
+- failure:
 
   ```http
   http/1.1 404
