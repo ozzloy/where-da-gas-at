@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from flask_login import login_required, current_user
+from flask_login import current_user, login_required, logout_user
 from app.models import db, User
 
 user_routes = Blueprint("user", __name__)
@@ -52,3 +52,18 @@ def update_user(id):
         setattr(user, key, value)
     db.session.commit()
     return {"user": {user.id: user.to_dict()}}
+
+
+@user_routes.route("/", methods=["DELETE"])
+@login_required
+def delete_user():
+    """
+    delete and log out currently logged in user
+    """
+
+    db.session.delete(current_user)
+    db.session.commit()
+
+    user_id = current_user.id
+    logout_user()
+    return {"message": f"deleted user {user_id} successfully"}

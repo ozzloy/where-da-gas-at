@@ -139,3 +139,32 @@ def test_update_user():
     #   to try to keep the db clean
     # TODO:
     # session.delete(get_full_url(""))
+
+
+def test_delete_user():
+    session = requests.Session()
+    get_auth_response = session.get(get_full_url("auth/"))
+
+    post_auth_signup_response = session.post(
+        get_full_url("auth/signup"), json=make_signup_data()
+    )
+
+    assert (
+        post_auth_signup_response.headers.get("Content-Type").lower()
+        == "application/json"
+    )
+    state = post_auth_signup_response.json()
+    user_slice = state["user"]
+    user = next(iter(user_slice.values()))
+
+    delete_user_response = session.delete(get_full_url("user/"))
+    assert delete_user_response.status_code == 200
+    assert (
+        delete_user_response.headers.get("Content-Type").lower()
+        == "application/json"
+    )
+    data = delete_user_response.json()
+    assert "message" in data
+    assert (
+        data["message"] == f"deleted user {user['id']} successfully"
+    )
