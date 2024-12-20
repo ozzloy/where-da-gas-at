@@ -7,12 +7,16 @@ class Review(db.Model, SchemaMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(
         db.Integer,
-        db.ForeignKey(add_prefix_for_prod("user.id")),
+        db.ForeignKey(
+            add_prefix_for_prod("user.id"), ondelete="CASCADE"
+        ),
         nullable=False,
     )
     station_id = db.Column(
         db.Integer,
-        db.ForeignKey(add_prefix_for_prod("station.id")),
+        db.ForeignKey(
+            add_prefix_for_prod("station.id"), ondelete="CASCADE"
+        ),
         nullable=False,
     )
     review = db.Column(db.Text, nullable=False)

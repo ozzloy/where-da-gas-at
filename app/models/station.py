@@ -21,7 +21,9 @@ class Station(db.Model, SchemaMixin):
 
     user_id = db.Column(
         db.Integer,
-        db.ForeignKey(add_prefix_for_prod("user.id")),
+        db.ForeignKey(
+            add_prefix_for_prod("user.id"), ondelete="CASCADE"
+        ),
         nullable=False,
     )
 
