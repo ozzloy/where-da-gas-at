@@ -101,6 +101,20 @@ pipenv run flask seed all
 pipenv run flask run
 ```
 
+#### reset the backend
+
+this will delete all the tables and re-add them
+
+```bash
+pipenv run flask db-reset
+```
+
+and you can then reseed with
+
+```bash
+pipenv run flask seed all
+```
+
 ### start the frontend
 
 ```bash

@@ -21,3 +21,33 @@ def add_prefix_for_prod(attr):
         return f"{schema}.{attr}"
     else:
         return attr
+def drop_database():
+    with db.engine.connect() as conn:
+        if schema:
+            schema_tables = conn.execute(
+                f"""
+                    SELECT tablename FROM pg_tables
+                    WHERE schemaname = '{schema}'
+                """
+            ).fetchall()
+            for table in schema_tables:
+                table_name = table[0]
+                conn.execute(
+                    f"""
+                        DROP TABLE IF EXISTS
+                            {schema}."{table_name}"
+                        CASCADE
+                    """
+                )
+
+        else:
+            db.drop_all()
+
+
+def create_database():
+    db.create_all()
+
+
+def reset_database():
+    drop_database()
+    create_database()
