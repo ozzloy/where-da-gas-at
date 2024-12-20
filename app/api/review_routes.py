@@ -68,7 +68,7 @@ def read_reviews():
         reviews = Review.query.all()
         return {
             "review": {
-                str(review.id): review.to_dict() for reviwe in reviews
+                str(review.id): review.to_dict() for review in reviews
             }
         }, 200
 
