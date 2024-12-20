@@ -8,8 +8,14 @@ import Navigation from "../components/Navigation/Navigation";
 export default function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
-    dispatch(thunkAuthenticate()).then(() => setIsLoaded(true));
+    try {
+      dispatch(thunkAuthenticate());
+      setIsLoaded(true);
+    } catch (e) {
+      console.error(e);
+    }
   }, [dispatch]);
 
   return (

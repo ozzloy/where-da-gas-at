@@ -18,12 +18,14 @@ function LoginFormModal() {
       thunkLogin({
         email,
         password,
-      }),
+      })
     );
 
-    if (serverResponse) {
-      setErrors(serverResponse);
-    } else {
+    if (serverResponse.type === "session/login/rejected") {
+      setErrors(serverResponse.payload);
+    }
+
+    if (serverResponse.type === "session/login/fulfilled") {
       closeModal();
     }
   };
