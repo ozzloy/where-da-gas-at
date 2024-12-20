@@ -1,30 +1,8 @@
 import pytest
 import requests
-import random
-from string import ascii_lowercase
 
 from .auth import create_authenticated_session
-from .config import DEMO_USER, get_full_url
-
-
-def make_random_string():
-    return "".join(random.choices(ascii_lowercase, k=10))
-
-
-def make_signup_data():
-    return {
-        "user": make_random_string(),
-        "email": f"{make_random_string()}@example.com",
-        "password": "password",
-    }
-
-
-def modify_signup_data(data):
-    return {
-        "user": "a" + data["user"],
-        "email": "a" + data["email"],
-        "password": "apassword",
-    }
+from .config import DEMO_USER, get_full_url, make_user, modify_user
 
 
 def test_create_user_fail_duplicate_email():
@@ -57,7 +35,7 @@ def test_create_user():
     assert get_auth_response.status_code == 200
 
     post_auth_signup_response = session.post(
-        get_full_url("auth/signup"), json=make_signup_data()
+        get_full_url("auth/signup"), json=make_user()
     )
     assert post_auth_signup_response.status_code == 200
 
@@ -101,7 +79,7 @@ def test_update_user():
     get_auth_response = session.get(get_full_url("auth/"))
 
     post_auth_signup_response = session.post(
-        get_full_url("auth/signup"), json=make_signup_data()
+        get_full_url("auth/signup"), json=make_user()
     )
 
     assert (
@@ -112,7 +90,7 @@ def test_update_user():
     user_slice = state["user"]
     user = next(iter(user_slice.values()))
 
-    user_update = modify_signup_data(user)
+    user_update = modify_user(user)
     update_user_response = session.put(
         get_full_url(f"user/{user['id']}"), json=user_update
     )
@@ -162,7 +140,7 @@ def test_delete_user():
     get_auth_response = session.get(get_full_url("auth/"))
 
     post_auth_signup_response = session.post(
-        get_full_url("auth/signup"), json=make_signup_data()
+        get_full_url("auth/signup"), json=make_user()
     )
 
     assert (
