@@ -4,13 +4,11 @@ from werkzeug.security import (
     check_password_hash,
 )
 
-from .db import add_prefix_for_prod, db, environment, schema
+from .db import add_prefix_for_prod, db, environment, SchemaMixin
 
 
-class User(db.Model, UserMixin):
+class User(db.Model, UserMixin, SchemaMixin):
     __tablename__ = "user"
-    if schema:
-        __table_args__ = {"schema": schema}
 
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.String(40), nullable=False, unique=True)

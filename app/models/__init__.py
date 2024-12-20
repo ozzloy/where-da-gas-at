@@ -1,5 +1,4 @@
-from .db import db
+from .db import db, environment, reset_database, SCHEMA
 from .user import User
 from .review import Review
-from .db import environment, SCHEMA
 from .station import Station

@@ -10,7 +10,6 @@ if url:
     dialect = url.split("://")[0]
 schema = dialect in ["postgresql"] and os.environ.get("SCHEMA")
 
-
 db = SQLAlchemy()
 
 
@@ -21,6 +20,15 @@ def add_prefix_for_prod(attr):
         return f"{schema}.{attr}"
     else:
         return attr
+
+
+class SchemaMixin:
+    """mixin to add schema if it exists"""
+
+    if schema:
+        __table_args__ = {"schema": schema, "quote": True}
+
+
 def drop_database():
     with db.engine.connect() as conn:
         if schema:

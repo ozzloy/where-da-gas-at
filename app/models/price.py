@@ -1,12 +1,10 @@
 from sqlalchemy import Column, Float, ForeignKey, Integer, String
 
-from .db import add_prefix_for_prod, db, schema
+from .db import add_prefix_for_prod, db, SchemaMixin
 
 
-class Price(db.Model):
+class Price(db.Model, SchemaMixin):
     __tablename__ = "price"
-    if schema:
-        __table_args__ = {"schema": schema}
 
     id = Column(Integer, primary_key=True)
 

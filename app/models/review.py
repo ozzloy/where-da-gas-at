@@ -1,10 +1,8 @@
-from .db import add_prefix_for_prod, db, environment, schema
+from .db import add_prefix_for_prod, db, environment, SchemaMixin
 
 
-class Review(db.Model):
+class Review(db.Model, SchemaMixin):
     __tablename__ = "review"
-    if schema:
-        __table_args__ = {"schema": schema}
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(
