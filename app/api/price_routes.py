@@ -110,7 +110,7 @@ def delete_price(id):
     user_id = current_user.id
     price = Price.query.get(id)
     if not price:
-        return {"message": "price not found"}
+        return {"message": f"price {id} not found"}, 404
 
     if not price.user_id == user_id:
         return {"message": "forbidden"}, 403

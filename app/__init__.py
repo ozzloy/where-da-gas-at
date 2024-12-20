@@ -1,3 +1,7 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
