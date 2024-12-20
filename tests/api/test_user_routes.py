@@ -41,6 +41,10 @@ def test_create_user_fail_duplicate_email():
     #     "user": ["Username is already in use."],
     # }
     assert post_auth_signup_response.status_code == 401
+    assert (
+        post_auth_signup_response.headers.get("Content-Type").lower()
+        == "application/json"
+    )
     errors = post_auth_signup_response.json()
     required_keys = ["email", "user"]
     assert all(key in errors for key in required_keys)
@@ -57,6 +61,10 @@ def test_create_user():
     )
     assert post_auth_signup_response.status_code == 200
 
+    assert (
+        post_auth_signup_response.headers.get("Content-Type").lower()
+        == "application/json"
+    )
     state = post_auth_signup_response.json()
     # {
     #     "user": {
@@ -96,6 +104,10 @@ def test_update_user():
         get_full_url("auth/signup"), json=make_signup_data()
     )
 
+    assert (
+        post_auth_signup_response.headers.get("Content-Type").lower()
+        == "application/json"
+    )
     state = post_auth_signup_response.json()
     user_slice = state["user"]
     user = next(iter(user_slice.values()))
@@ -117,6 +129,10 @@ def test_update_user():
     #     }
     # }
 
+    assert (
+        update_user_response.headers.get("Content-Type").lower()
+        == "application/json"
+    )
     state = update_user_response.json()
     assert "user" in state
     user_slice = state["user"]
