@@ -20,6 +20,13 @@ def read_stations():
     }
 
 
+@station_routes.route("/<int:id>", methods=["GET"])
+@login_required
+def read_station(id):
+    station = Station.query.get(id)
+    return {"station": {station.id: station.to_dict()}}
+
+
 @station_routes.route("/", methods=["POST"])
 @login_required
 def create_station():
