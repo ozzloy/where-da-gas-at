@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 dialect = None
 url = os.environ.get("DATABASE_URL")
 if url:
@@ -11,6 +10,21 @@ if url:
 schema = dialect in ["postgresql"] and os.environ.get("SCHEMA")
 
 db = SQLAlchemy()
+
+
+def undo_table(table):
+    sql = ""
+    if schema:
+        table = f"{schema}.{table}"
+    if dialect in ["postgresql"]:
+        sql = f"TRUNCATE {table} RESTART IDENTITY CASCADE"
+    elif dialect in ["sqlite"]:
+        sql = f"DELETE FROM {table}"
+    else:
+        raise Exception(f"unknown db dialect: {dialect}")
+
+    db.session.execute(sql)
+    db.session.commit()
 
 
 # helper function for adding prefix to foreign key column references in

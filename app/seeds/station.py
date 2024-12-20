@@ -1,6 +1,6 @@
 from sqlalchemy.sql import text
 
-from app.models import db, dialect, schema, Station
+from app.models import db, Station, undo_table
 from app.models.user import User
 from .user import user_seeds
 
@@ -52,16 +52,4 @@ def seed_station():
 
 
 def undo_station():
-    sql = ""
-    table = "station"
-    if schema:
-        table = f'{schema}."{table}"'
-    if dialect in ["postgresql"]:
-        sql = f"TRUNCATE {table} RESTART IDENTITY CASCADE"
-    elif dialect in ["sqlite"]:
-        sql = f"DELETE FROM {table}"
-    else:
-        raise Exception(f"unknown db dialect: {dialect}")
-
-    db.session.execute(sql)
-    db.session.commit()
+    undo_table("station")

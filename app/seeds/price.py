@@ -1,6 +1,6 @@
 from sqlalchemy.sql import text
 
-from app.models import db, dialect, schema
+from app.models import db, undo_table
 from app.models.price import Price
 from app.models.station import Station
 from app.models.user import User
@@ -78,16 +78,4 @@ def seed_price():
 
 
 def undo_price():
-    sql = ""
-    table = "price"
-    if schema:
-        table = f'{schema}."{table}"'
-    if dialect in ["postgresql"]:
-        sql = f"TRUNCATE {table} RESTART IDENTITY CASCADE"
-    elif dialect in ["sqlite"]:
-        sql = f"DELETE FROM {table}"
-    else:
-        raise Exception(f"unknown db dialect: {dialect}")
-
-    db.session.execute(sql)
-    db.session.commit()
+    undo_table("price")

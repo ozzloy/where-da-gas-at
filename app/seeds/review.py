@@ -1,6 +1,6 @@
 from sqlalchemy.sql import text
 
-from app.models import db, dialect, Review, schema
+from app.models import db, Review, undo_table
 from app.models.station import Station
 from app.models.user import User
 from app.seeds.user import user_seeds
@@ -82,16 +82,4 @@ def seed_review():
 
 
 def undo_review():
-    sql = ""
-    table = "review"
-    if schema:
-        table = f'{schema}."{table}"'
-    if dialect in ["postgresql"]:
-        sql = f"TRUNCATE {table} RESTART IDENTITY CASCADE"
-    elif dialect in ["sqlite"]:
-        sql = f"DELETE FROM {table}"
-    else:
-        raise Exception(f"unknown db dialect: {dialect}")
-
-    db.session.execute(sql)
-    db.session.commit()
+    undo_table("review")

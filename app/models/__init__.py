@@ -4,6 +4,7 @@ from .db import (
     drop_databases,
     reset_databases,
     schema,
+    undo_table,
 )
 from .user import User
 from .review import Review
