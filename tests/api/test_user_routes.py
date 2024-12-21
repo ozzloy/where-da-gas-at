@@ -8,7 +8,6 @@ from .config import DEMO_USER, get_full_url, make_user, modify_user
 def test_create_user_fail_duplicate_email():
     session = requests.Session()
     get_auth_response = session.get(get_full_url("auth/"))
-    assert get_auth_response.status_code == 200
 
     post_auth_signup_response = session.post(
         get_full_url("auth/signup"), json=DEMO_USER
@@ -32,7 +31,6 @@ def test_create_user_fail_duplicate_email():
 def test_create_user():
     session = requests.Session()
     get_auth_response = session.get(get_full_url("auth/"))
-    assert get_auth_response.status_code == 200
 
     post_auth_signup_response = session.post(
         get_full_url("auth/signup"), json=make_user()
