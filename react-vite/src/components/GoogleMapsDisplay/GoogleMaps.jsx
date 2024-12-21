@@ -1,8 +1,9 @@
 import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useGetCurrentLocation } from "../../hooks/useGetCurrentLocationHook";
 import { useGetNearByStations } from "../../hooks/useGetNearByStations";
 import AdvanceMarkerComponent from "./GoogleMapsInfoDisplay/AdvanceMarkerComponent";
+import OpenSideMenuButton from "../SideMenu/OpenSideMenuButton";
 
 const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -11,13 +12,12 @@ function GoogleMaps() {
   const nearbyStations = useGetNearByStations({
     center,
   });
+  const [openSideMenu, setOpenSideMenu] = useState(false)
 
-  useEffect(() => {
-    console.log(center, "Current Location");
-  }, [center]);
 
   return (
     <APIProvider apiKey={API_KEY}>
+      <OpenSideMenuButton openSideMenu={openSideMenu} setOpenSideMenu={setOpenSideMenu} />
       {center ? (
         <Map
           style={{ width: "100vw", height: "100vh" }}
@@ -39,7 +39,6 @@ function GoogleMaps() {
             nearbyStations.length > 0 &&
             nearbyStations.map((station) => {
               const stationTypes = station.types;
-              console.log(station);
               return (
                 <div key={station.id}>
                   <AdvanceMarkerComponent

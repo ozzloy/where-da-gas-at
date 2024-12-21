@@ -6,7 +6,7 @@ function AdvanceMarkerComponent({
   stationTypes,
 }) {
   if (markerContext === "location") {
-    console.log("AdvanceMarkerComponent", position);
+
     return (
       <AdvancedMarker
         position={{ lat: position.latitude, lng: position.longitude }}
