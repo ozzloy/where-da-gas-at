@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.schema import MetaData
 
 import os
 
@@ -9,7 +10,9 @@ if url:
     dialect = url.split("://")[0]
 schema = dialect in ["postgresql"] and os.environ.get("SCHEMA")
 
-db = SQLAlchemy()
+db = SQLAlchemy(
+    metadata=MetaData(naming_convention={"quoted_name": True})
+)
 
 
 def undo_table(table):
