@@ -13,6 +13,7 @@
     align-items: center;
     cursor: pointer;
     transition: transform 0.3s ease;
+    z-index: 100000;
 }
 .close-side-menu-button {
     transform: rotate(-180deg);

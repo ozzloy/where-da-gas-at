@@ -4,6 +4,7 @@ import { useGetCurrentLocation } from "../../hooks/useGetCurrentLocationHook";
 import { useGetNearByStations } from "../../hooks/useGetNearByStations";
 import AdvanceMarkerComponent from "./GoogleMapsInfoDisplay/AdvanceMarkerComponent";
 import OpenSideMenuButton from "../SideMenu/OpenSideMenuButton";
+import SideMenuDisplay from "../SideMenu/SideMenuDisplay";
 
 const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -18,6 +19,7 @@ function GoogleMaps() {
   return (
     <APIProvider apiKey={API_KEY}>
       <OpenSideMenuButton openSideMenu={openSideMenu} setOpenSideMenu={setOpenSideMenu} />
+      <SideMenuDisplay nearbyStations={nearbyStations} openSideMenu={ openSideMenu} />
       {center ? (
         <Map
           style={{ width: "100vw", height: "100vh" }}
