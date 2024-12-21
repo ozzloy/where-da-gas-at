@@ -14,7 +14,8 @@ function useGetNearByStations({ center }) {
         headers: {
           "Content-Type": "application/json",
           "X-Goog-Api-Key": API_KEY,
-          "X-Goog-FieldMask": import.meta.env.VITE_REACT_APP_GOOGLE_FIELD_MAPS,
+          "X-Goog-FieldMask":
+            "places.accessibilityOptions,places.addressComponents,places.adrFormatAddress,places.attributions,places.businessStatus,places.containingPlaces,places.displayName,places.formattedAddress,places.googleMapsLinks,places.googleMapsUri,places.iconBackgroundColor,places.iconMaskBaseUri,places.id,places.location,places.name,places.photos,places.plusCode,places.primaryType,places.primaryTypeDisplayName,places.pureServiceAreaBusiness,places.shortFormattedAddress,places.rating,places.subDestinations,places.types,places.utcOffsetMinutes,places.viewport,places.priceLevel",
         },
         body: JSON.stringify({
           locationRestriction: {
