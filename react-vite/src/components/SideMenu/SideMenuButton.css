@@ -1,4 +1,4 @@
-.side-menu-button {
+/* .side-menu-button {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -14,7 +14,7 @@
     cursor: pointer;
     transition: transform 0.3s ease;
     z-index: 100000;
-}
+} */
 .close-side-menu-button {
     transform: rotate(-180deg);
 }

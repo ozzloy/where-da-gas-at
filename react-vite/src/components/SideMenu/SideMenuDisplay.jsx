@@ -1,14 +1,15 @@
 import './SideMenuDisplay.css'
+import PrimaryTypeCard from './PrimaryTypeComponents/PrimaryTypeCard'
 
-function SideMenuDisplay({nearbyStations, openSideMenu}) {
+function SideMenuDisplay({ nearbyStations, openSideMenu }) {
   return (
-      <section className={`side-menu-display-container ${openSideMenu ? 'open-side-menu' : 'close-side-menu'}`}>
+    <section className={`side-menu-display-container ${openSideMenu ? 'open-side-menu' : 'close-side-menu'}`}>
           <div className={`station-list-container`}>
-            {nearbyStations && nearbyStations.length > 0 && nearbyStations.map((station) => {
+        {nearbyStations && nearbyStations.length > 0 && nearbyStations.map((station) => {
+          const primaryType = station.primaryType
                 return (
-                    <div key={station.id} className='side-menu-display-item'>
-                        <h3>{station.displayName.text}</h3>
-                    </div>)
+                   <PrimaryTypeCard key={station.id} station={station} primaryType={primaryType}/>
+                )
             })}
           </div>
     </section>
