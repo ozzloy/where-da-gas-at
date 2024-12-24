@@ -1,0 +1,15 @@
+.user-marker {
+    background-color: #f00;
+    border-radius: 50%;
+    height: 37px;
+    width: 37px;
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

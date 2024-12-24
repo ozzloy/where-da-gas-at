@@ -1,0 +1,61 @@
+.control-buttons-container {
+    padding: 1rem;
+}
+
+.open-side-menu-button {
+    border: none;
+    background-color: none;
+}
+
+.control-button {
+    position: relative;
+    bottom: 0;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: none;
+    z-index: 100000;
+}
+.open-side-button {
+    left: 0;
+}
+.current-location {
+    right: 0;
+    background-color: #D9D9D9;
+    padding: .5rem;
+    border-radius: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    bottom: 0;
+    right: 0;
+}
+.close-side-menu-button {
+    transform: rotate(-180deg);
+}
+
+.control-buttons-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    background: transparent;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+
+.map-marker-icon {
+    width: 30px;
+    height: 30px;
+    color: #000000;
+    z-index: 100000;
+}
