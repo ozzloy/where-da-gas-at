@@ -1,21 +1,24 @@
 import { APIProvider } from "@vis.gl/react-google-maps";
-import { useState } from "react";
+import { useContext } from "react";
 import { useGetCurrentLocation } from "../../hooks/useGetCurrentLocationHook";
 import { useGetNearByStations } from "../../hooks/useGetNearByStations";
 import SideMenuDisplay from "../SideMenu/SideMenuDisplay";
 import "./GoogleMapsStyles.css";
 import MapComponent from "./MapComponent";
 import ControlButtonComponent from "./ControlButtonComponent";
+import { GoogleMapContext } from "../../context/GoogleMapContext";
 
 const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function GoogleMaps() {
   const center = useGetCurrentLocation();
   const nearbyStations = useGetNearByStations({
-    center,
+    center
   });
-  const [openSideMenu, setOpenSideMenu] = useState(false)
-  const [newCenter, setNewCenter] = useState(center);
+
+  //Here we are grabbing the values from the global state that influences the google maps display. All the values are coming from the GoogleMapContext.
+
+  const { setNewCenter, openSideMenu, setOpenSideMenu } = useContext(GoogleMapContext);
 
   const handleButtonClick = () => {
     setNewCenter(center);
@@ -37,7 +40,7 @@ function GoogleMaps() {
       {/* Here we conditionally render the map component when the center has a value. 
       The center is coming from the useGetCurrentLocation hook. */}
       {center ? (
-        <MapComponent center={center} newCenter={newCenter} setNewCenter={setNewCenter} nearbyStations={nearbyStations} />
+        <MapComponent />
       ) : (
         'Loading...'
       )}

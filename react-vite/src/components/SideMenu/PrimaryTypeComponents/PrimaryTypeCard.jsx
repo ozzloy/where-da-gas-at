@@ -8,7 +8,6 @@ function PrimaryTypeCard({ station, primaryType }) {
     if(primaryType === 'electric_vehicle_charging_station') {
         icon = '/evIcon.svg'
     }
-console.log(station)
     return (
         <div className='station-card-container'>
             <div className='station-card-header'>

@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect,  useContext } from "react";
 import { useMapsLibrary } from "@vis.gl/react-google-maps";
+import { GoogleMapContext } from "../context/GoogleMapContext";
 
 const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function useGetNearByStations({ center }) {
-  const [stations, setStations] = useState(null);
+  const { nearbyStations, setNearbyStations } = useContext(GoogleMapContext);
   const placesLib = useMapsLibrary("places");
 
   useEffect(() => {
@@ -40,16 +41,16 @@ function useGetNearByStations({ center }) {
           requestOptions
         );
         const data = await response.json();
-        setStations(data.places);
+        setNearbyStations(data.places);
       } catch (error) {
         console.error("Error fetching nearby places:", error);
       }
     };
 
     fetchNearbyPlaces();
-  }, [placesLib, center]);
+  }, [placesLib, center, setNearbyStations]);
 
-  return stations;
+  return nearbyStations;
 }
 
 export { useGetNearByStations };

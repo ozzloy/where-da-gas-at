@@ -1,19 +1,22 @@
 import {  Map, AdvancedMarker, useMap } from "@vis.gl/react-google-maps";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { GoogleMapContext } from "../../context/GoogleMapContext";
 import "./MapComponent.css";
 import GoogleMapsNearByLocations from "./GoogleMapsNearByLocations";
 
-function MapComponent({ center, newCenter, setNewCenter, nearbyStations }) {
+function MapComponent() {
   //Use map hook is made by vis.gl to get the map instance
   //We can use this to get all the information about the map
-    const map = useMap();
+  const map = useMap();
+  
+  const { center, newCenter, setNewCenter, nearbyStations } = useContext(GoogleMapContext);
   
   //This useEffect will run when the map and newCenter is available
     useEffect(() => {
       if (map && newCenter) {
         map.setCenter(newCenter);
       }
-    }, [map, newCenter]);
+    }, [map, newCenter, center]);
   
     const handleDragEnd = () => {
       if (map) {
