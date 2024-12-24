@@ -10,6 +10,9 @@ function useGetNearByStations({ center }) {
 
   useEffect(() => {
     const fetchNearbyPlaces = async () => {
+      if (!placesLib || !center) {
+        return;
+      }
       const requestOptions = {
         method: "POST",
         headers: {

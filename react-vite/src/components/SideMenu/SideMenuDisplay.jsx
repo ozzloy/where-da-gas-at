@@ -1,7 +1,14 @@
 import './SideMenuDisplay.css'
+import { useContext } from 'react';
 import PrimaryTypeCard from './PrimaryTypeComponents/PrimaryTypeCard'
+import { useGetNearByStations } from '../../hooks/useGetNearByStations'
+import { GoogleMapContext } from '../../context/GoogleMapContext';
 
-function SideMenuDisplay({ nearbyStations, openSideMenu }) {
+function SideMenuDisplay({ openSideMenu }) {
+  const { center } = useContext(GoogleMapContext);
+  const nearbyStations = useGetNearByStations({
+    center
+  });
   return (
     <section className={`side-menu-display-container ${openSideMenu ? 'open-side-menu' : 'close-side-menu'}`}>
           <div className={`station-list-container`}>
