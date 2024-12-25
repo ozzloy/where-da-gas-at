@@ -16,7 +16,7 @@
 
 @media screen and (min-width: 768px) {
     .side-menu-display-container {
-        max-width: 80vw;
+        width: 50%;
     }
     
 }
@@ -39,10 +39,18 @@
 .station-list-container {
     max-height: 70vh;
     overflow: scroll;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 
 .station-display-name {
     font-size: 1rem;
     font-weight: 500;
+}
+
+@media screen and (min-width: 1440px) {
+    .station-display-name {
+        font-size: 2rem;
+    }
 }

@@ -1,5 +1,5 @@
-import "./SideHeaderComponent.css"
 import { FaUser } from 'react-icons/fa';
+import "./SideHeaderComponent.css"
 
 function SideHeaderComponent() {
   return (
@@ -8,7 +8,7 @@ function SideHeaderComponent() {
             <FaUser className='user-icon'/>
         </div>
         <h2 className={`side-menu-display-title`}>Nearby Stations</h2>
-        <button>Filters</button>
+        <button className="filter-button">Filters</button>
     </div>
   )
 }

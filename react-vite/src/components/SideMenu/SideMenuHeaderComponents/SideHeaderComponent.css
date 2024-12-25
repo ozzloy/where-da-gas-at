@@ -23,3 +23,41 @@
     border-radius: 100%;
     border: solid 1px #000;
 }
+
+.side-menu-display-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    width: 100%;
+}
+
+.filter-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: .3rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: solid 1px #000;
+}
+
+@media screen and (min-width: 1440px) {
+    .side-menu-display-title {
+        font-size: 2rem;
+    }
+
+    .user-icon-container {
+        padding: 1rem;
+    }
+
+    .user-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+    
+
+    .filter-button {
+        padding: .5rem;
+        font-size: 1.5rem;
+    }
+}

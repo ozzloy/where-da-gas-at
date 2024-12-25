@@ -8,6 +8,7 @@
     background: transparent;
     align-items: flex-end;
     justify-content: space-between;
+    max-width: 2560px;
 }
 
 .icon-container {
@@ -68,4 +69,23 @@
     height: 15px;
     border-radius: 0;
     padding: 0;
+}
+
+@media screen and (min-width: 1440px) {
+    .control-buttons-container {
+        padding: 2rem;
+    }
+    .icon-container {
+        width: 5rem;
+        height: 5rem;
+    }
+    .control-button {
+        height: 5rem;
+        width: 5rem;
+    }
+    .bookmark, .reviews {
+        width: 30px;
+        height: 30px;
+    }
+    
 }
