@@ -30,7 +30,7 @@ function MapComponent() {
       <Map
         onLoad={(mapInstance) =>  mapInstance.setCenter(center)}
         onDragend={handleDragEnd}
-        style={{ width: '100vw', height: '100vh' }}
+        style={{ width: '100%', height: '100vh' }}
         defaultCenter={center}
         mapId={import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID || "e2ea39204ffcffc4"}
         defaultZoom={15}

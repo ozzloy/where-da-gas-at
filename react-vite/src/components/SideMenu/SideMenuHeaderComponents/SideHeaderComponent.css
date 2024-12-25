@@ -1,0 +1,25 @@
+.header-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    align-items: center;
+    padding: 0rem 2rem;
+    height: 10%;
+    width: 100%;
+}
+
+.side-menu-display-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    width: 100%;
+}
+
+.user-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: .6rem;
+    border-radius: 100%;
+    border: solid 1px #000;
+}

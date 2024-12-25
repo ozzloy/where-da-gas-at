@@ -1,5 +1,6 @@
 .side-menu-display-container{
     position: fixed;
+    flex-direction: column;
     top: 0;
     left: 0;
     z-index: 10000;
@@ -12,9 +13,17 @@
     transition: transform 0.4s ease;
     overflow: scroll;
 }
+
+@media screen and (min-width: 768px) {
+    .side-menu-display-container {
+        max-width: 80vw;
+    }
+    
+}
+
 .open-side-menu {
     transform: translateX(0);
-    padding: 5rem 0rem;
+    gap: 1rem;
 }
 .close-side-menu {
     transform: translateX(-200%);
@@ -28,13 +37,10 @@
 }
 
 .station-list-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: .5rem;
-    margin-top: 20rem;
+    max-height: 70vh;
+    overflow: scroll;
 }
+
 
 .station-display-name {
     font-size: 1rem;

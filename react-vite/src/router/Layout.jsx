@@ -5,6 +5,7 @@ import { ModalProvider, Modal } from "../context/Modal";
 import { thunkAuthenticate } from "../redux/session";
 import Navigation from "../components/Navigation/Navigation";
 import { GoogleMapProvider } from "../context/GoogleMapContext";
+import "../index.css";
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -23,8 +24,12 @@ export default function Layout() {
     <>
       <GoogleMapProvider>
         <ModalProvider>
-          <Navigation />
-          {isLoaded && <Outlet />}
+          <div className="align-body">
+            <div className="main-body-container">
+              <Navigation />
+                {isLoaded && <Outlet />}
+            </div>
+          </div>
           <Modal />
         </ModalProvider>
       </GoogleMapProvider>

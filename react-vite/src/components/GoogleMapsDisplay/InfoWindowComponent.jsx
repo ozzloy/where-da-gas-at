@@ -44,10 +44,9 @@ function InfoWindowComponent() {
               {selectedStation && selectedStation.photos && selectedStation?.photos.length > 0 ? (<img className="image" src={photoUrl} alt={`${selectedStation.displayName.text} image`} />)
                   :
                   (
-                      <div className="image">
-                        
-                          <MdImageNotSupported />
-                        </div>
+                    <div className="image">
+                        <MdImageNotSupported />
+                    </div>
                   )
               }
     </div>
