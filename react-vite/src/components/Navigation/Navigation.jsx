@@ -11,7 +11,10 @@ function Navigation() {
     return (
       <ul className="nav-data-container">
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/" className="logo-container">
+              <img src="/gasIcon.svg" className="logo" alt="logo" />
+              <p>Where da gas at?</p>
+          </NavLink>
         </li>
   
         <li>
