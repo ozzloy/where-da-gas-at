@@ -1,5 +1,5 @@
 import { APIProvider } from "@vis.gl/react-google-maps";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useGetCurrentLocation } from "../../hooks/useGetCurrentLocationHook";
 import SideMenuDisplay from "../SideMenu/SideMenuDisplay";
 import "./GoogleMapsStyles.css";
@@ -14,11 +14,7 @@ function GoogleMaps() {
 
   //Here we are grabbing the values from the global state that influences the google maps display. All the values are coming from the GoogleMapContext.
 
-  const { openSideMenu, selectedStation } = useContext(GoogleMapContext);
-
-  useEffect(() => { 
-    console.log(selectedStation)
-  },[selectedStation])
+  const { openSideMenu } = useContext(GoogleMapContext);
 
   //This is the main component that will be rendered in the App.js
   //Here mostly all the the main components are being used

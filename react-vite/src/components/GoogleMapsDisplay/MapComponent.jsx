@@ -3,13 +3,14 @@ import { useEffect, useContext } from "react";
 import { GoogleMapContext } from "../../context/GoogleMapContext";
 import "./MapComponent.css";
 import GoogleMapsNearByLocations from "./GoogleMapsNearByLocations";
+import InfoWindowComponent from "./InfoWindowComponent";
 
 function MapComponent() {
   //Use map hook is made by vis.gl to get the map instance
   //We can use this to get all the information about the map
   const map = useMap();
   
-  const { center, newCenter, setNewCenter, nearbyStations } = useContext(GoogleMapContext);
+  const { center, newCenter, setNewCenter, nearbyStations, selectedStation } = useContext(GoogleMapContext);
   
   //This useEffect will run when the map and newCenter is available
     useEffect(() => {
@@ -31,7 +32,7 @@ function MapComponent() {
         onDragend={handleDragEnd}
         style={{ width: '100vw', height: '100vh' }}
         defaultCenter={center}
-        mapId={import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID}
+        mapId={import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID || "e2ea39204ffcffc4"}
         defaultZoom={15}
         disableDefaultUI={true}
         gestureHandling={'greedy'}
@@ -42,6 +43,8 @@ function MapComponent() {
             <img className="user-marker" src="/user.svg" width={32} height={32} />
           </div>
         </AdvancedMarker>
+
+        {selectedStation &&  <InfoWindowComponent /> } 
   
         <GoogleMapsNearByLocations nearbyStations={nearbyStations} />
       </Map>

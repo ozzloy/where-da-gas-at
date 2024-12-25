@@ -13,7 +13,6 @@ export function GoogleMapProvider({ children }) {
     const [openSideMenu, setOpenSideMenu] = useState(false);
     const [newCenter, setNewCenter] = useState(center);
     const [selectedStation, setSelectedStation] = useState(null);
-    
     const contextValue = {
         center,
         setCenter,
