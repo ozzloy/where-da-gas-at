@@ -12,6 +12,7 @@ export function GoogleMapProvider({ children }) {
     const [nearbyStations, setNearbyStations] = useState(null);
     const [openSideMenu, setOpenSideMenu] = useState(false);
     const [newCenter, setNewCenter] = useState(center);
+    const [selectedStation, setSelectedStation] = useState(null);
     
     const contextValue = {
         center,
@@ -22,6 +23,8 @@ export function GoogleMapProvider({ children }) {
         setOpenSideMenu,
         newCenter,
         setNewCenter,
+        selectedStation,
+        setSelectedStation
     };
     
     return (

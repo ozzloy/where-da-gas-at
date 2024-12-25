@@ -14,6 +14,7 @@
 }
 .open-side-menu {
     transform: translateX(0);
+    padding: 5rem 0rem;
 }
 .close-side-menu {
     transform: translateX(-200%);
