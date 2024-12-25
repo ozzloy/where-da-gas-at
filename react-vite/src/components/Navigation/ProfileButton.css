@@ -12,16 +12,23 @@
     position: absolute;
     z-index: 10000;
     width: 8rem;
-    right: 0;
     margin-right: 1rem;
     margin-top: 1rem;
-    background-color: rgba(212, 212, 212, 0.788);
     padding: 1rem;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }  
+
+.side-header {
+    background-color: rgb(212, 212, 212);
+}
+
+.nav-menu {
+    right: 0;
+    background-color: rgba(212, 212, 212, 0.788);
+}
 
 .user-icon {
     width: 1rem;

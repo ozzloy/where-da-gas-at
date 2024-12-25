@@ -2,16 +2,16 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
 import { thunkLogout } from "../../redux/session";
-import OpenModalMenuItem from "./OpenModalMenuItem";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
 import "./ProfileButton.css";
+import UserMenu from "./UserMenu";
 
-function ProfileButton() {
+function ProfileButton({location}) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const sessionUser = useSelector((store) => store.session.user);
   const ulRef = useRef();
+
+  const userMenuClassName = location === "side-header" ? "side-header" : "nav-menu";
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -45,32 +45,7 @@ function ProfileButton() {
       <button onClick={toggleMenu} className="user-icon-button">
         <FaUserCircle className="user-icon"/>
       </button>
-      {showMenu && (
-        <ul className={"profile-dropdown"} ref={ulRef}>
-          {sessionUser && sessionUser.user ? (
-            <>
-              <li>{sessionUser.user}</li>
-              <li>{sessionUser.email}</li>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
-            </>
-          ) : (
-            <div className="modal-item-container">
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </div>
-          )}
-        </ul>
-      )}
+      <UserMenu userMenuClassName={userMenuClassName} showMenu={showMenu} sessionUser={sessionUser} logout={logout} closeMenu={closeMenu} ulRef={ulRef}/>
     </>
   );
 }

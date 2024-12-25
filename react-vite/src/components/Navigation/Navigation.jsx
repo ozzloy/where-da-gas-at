@@ -18,7 +18,7 @@ function Navigation() {
         </li>
   
         <li>
-          <ProfileButton />
+          <ProfileButton location="navigation-header"/>
         </li>
       </ul>
     );
