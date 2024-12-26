@@ -21,13 +21,11 @@ function GoogleMaps() {
   //If you need to find a component on the map you'll find it here
   return (
     <div>
-      {/* This is the component that will display the list of stations within a certain radius */}
+      {/* This is the component that will display the list of stations within a certain radius also contains the filter button */}
       <SideMenuDisplay openSideMenu={openSideMenu} />
-      {/* This is all the controls that the user can use on the app
-          side menu button, current location button, favorites button, and the reviews button */}
+      {/* This is all the controls that the user can use on the app side menu button, current location button, favorites button, and the reviews button */}
       <ControlButtonComponent />
-      {/* Here we conditionally render the map component when the center has a value. 
-      The center is coming from the useGetCurrentLocation hook. */}
+      {/* Here we conditionally render the map component when the center has a value. The center is coming from the useGetCurrentLocation hook. */}
       {center ? (
         <MapComponent />
       ) : (

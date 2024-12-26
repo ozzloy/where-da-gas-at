@@ -1,4 +1,4 @@
-import { useEffect,  useContext, useState } from "react";
+import { useEffect,  useContext } from "react";
 import { useMapsLibrary } from "@vis.gl/react-google-maps";
 import { GoogleMapContext } from "../context/GoogleMapContext";
 
@@ -15,32 +15,6 @@ function useGetNearByStations({ center }) {
       if (!placesLib || !center) {
         return;
       }
-      // const service = new google.maps.places.PlacesService(map);
-      // const fetchNearbyStations = () => {
-      //   service.nearbySearch(
-      //     {
-      //       location: center,
-      //       radius: radius,
-      //       type: ["gas_station"],
-      //     },
-      //     (results, status, pagination) => {
-      //       if (status !== google.maps.places.PlacesServiceStatus.OK || !results) {
-      //         console.error("Error fetching nearby places:", status);
-      //         return;
-      //       }
-  
-      //       setNearbyStations((prevStations) => [...prevStations, ...results]);
-      //       setGetNextPage(() => {
-      //         if (pagination && pagination.hasNextPage) {
-      //           return () => pagination.nextPage();
-      //         }
-      //         return null;
-      //       });
-      //     }
-      //   );
-      // };
-  
-      // fetchNearbyStations();
         const requestOptions = {
           method: "POST",
           headers: {

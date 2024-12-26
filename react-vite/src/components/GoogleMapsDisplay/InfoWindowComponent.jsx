@@ -10,8 +10,10 @@ function InfoWindowComponent() {
     const { selectedStation, setSelectedStation } = useContext(GoogleMapContext)
     const [photoUrl, setPhotoUrl] = useState(null);
 
+  //In order to display the images from the google places api we need to fetch the image from the google places api
     useEffect(() => {
-        const fetchPhotoUrl = async () => {
+      const fetchPhotoUrl = async () => {
+          //This creates a long url string that we fetch from using the google places api
             if (selectedStation.photos && selectedStation.photos.length > 0) {
                 const photoName = selectedStation.photos[0].name;
                 const response = await fetch(
@@ -45,16 +47,20 @@ function InfoWindowComponent() {
         <h3>{selectedStation.displayName.text}</h3>
         <p>{selectedStation.formattedAddress}</p>
         <div className="button-container">
+        {/* We can either change the page by state or we can change by navigation This is a reminder to talk about it */}
           <NavLink to={`station/${selectedStation.id}`} className="view-more-design">View More</NavLink>
           <a className="view-more-design" target="_blank" rel="noopener noreferrer" href={selectedStation.googleMapsUri}>Click for direction</a>
         </div>
-              {selectedStation && selectedStation.photos && selectedStation?.photos.length > 0 ? (<img className="image" src={photoUrl} alt={`${selectedStation.displayName.text} image`} />)
-                  :
-                  (
-                    <div className="image">
-                        <MdImageNotSupported />
-                    </div>
-                  )
+        {/* Conditionally render an image or the no image icon */}
+        {selectedStation && selectedStation.photos && selectedStation?.photos.length > 0 ? (
+          <img className="image" src={photoUrl} alt={`${selectedStation.displayName.text} image`} />
+        )
+          :
+          (
+            <div className="image">
+                <MdImageNotSupported />
+            </div>
+          )
         }
     </div>
   </InfoWindow>

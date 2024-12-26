@@ -23,6 +23,7 @@ function ControlButtonComponent() {
         )}
       </button>
       <div className='crud-buttons-container'>
+        {/* Either these buttons will take you to another page or have a modal pop up that will display this data */}
         <button className='control-button user-interaction-button'>
           <FaBookmark className='bookmark control-button user-interaction-button' />
         </button>

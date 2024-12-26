@@ -11,6 +11,7 @@ function SideHeaderComponent() {
         <ProfileButton location="side-header" />
         </div>
       <h2 className={`side-menu-display-title`}>Nearby Stations</h2>
+      {/* Opens the filter modal */}
       <div className="filter-button">
         <OpenModalMenuItem
           itemText={"Filters"}

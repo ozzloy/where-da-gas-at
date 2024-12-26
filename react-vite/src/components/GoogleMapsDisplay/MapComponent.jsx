@@ -22,7 +22,8 @@ function MapComponent() {
       }
     };
   
-    return (
+  return (
+      //This is the main map rendered on the screen. There are a lot of prebuilt props that can be used to customize the map.
       <Map
         onLoad={(mapInstance) =>  mapInstance.setCenter(center)}
         onDragend={handleDragEnd}
@@ -33,15 +34,15 @@ function MapComponent() {
         disableDefaultUI={true}
         gestureHandling={'greedy'}
         maxZoom={20}
-      >
+    >
         <AdvancedMarker position={center}>
           <div>
             <img className="user-marker" src="/user.svg" width={32} height={32} />
           </div>
         </AdvancedMarker>
-
+      {/* Here we conditionally render the Info Window Component. If a user selects a station the it will appear */}
         {selectedStation &&  <InfoWindowComponent /> } 
-  
+      {/* This is the component that will render all the nearby station markers on the map */}
         <GoogleMapsNearByLocations nearbyStations={nearbyStations} />
       </Map>
     );

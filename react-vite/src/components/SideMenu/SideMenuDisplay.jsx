@@ -16,6 +16,8 @@ function SideMenuDisplay({ openSideMenu }) {
         <div className={`station-list-container`}>
         {nearbyStations && nearbyStations.length > 0 && nearbyStations.map((station) => {
           const primaryType = station.primaryType
+          //if you want to edit the list of the stations that are being displayed on the side menu you can do it here
+          //in the primaryTypeCard component
               return (
                 <PrimaryTypeCard key={station.id} station={station} primaryType={primaryType} />
               )
