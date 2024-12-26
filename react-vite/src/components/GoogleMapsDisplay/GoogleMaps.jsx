@@ -1,4 +1,3 @@
-import { APIProvider } from "@vis.gl/react-google-maps";
 import { useContext } from "react";
 import { useGetCurrentLocation } from "../../hooks/useGetCurrentLocationHook";
 import SideMenuDisplay from "../SideMenu/SideMenuDisplay";
@@ -7,7 +6,6 @@ import MapComponent from "./MapComponent";
 import ControlButtonComponent from "./Footer/ControlButtonComponent";
 import { GoogleMapContext } from "../../context/GoogleMapContext";
 
-const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function GoogleMaps() {
   const center = useGetCurrentLocation();
@@ -22,7 +20,7 @@ function GoogleMaps() {
   //As well as the map and the markers
   //If you need to find a component on the map you'll find it here
   return (
-    <APIProvider apiKey={API_KEY}>
+    <div>
       {/* This is the component that will display the list of stations within a certain radius */}
       <SideMenuDisplay openSideMenu={openSideMenu} />
       {/* This is all the controls that the user can use on the app
@@ -35,7 +33,7 @@ function GoogleMaps() {
       ) : (
         'Loading...'
       )}
-    </APIProvider>
+    </div>
   );
 }
 

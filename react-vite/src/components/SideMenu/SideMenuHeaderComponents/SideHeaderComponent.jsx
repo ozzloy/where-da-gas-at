@@ -1,5 +1,7 @@
 import "./SideHeaderComponent.css"
 import ProfileButton from '../../Navigation/ProfileButton';
+import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem";
+import MapFilterComponent from "./MapFiltersComponents/MapFilterComponent";
 
 function SideHeaderComponent() {
 
@@ -8,8 +10,13 @@ function SideHeaderComponent() {
         <div className='user-icon-container'>
         <ProfileButton location="side-header" />
         </div>
-        <h2 className={`side-menu-display-title`}>Nearby Stations</h2>
-        <button className="filter-button">Filters</button>
+      <h2 className={`side-menu-display-title`}>Nearby Stations</h2>
+      <div className="filter-button">
+        <OpenModalMenuItem
+          itemText={"Filters"}
+          modalComponent={<MapFilterComponent />}
+        />
+      </div>
     </div>
   )
 }

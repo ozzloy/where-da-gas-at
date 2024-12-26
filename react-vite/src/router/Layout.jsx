@@ -6,6 +6,7 @@ import { thunkAuthenticate } from "../redux/session";
 import Navigation from "../components/Navigation/Navigation";
 import { GoogleMapProvider } from "../context/GoogleMapContext";
 import "../index.css";
+import { APIProvider } from "@vis.gl/react-google-maps";
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -22,17 +23,19 @@ export default function Layout() {
 
   return (
     <>
-      <GoogleMapProvider>
-        <ModalProvider>
-          <div className="align-body">
-            <div className="main-body-container">
-              <Navigation />
-                {isLoaded && <Outlet />}
+      <APIProvider apiKey={import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY}>
+        <GoogleMapProvider>
+          <ModalProvider>
+            <div className="align-body">
+              <div className="main-body-container">
+                <Navigation />
+                  {isLoaded && <Outlet />}
+              </div>
             </div>
-          </div>
-          <Modal />
-        </ModalProvider>
-      </GoogleMapProvider>
+            <Modal />
+            </ModalProvider>
+        </GoogleMapProvider>
+      </APIProvider>
     </>
   );
 }

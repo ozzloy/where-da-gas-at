@@ -8,7 +8,6 @@ function GoogleMapsNearByLocations({ nearbyStations }) {
             nearbyStations.length > 0 &&
             nearbyStations.map((station) => {
               const stationTypes = station.types;
-              console.log(station)
               return (
                 <div className="station-map-marker" key={station.id}>
                   <AdvanceMarkerComponent
