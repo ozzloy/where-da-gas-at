@@ -1,4 +1,5 @@
 import { useState, createContext } from "react";
+import { useMap } from "@vis.gl/react-google-maps";
 
 //Here we initialize the context that will hold all the values shared between the components
 
@@ -13,6 +14,12 @@ export function GoogleMapProvider({ children }) {
     const [openSideMenu, setOpenSideMenu] = useState(false);
     const [newCenter, setNewCenter] = useState(center);
     const [selectedStation, setSelectedStation] = useState(null);
+    const [radius, setRadius] = useState(5000);
+    const [filter, setFilter] = useState(["gas_station", "electric_vehicle_charging_station"]);
+    //Use map hook is made by vis.gl to get the map instance
+    //We can use this to get all the information about the map
+    const map = useMap();
+
     const contextValue = {
         center,
         setCenter,
@@ -23,12 +30,17 @@ export function GoogleMapProvider({ children }) {
         newCenter,
         setNewCenter,
         selectedStation,
-        setSelectedStation
+        setSelectedStation,
+        radius,
+        setRadius,
+        map,
+        filter,
+        setFilter
     };
     
     return (
         <GoogleMapContext.Provider value={contextValue}>
-        {children}
+            {children}
         </GoogleMapContext.Provider>
     );
 }
