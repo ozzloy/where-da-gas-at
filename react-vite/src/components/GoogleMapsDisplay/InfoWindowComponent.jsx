@@ -3,6 +3,8 @@ import { useContext, useState, useEffect } from 'react';
 import { GoogleMapContext } from '../../context/GoogleMapContext';
 import { MdImageNotSupported } from 'react-icons/md';
 import './InfoWindowComponent.css';
+import { NavLink } from "react-router-dom";
+import SaveSpotIcon from "./GoogleMapsInfoDisplay/SaveSpotIcon";
 
 function InfoWindowComponent() {
     const { selectedStation, setSelectedStation } = useContext(GoogleMapContext)
@@ -36,11 +38,16 @@ function InfoWindowComponent() {
       lat: selectedStation.location.latitude,
       lng: selectedStation.location.longitude
     }}
+    headerContent={<SaveSpotIcon />}
     onCloseClick={() => setSelectedStation(null)}
   >
-    <div>
+    <div className="info-window-display">
         <h3>{selectedStation.displayName.text}</h3>
         <p>{selectedStation.formattedAddress}</p>
+        <div className="button-container">
+          <NavLink to={`station/${selectedStation.id}`} className="view-more-design">View More</NavLink>
+          <a className="view-more-design" target="_blank" rel="noopener noreferrer" href={selectedStation.googleMapsUri}>Click for direction</a>
+        </div>
               {selectedStation && selectedStation.photos && selectedStation?.photos.length > 0 ? (<img className="image" src={photoUrl} alt={`${selectedStation.displayName.text} image`} />)
                   :
                   (
@@ -48,7 +55,7 @@ function InfoWindowComponent() {
                         <MdImageNotSupported />
                     </div>
                   )
-              }
+        }
     </div>
   </InfoWindow>
   )

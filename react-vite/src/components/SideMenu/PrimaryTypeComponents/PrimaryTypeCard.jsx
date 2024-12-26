@@ -3,7 +3,7 @@ import { GoogleMapContext } from "../../../context/GoogleMapContext"
 import { useContext } from "react"
 
 function PrimaryTypeCard({ station, primaryType }) {
-    const { setSelectedStation, setNewCenter } = useContext(GoogleMapContext)
+    const { setSelectedStation, setNewCenter, setOpenSideMenu } = useContext(GoogleMapContext)
     let icon = ''
     if (primaryType === 'gas_station') {
         icon = '/gasIcon.svg'
@@ -14,7 +14,8 @@ function PrimaryTypeCard({ station, primaryType }) {
 
     function onClickHandler(station) {
         setSelectedStation(station)
-        setNewCenter({lat: station.location.latitude, lng: station.location.longitude})
+        setNewCenter({ lat: station.location.latitude, lng: station.location.longitude })
+        setOpenSideMenu(false)
     }
     return (
         <div className='station-card-container'

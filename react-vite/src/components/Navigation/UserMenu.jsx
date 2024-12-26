@@ -8,13 +8,13 @@ function UserMenu({ showMenu, sessionUser, logout, closeMenu, ulRef, userMenuCla
         {showMenu && (
             <ul className={`${userMenuClassName} profile-dropdown`} ref={ulRef}>
               {sessionUser && sessionUser.user ? (
-                <>
+                <div className="modal-item-container">
                   <li>{sessionUser.user}</li>
                   <li>{sessionUser.email}</li>
                   <li>
                     <button onClick={logout}>Log Out</button>
                   </li>
-                </>
+                </div>
               ) : (
                 <div className="modal-item-container">
                   <OpenModalMenuItem

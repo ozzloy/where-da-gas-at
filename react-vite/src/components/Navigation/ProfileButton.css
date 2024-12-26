@@ -11,7 +11,7 @@
 .profile-dropdown {
     position: absolute;
     z-index: 10000;
-    width: 8rem;
+    min-width: 8rem;
     margin-right: 1rem;
     margin-top: 1rem;
     padding: 1rem;
@@ -42,12 +42,13 @@
     }
 
     .profile-dropdown {
-        width: 20rem;
-        height: 10rem;
+        min-width: 20rem;
+        min-height: 10rem;
     }
 
     .modal-item-container {
         display: flex;
+        padding: 1rem;
         flex-direction: column;
         justify-content: center;
         align-items: center;

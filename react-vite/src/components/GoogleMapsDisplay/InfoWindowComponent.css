@@ -13,3 +13,35 @@
     overflow: hidden;
     position: relative;
 }
+
+.info-window-display {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.view-more-design {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    color: black;
+    text-decoration: none;
+    padding: .5rem;
+    background-color: #D9D9D9;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.view-more-design:hover {
+    background-color: #BDBDBD;
+}
