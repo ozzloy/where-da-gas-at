@@ -29,6 +29,7 @@
     font-size: 1rem;
     border-radius: 10px;
     border: solid 1px #000;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 1440px) {

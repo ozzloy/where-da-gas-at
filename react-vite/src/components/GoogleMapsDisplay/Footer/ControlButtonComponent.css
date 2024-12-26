@@ -25,11 +25,6 @@
     border-radius: 100%;
 }
 
-/* .close-side-menu-button {
-    transform: rotate(-180deg);
-    background-color: transparent;
-} */
-
 .crud-buttons-container {
     display: flex;
     justify-content: center;
