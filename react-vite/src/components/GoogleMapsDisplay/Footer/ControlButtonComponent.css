@@ -1,5 +1,6 @@
 .control-buttons-container {
     position: absolute;
+    align-items: center;
     padding: 1rem;
     z-index: 100000;
     width: 100%; 
@@ -24,16 +25,10 @@
     border-radius: 100%;
 }
 
-.open-side-menu-button {
-    border: none;
-    background-color: none;
-}
-
-
-.close-side-menu-button {
+/* .close-side-menu-button {
     transform: rotate(-180deg);
     background-color: transparent;
-}
+} */
 
 .crud-buttons-container {
     display: flex;
@@ -46,13 +41,11 @@
 
 .user-interaction-button {
     border-radius: 4rem;
-    background-color: rgb(85, 85, 85);
+    background-color: rgb(142, 142, 142);
     border: none;
 }
 
 .control-button {
-    background-color: #D9D9D9;
-    border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
