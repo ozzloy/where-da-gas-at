@@ -6,7 +6,7 @@ import GoogleMapsNearByLocations from "./GoogleMapsNearByLocations";
 import InfoWindowComponent from "./InfoWindowComponent";
 
 function MapComponent() {
-  const { center, newCenter, setNewCenter, nearbyStations, selectedStation, map } = useContext(GoogleMapContext);
+  const { center, newCenter, setNewCenter, nearbyStations, selectedStation, map, zoom, setSelectedStation, setZoom } = useContext(GoogleMapContext);
   
   //This useEffect will run when the map and newCenter is available
     useEffect(() => {
@@ -21,19 +21,20 @@ function MapComponent() {
         setNewCenter({ lat: newCenter.lat(), lng: newCenter.lng() });
       }
     };
-  
   return (
       //This is the main map rendered on the screen. There are a lot of prebuilt props that can be used to customize the map.
       <Map
-        onLoad={(mapInstance) =>  mapInstance.setCenter(center)}
+        // onLoad={onLoad}
         onDragend={handleDragEnd}
         style={{ width: '100%', height: '100vh' }}
         defaultCenter={center}
         mapId={import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID || "e2ea39204ffcffc4"}
         defaultZoom={15}
+        zoom={zoom}
+        onZoomChanged={() => setZoom(map.getZoom())}
+        onClick={() => selectedStation && setSelectedStation(null)}
         disableDefaultUI={true}
         gestureHandling={'greedy'}
-        maxZoom={20}
     >
         <AdvancedMarker position={center}>
           <div>

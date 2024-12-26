@@ -9,12 +9,18 @@ function AdvanceMarkerComponent({
   stationTypes,
   station,
 }) {
-  const { setSelectedStation } = useContext(GoogleMapContext);
+  const { setSelectedStation, setZoom, setNewCenter} = useContext(GoogleMapContext);
+
+  const onClickHandler = () => {
+    setSelectedStation(station);
+    setZoom(16);
+    setNewCenter({ lat: position.latitude, lng: position.longitude });
+  }
   if (markerContext === "location") {
     return (
       <AdvancedMarker
         position={{ lat: position.latitude, lng: position.longitude }}
-        onClick={() => setSelectedStation(station)}
+        onClick={onClickHandler}
       >
         {stationTypes.includes("electric_vehicle_charging_station") ? (
           <div className="icon-container">

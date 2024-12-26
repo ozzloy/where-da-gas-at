@@ -39,7 +39,7 @@ function InfoWindowComponent() {
     position={{
       lat: selectedStation.location.latitude,
       lng: selectedStation.location.longitude
-    }}
+      }}
     headerContent={<SaveSpotIcon />}
     onCloseClick={() => setSelectedStation(null)}
   >
@@ -52,16 +52,18 @@ function InfoWindowComponent() {
           <a className="view-more-design" target="_blank" rel="noopener noreferrer" href={selectedStation.googleMapsUri}>Click for direction</a>
         </div>
         {/* Conditionally render an image or the no image icon */}
-        {selectedStation && selectedStation.photos && selectedStation?.photos.length > 0 ? (
-          <img className="image" src={photoUrl} alt={`${selectedStation.displayName.text} image`} />
-        )
-          :
-          (
-            <div className="image">
-                <MdImageNotSupported />
-            </div>
+        <div className="image-container">
+          {selectedStation && selectedStation.photos && selectedStation?.photos.length > 0 ? (
+            <img className="image" src={photoUrl} alt={`${selectedStation.displayName.text} image`} />
           )
-        }
+            :
+            (
+              <div className="no-image">
+                  <MdImageNotSupported />
+              </div>
+            )
+          }
+        </div>
     </div>
   </InfoWindow>
   )

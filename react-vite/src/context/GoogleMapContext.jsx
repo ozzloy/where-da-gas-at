@@ -16,6 +16,7 @@ export function GoogleMapProvider({ children }) {
     const [selectedStation, setSelectedStation] = useState(null);
     const [radius, setRadius] = useState(5000);
     const [filter, setFilter] = useState(["gas_station", "electric_vehicle_charging_station"]);
+    const [zoom , setZoom] = useState(17);
     //Use map hook is made by vis.gl to get the map instance
     //We can use this to get all the information about the map
     const map = useMap();
@@ -35,7 +36,9 @@ export function GoogleMapProvider({ children }) {
         setRadius,
         map,
         filter,
-        setFilter
+        setFilter,
+        zoom,
+        setZoom
     };
     
     return (

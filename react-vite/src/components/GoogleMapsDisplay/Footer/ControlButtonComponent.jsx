@@ -5,10 +5,12 @@ import { FaBookmark, FaTimes, FaCommentAlt, FaBars } from 'react-icons/fa';
 import './ControlButtonComponent.css'
 
 function ControlButtonComponent() {
-  const { setNewCenter, openSideMenu, setOpenSideMenu, center } = useContext(GoogleMapContext);
+  const { setNewCenter, openSideMenu, setOpenSideMenu, center, setSelectedStation, setZoom } = useContext(GoogleMapContext);
   
   const handleButtonClick = () => {
+    setSelectedStation(null);
     setNewCenter(center);
+    setZoom(15);
   };
 
   return (
