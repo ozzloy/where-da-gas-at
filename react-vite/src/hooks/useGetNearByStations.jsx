@@ -7,8 +7,6 @@ const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 function useGetNearByStations({ center }) {
   const { nearbyStations, setNearbyStations, radius, map, filter } = useContext(GoogleMapContext);
 
-  // const [getNextPage, setGetNextPage] = useState(null);
-
   const placesLib = useMapsLibrary("places");
 
   useEffect(() => {
