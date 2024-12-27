@@ -1,6 +1,6 @@
 from sqlalchemy.sql import text
 
-from app.models import db, Review, environment, SCHEMA
+from app.models import db, Review, undo_table
 from app.models.station import Station
 from app.models.user import User
 from app.seeds.user import user_seeds
@@ -82,11 +82,4 @@ def seed_review():
 
 
 def undo_review():
-    if environment == "production":
-        db.session.execute(
-            f"TRUNCATE table {SCHEMA}.review RESTART IDENTITY CASCADE;"
-        )
-    else:
-        db.session.execute(text("DELETE FROM review"))
-
-    db.session.commit()
+    undo_table("review")

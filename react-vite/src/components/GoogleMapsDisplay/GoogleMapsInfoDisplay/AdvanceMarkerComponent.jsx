@@ -1,23 +1,34 @@
 import { AdvancedMarker } from "@vis.gl/react-google-maps";
+import "./AdvanceMarkerComponent.css";
+import { useContext } from "react";
+import { GoogleMapContext } from "../../../context/GoogleMapContext";
 
 function AdvanceMarkerComponent({
   markerContext = "location",
   position,
   stationTypes,
+  station,
 }) {
+  const { setSelectedStation, setZoom, setNewCenter} = useContext(GoogleMapContext);
+
+  const onClickHandler = () => {
+    setSelectedStation(station);
+    setZoom(16);
+    setNewCenter({ lat: position.latitude, lng: position.longitude });
+  }
   if (markerContext === "location") {
-    console.log("AdvanceMarkerComponent", position);
     return (
       <AdvancedMarker
         position={{ lat: position.latitude, lng: position.longitude }}
+        onClick={onClickHandler}
       >
-        {!stationTypes.includes("electric_vehicle_charging_station") ? (
-          <div>
-            <img src="/evIcon.svg" width={32} height={32} />
+        {stationTypes.includes("electric_vehicle_charging_station") ? (
+          <div className="icon-container">
+            <img src="/evIcon.svg" className="icon"/>
           </div>
         ) : (
-          <div>
-            <img src="/gasIcon.svg" width={32} height={32} />
+          <div className="icon-container">
+            <img src="/gasIcon.svg" className="icon"/>
           </div>
         )}
       </AdvancedMarker>

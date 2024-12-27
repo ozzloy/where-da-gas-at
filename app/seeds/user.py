@@ -1,5 +1,6 @@
-from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
+
+from app.models import db, User, undo_table
 
 user_seeds = [
     {
@@ -42,11 +43,4 @@ def seed_user():
 # to instead use DELETE to remove all data and it will reset the
 # primary keys for you as well
 def undo_user():
-    if environment == "production":
-        db.session.execute(
-            f'TRUNCATE table "{SCHEMA}.user" RESTART IDENTITY CASCADE;'
-        )
-    else:
-        db.session.execute(text('DELETE FROM "user"'))
-
-    db.session.commit()
+    undo_table('"user"')

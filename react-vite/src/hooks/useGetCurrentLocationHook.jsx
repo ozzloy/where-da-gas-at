@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import {  useEffect, useContext } from "react";
+import { GoogleMapContext } from "../context/GoogleMapContext";
+
 
 const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const useGetCurrentLocation = () => {
-  const [center, setCenter] = useState(null);
+  
+  const {setCenter, center} = useContext(GoogleMapContext);
 
   useEffect(() => {
     const getCurrentLocation = async () => {
@@ -27,7 +30,7 @@ const useGetCurrentLocation = () => {
     };
 
     getCurrentLocation();
-  }, []);
+  }, [setCenter]);
 
   return center;
 };

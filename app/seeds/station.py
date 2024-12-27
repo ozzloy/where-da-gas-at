@@ -1,6 +1,6 @@
 from sqlalchemy.sql import text
 
-from app.models import db, Station, environment, SCHEMA
+from app.models import db, Station, undo_table
 from app.models.user import User
 from .user import user_seeds
 
@@ -52,11 +52,4 @@ def seed_station():
 
 
 def undo_station():
-    if environment == "production":
-        db.session.execute(
-            f"TRUNCATE table {SCHEMA}.station RESTART IDENTITY CASCADE;"
-        )
-    else:
-        db.session.execute(text("DELETE FROM station"))
-
-    db.session.commit()
+    undo_table("station")

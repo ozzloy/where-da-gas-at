@@ -1,0 +1,20 @@
+/* .side-menu-button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 100000;
+} */
+.close-side-menu-button {
+    transform: rotate(-180deg);
+}
