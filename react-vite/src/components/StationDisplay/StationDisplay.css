@@ -1,0 +1,16 @@
+.station-display-main-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 7rem;  
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.station-data-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+}
