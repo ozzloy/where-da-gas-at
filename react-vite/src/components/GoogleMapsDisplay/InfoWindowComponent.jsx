@@ -31,7 +31,7 @@ function InfoWindowComponent() {
         {/* Conditionally render an image or the no image icon */}
         <div className="image-container">
           {selectedStation && selectedStation.photos && selectedStation?.photos.length > 0 ? (
-            <img className="image" src={photoUrl} alt={`${selectedStation.displayName.text} image`} />
+            <img className="image" src={photoUrl[0]} alt={`${selectedStation.displayName.text} image`} />
           ):(
               <div className="no-image">
                   <MdImageNotSupported />

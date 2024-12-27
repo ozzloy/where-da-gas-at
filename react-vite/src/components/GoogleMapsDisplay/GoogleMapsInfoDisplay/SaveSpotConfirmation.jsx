@@ -5,6 +5,7 @@ import { MdImageNotSupported } from 'react-icons/md';
 import { useGoogleFetchPhoto } from '../../../hooks/useGoogleFetchPhoto';
 import './SaveSpotConfirmation.css';
 
+
 function SaveSpotConfirmation() {
     const { closeModal } = useModal();
     const { selectedStation } = useContext(GoogleMapContext);
@@ -16,7 +17,7 @@ function SaveSpotConfirmation() {
             <div className='station-data-display'>
                     <h3>{selectedStation.displayName.text}</h3>
                     <p>{selectedStation.formattedAddress}</p>
-                    {selectedStation && selectedStation.photos && selectedStation?.photos.length > 0 ? (<img className="image" src={photoUrl} alt={`${selectedStation.displayName.text} image`} />)
+                    {selectedStation && selectedStation.photos && selectedStation?.photos.length > 0 ? (<img className="image" src={photoUrl[0]} alt={`${selectedStation.displayName.text} image`} />)
                             : (
                             <div className="image">
                                 <MdImageNotSupported />
