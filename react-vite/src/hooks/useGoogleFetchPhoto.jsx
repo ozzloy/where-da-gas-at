@@ -9,7 +9,7 @@ function useGoogleFetchPhoto() {
     useEffect(() => {
         const fetchPhotoUrl = async () => {
             // This creates a long URL string that we fetch from using the Google Places API
-            if (selectedStation.photos && selectedStation.photos.length > 0) {
+            if (selectedStation && selectedStation.photos && selectedStation.photos.length > 0) {
                 const photoList = selectedStation.photos;
                 const photoUrls = await Promise.all(photoList.map(async (photo) => {
                     const photoName = photo.name;

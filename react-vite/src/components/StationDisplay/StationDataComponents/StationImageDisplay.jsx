@@ -5,26 +5,31 @@ import './StationImageDisplay.css';
 function StationImageDisplay() {
     const photos = useGoogleFetchPhoto();
 
-    const placeholderImage = (
-        <div className="gas-station-image">
+    const placeholderImage = (index) => (
+        <div key={index} className="gas-station-image">
             <MdImageNotSupported />
-        </div>); 
+        </div>
+    );
 
     while (photos.length < 3) {
-        photos.push(placeholderImage);
+        photos.push(placeholderImage(photos.length));
     }
 
     if (photos && photos.length > 0) {
-        return ( <div className="gas-station-image-container">
+        return (
+            <div className="gas-station-image-container">
                 {photos.slice(0, 3).map((photo, index) => (
                     typeof photo === 'string' ? (
                         <img key={index} src={photo} className="gas-station-image" alt={`Gas station ${index}`} />
                     ) : (
-                        placeholderImage
+                        placeholderImage(index)
                     )
                 ))}
-        </div>)
+            </div>
+        );
     }
+
+    return null;
 }
 
-export default StationImageDisplay
+export default StationImageDisplay;
