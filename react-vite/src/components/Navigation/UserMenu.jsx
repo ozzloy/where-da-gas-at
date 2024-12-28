@@ -1,6 +1,7 @@
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import "./UserMenu.css";
 
 function UserMenu({ showMenu, sessionUser, logout, closeMenu, ulRef, userMenuClassName }) {
     return (
@@ -12,7 +13,7 @@ function UserMenu({ showMenu, sessionUser, logout, closeMenu, ulRef, userMenuCla
                   <li>{sessionUser.user}</li>
                   <li>{sessionUser.email}</li>
                   <li>
-                    <button onClick={logout}>Log Out</button>
+                    <button className="logout-button" onClick={logout}>Log Out</button>
                   </li>
                 </div>
               ) : (

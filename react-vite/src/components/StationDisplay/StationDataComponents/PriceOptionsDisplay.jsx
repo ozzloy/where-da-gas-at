@@ -7,12 +7,14 @@ function PriceOptionsDisplay({ stationInfo }) {
         const fuelOptions = stationInfo.fuelOptions.fuelPrices;
         return (
             <div className='options-container'>
-                {fuelOptions.map((fuelOption, index) => (
+                {fuelOptions.map((fuelOption, index) => {
+                       const fuelPrice = convertNanosToUSD(fuelOption.price.units, fuelOption.price.nanos)
+                return (
                 <div key={index} className='price-option-container'>
                     <p>{fuelOption.type}</p>
-                    <p>${convertNanosToUSD(fuelOption.price.units, fuelOption.price.nanos)}</p>
+                    <p>{isNaN(fuelPrice) ? "Not Available" : `$${fuelPrice}`}</p>
                 </div>
-                ))}
+                )})}
             </div>)
     }
 }

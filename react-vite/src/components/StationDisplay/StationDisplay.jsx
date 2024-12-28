@@ -36,7 +36,7 @@ console.log(stationInfo)
                     <ReviewsDisplay stationInfo={stationInfo} />
                     <Map
                         center={center}
-                        style={{ width: '100%', height: '100%' }}
+                        style={{ width: '100%', height: '100%', minHeight: '32rem' }}
                         mapId={import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID || "e2ea39204ffcffc4"}
                         zoom={18}
                         disableDefaultUI={true}
