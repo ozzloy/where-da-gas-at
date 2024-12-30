@@ -119,6 +119,14 @@ and you can then reseed with
 pipenv run flask seed all
 ```
 
+#### nuke a postgres db
+
+another option is to drop the db and recreate it
+
+```bash
+sudo -u postgres psql -q -f reset-db-postgres.sql
+```
+
 ### start the frontend
 
 ```bash
