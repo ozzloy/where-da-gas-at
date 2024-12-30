@@ -15,11 +15,8 @@ def create_review():
     created_form["csrf_token"].data = request.cookies["csrf_token"]
     created_form["king_id"].data = current_king.id
     if created_form.validate_on_submit():
-        print(f"review_routes.py:{created_form = }")
         station_id = created_form.data.get("station_id")
-        review = created_form.data.get("review")
-
-        # TODO: return only messages that apply
+        text = created_form.data.get("text")
         errors = {}
         if not review:
             errors["review"] = "review is required"
@@ -37,7 +34,7 @@ def create_review():
         review = Review(
             station_id=station_id,
             king_id=current_king.id,
-            review=review,
+            text=text,
         )
 
         db.session.add(review)
@@ -54,9 +51,9 @@ def read_review(review_id):
 
         # failure
         if not review:
-            return {"error": f"review {review.id} not found"}, 404
+            return {"error": f"text {review.id} not found"}, 404
 
-        return {"review": {str(review.id): review.to_dict()}}, 200
+        return {"text": {str(review.id): review.to_dict()}}, 200
 
     except Exception as e:
         return {"error": str(e)}, 500
@@ -68,7 +65,7 @@ def read_reviews():
     try:
         reviews = Review.query.all()
         return {
-            "review": {
+            "text": {
                 str(review.id): review.to_dict() for review in reviews
             }
         }, 200
@@ -100,7 +97,7 @@ def update_review(review_id):
                     {
                         "message": "bad request",
                         "error": {
-                            "review": "review is required",
+                            "text": "text is required",
                             "station_id": "station id is required",
                             "king_id": f"{review.id}",
                         },
@@ -115,7 +112,7 @@ def update_review(review_id):
 
         review.king_id = updated_form.data["king_id"]
         review.station_id = updated_form.data["station_id"]
-        review.review = updated_form.data["review"]
+        review.text = updated_form.data["text"]
 
         # change to the database
         db.session.commit()
@@ -140,14 +137,14 @@ def deleted_review(review_id):
 
         # failure
         if not review:
-            return {"error": f"review {review.id} is not found"}
+            return {"error": f"text {review.id} is not found"}
 
         db.session.delete(review)
         db.session.commit()
 
         # success
         return {
-            "message": f"deleted review {review.id} successfully",
+            "message": f"deleted text {review.id} successfully",
         }, 200
 
     except Exception as e:

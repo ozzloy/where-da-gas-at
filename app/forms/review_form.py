@@ -8,5 +8,5 @@ class ReviewForm(FlaskForm):
         "station_id", validators=[DataRequired()]
     )
     king_id = IntegerField("king_id", validators=[DataRequired()])
-    review = TextAreaField("review", validators=[DataRequired()])
-    sumbit = SubmitField("Submit")
+    text = TextAreaField("text", validators=[DataRequired()])
+    submit = SubmitField("Submit")

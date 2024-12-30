@@ -19,12 +19,12 @@ class Review(db.Model, SchemaMixin):
         ),
         nullable=False,
     )
-    review = db.Column(db.Text, nullable=False)
+    text = db.Column(db.Text, nullable=False)
 
     def to_dict(self):
         return {
             "id": self.id,
             "king_id": self.king_id,
             "station_id": self.station_id,
-            "review": self.review,
+            "text": self.text,
         }

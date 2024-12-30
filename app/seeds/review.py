@@ -15,7 +15,7 @@ review_seeds = [
     {
         "king_id": 1,
         "station_id": 1,
-        "review": """
+        "text": """
           Great place for premium gas,
           but the line can get long during rush hour.
         """,
@@ -23,7 +23,7 @@ review_seeds = [
     {
         "king_id": 1,
         "station_id": 3,
-        "review": """
+        "text": """
           Love this place!
           The charging speed is awesome,
           and the restroom is always clean.
@@ -32,7 +32,7 @@ review_seeds = [
     {
         "king_id": 2,
         "station_id": 2,
-        "review": """
+        "text": """
           Best fuel stop in town!
           The air pump works great and the staff is super friendly.
         """,
@@ -40,7 +40,7 @@ review_seeds = [
     {
         "king_id": 2,
         "station_id": 1,
-        "review": """
+        "text": """
           Excellent experience!
           Staff is friendly, and the charging process is seamless.
         """,
@@ -48,7 +48,7 @@ review_seeds = [
     {
         "king_id": 3,
         "station_id": 3,
-        "review": """
+        "text": """
           Charging works well, but the place is often crowded.
           Needs more space for parking.
         """,
@@ -56,7 +56,7 @@ review_seeds = [
     {
         "king_id": 3,
         "station_id": 1,
-        "review": """
+        "text": """
           Excellent experience!
           Staff is friendly, and the charging process is seamless.
         """,
@@ -72,7 +72,7 @@ def seed_review():
 
     for review_seed in review_seeds:
         review = Review(
-            review=review_seed["review"],
+            text=review_seed["text"],
             king_id=kings[review_seed["king_id"] - 1].id,
             station_id=stations[review_seed["station_id"] - 1].id,
         )
