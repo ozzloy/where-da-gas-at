@@ -2,15 +2,16 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUserCircle } from "react-icons/fa";
 import { thunkLogout } from "../../redux/session";
-import OpenModalMenuItem from "./OpenModalMenuItem";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
+import "./ProfileButton.css";
+import UserMenu from "./UserMenu";
 
-function ProfileButton() {
+function ProfileButton({location}) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  const user = useSelector((store) => store.session.user);
+  const sessionUser = useSelector((store) => store.session.user);
   const ulRef = useRef();
+
+  const userMenuClassName = location === "side-header" ? "side-header" : "nav-menu";
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -41,35 +42,10 @@ function ProfileButton() {
 
   return (
     <>
-      <button onClick={toggleMenu}>
-        <FaUserCircle />
+      <button onClick={toggleMenu} className="user-icon-button">
+        <FaUserCircle className="user-icon"/>
       </button>
-      {showMenu && (
-        <ul className={"profile-dropdown"} ref={ulRef}>
-          {user ? (
-            <>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
-            </>
-          ) : (
-            <>
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </>
-          )}
-        </ul>
-      )}
+      <UserMenu userMenuClassName={userMenuClassName} showMenu={showMenu} sessionUser={sessionUser} logout={logout} closeMenu={closeMenu} ulRef={ulRef}/>
     </>
   );
 }

@@ -1,16 +1,14 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from flask_login import UserMixin
 from werkzeug.security import (
     generate_password_hash,
     check_password_hash,
 )
-from flask_login import UserMixin
+
+from .db import add_prefix_for_prod, db, environment, SchemaMixin
 
 
-class User(db.Model, UserMixin):
+class User(db.Model, UserMixin, SchemaMixin):
     __tablename__ = "user"
-
-    if environment == "production":
-        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.String(40), nullable=False, unique=True)

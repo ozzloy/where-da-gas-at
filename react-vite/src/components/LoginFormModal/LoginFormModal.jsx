@@ -11,6 +11,8 @@ function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+  const disablebtn = email.length <= 0 || password.length <= 0;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -18,20 +20,24 @@ function LoginFormModal() {
       thunkLogin({
         email,
         password,
-      }),
+      })
     );
 
-    if (serverResponse) {
-      setErrors(serverResponse);
-    } else {
+    if (serverResponse.type === "session/login/rejected") {
+      setErrors(serverResponse.payload);
+    }
+
+    if (serverResponse.type === "session/login/fulfilled") {
       closeModal();
     }
   };
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <div className="header">
+        <h1>Log In</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="input-field">
         <label>
           Email
           <input
@@ -52,8 +58,16 @@ function LoginFormModal() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
-      </form>
+        
+        <button disabled={disablebtn} type="submit">Log In</button>
+
+        <button className="demo_btn" onClick={() => {
+          setEmail('demo@example.com');
+          setPassword('password')
+            }}>Demo User</button>
+            </div>
+        </form>
+        </div>
     </>
   );
 }

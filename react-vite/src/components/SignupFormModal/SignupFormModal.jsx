@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
@@ -7,11 +7,21 @@ import "./SignupForm.css";
 function SignupFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+
+  useEffect(() => {
+    const errors = {}
+    if (!email) {
+      errors.email = 'Email is required!';
+    }
+    if (user.length <= 0) {
+      errors.user = 'User cannot be empty!'
+    }
+  },[email, user])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,13 +36,13 @@ function SignupFormModal() {
     const serverResponse = await dispatch(
       thunkSignup({
         email,
-        username,
+        user,
         password,
-      }),
+      })
     );
 
-    if (serverResponse) {
-      setErrors(serverResponse);
+    if (serverResponse.type === "session/signup/rejected") {
+      setErrors(serverResponse.payload);
     } else {
       closeModal();
     }
@@ -40,9 +50,11 @@ function SignupFormModal() {
 
   return (
     <>
+      <div className="signup-header">
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+          <div className="input-field">
         <label>
           Email
           <input
@@ -57,12 +69,12 @@ function SignupFormModal() {
           Username
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.user && <p>{errors.user}</p>}
         <label>
           Password
           <input
@@ -83,8 +95,10 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
-      </form>
+            <button type="submit">Sign Up</button>
+            </div>
+        </form>
+        </div>
     </>
   );
 }

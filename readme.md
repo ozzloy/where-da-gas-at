@@ -56,12 +56,15 @@ CREATE DATABASE where_da_gas_at OWNER where_da_gas_at;
 GRANT ALL PRIVILEGES ON DATABASE where_da_gas_at TO where_da_gas_at;
 -- response: GRANT
 
-\c where_da_gas_at -- switch to newly created db
+-- switch to newly created db
+\c where_da_gas_at
 --You are now connected to database "where_da_gas_at" as user "postgres".
 
 CREATE SCHEMA where_da_gas_at;
 
-GRANT USAGE, CREATE ON SCHEMA where_da_gas_at TO where_da_gas_at;
+GRANT USAGE, CREATE
+  ON SCHEMA where_da_gas_at
+  TO where_da_gas_at;
 -- GRANT
 
 GRANT
@@ -101,6 +104,21 @@ pipenv run flask seed all
 pipenv run flask run
 ```
 
+#### reset the backend
+
+this will delete all the tables and re-add them
+
+```bash
+pipenv run flask db-drop-all
+pipenv run flask db upgrade
+```
+
+and you can then reseed with
+
+```bash
+pipenv run flask seed all
+```
+
 ### start the frontend
 
 ```bash
@@ -108,7 +126,6 @@ cd where-da-gas-at/react-vite
 npm i
 npm run preview
 ```
-
 
 ## test
 

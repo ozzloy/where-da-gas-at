@@ -1,6 +1,6 @@
 from sqlalchemy.sql import text
 
-from app.models import db, environment, SCHEMA
+from app.models import db, undo_table
 from app.models.price import Price
 from app.models.station import Station
 from app.models.user import User
@@ -78,11 +78,4 @@ def seed_price():
 
 
 def undo_price():
-    if environment == "production":
-        db.session.execute(
-            f"TRUNCATE table {SCHEMA}.price RESTART IDENTITY CASCADE;"
-        )
-    else:
-        db.session.execute(text("DELETE FROM price"))
-
-    db.session.commit()
+    undo_table("price")

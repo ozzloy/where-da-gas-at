@@ -1,9 +1,9 @@
 from sqlalchemy import Column, Float, ForeignKey, Integer, String
 
-from .db import add_prefix_for_prod, db
+from .db import add_prefix_for_prod, db, SchemaMixin
 
 
-class Price(db.Model):
+class Price(db.Model, SchemaMixin):
     __tablename__ = "price"
 
     id = Column(Integer, primary_key=True)
@@ -11,13 +11,17 @@ class Price(db.Model):
     price = Column(Float, nullable=False)
     station_id = Column(
         Integer,
-        ForeignKey(add_prefix_for_prod("station.id")),
+        ForeignKey(
+            add_prefix_for_prod("station.id"), ondelete="CASCADE"
+        ),
         nullable=False,
     )
     fuel_type = Column(String)
     user_id = Column(
         Integer,
-        ForeignKey(add_prefix_for_prod("user.id")),
+        ForeignKey(
+            add_prefix_for_prod("user.id"), ondelete="CASCADE"
+        ),
         nullable=False,
     )
 

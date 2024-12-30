@@ -1,0 +1,27 @@
+.signup-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-bottom: solid 1px #ccc;
+  padding: 10px;
+}
+
+.input-field{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+
+}
+
+.close_btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  border: none;
+
+}

@@ -1,0 +1,22 @@
+.station-card-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    max-width: 80vw;
+}
+
+
+.station-card-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.under-line {
+    border-bottom: 1px solid #000;
+    min-width: 80vw;
+}

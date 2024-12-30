@@ -1,24 +1,31 @@
 import { createBrowserRouter } from "react-router-dom";
-import LoginFormPage from "../components/LoginFormPage";
-import SignupFormPage from "../components/SignupFormPage";
 import Layout from "./Layout";
+import GoogleMaps from "../components/GoogleMapsDisplay";
+import StationDisplay from "../components/StationDisplay/StationDisplay";
+import SavedSpotsComponent from "../components/GoogleMapsDisplay/ControlCRUDComponents/SavedSpotsComponent";
 
+// This is the router configuration for the app.
+// If we want to add more routes, we can do so here.
+
+// Most of the changes are done on the GoogleMaps component
+// We might want to add new routes for the crud features 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
         path: "/",
-        element: <h1>Welcome!</h1>,
+        element: <GoogleMaps />,
       },
       {
-        path: "login",
-        element: <LoginFormPage />,
+        path: "/station/:id",
+        element: <StationDisplay />,
       },
       {
-        path: "signup",
-        element: <SignupFormPage />,
-      },
+        path: "/user/:id",
+        element: <SavedSpotsComponent/>
+      }
+
     ],
   },
 ]);

@@ -1,0 +1,8 @@
+.bookmark-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.543);
+    cursor: pointer;
+}

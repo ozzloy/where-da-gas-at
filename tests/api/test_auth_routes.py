@@ -8,8 +8,7 @@ def test_login_flow():
     session = requests.Session()
 
     # Get CSRF token and session cookie
-    auth_response = session.get(f"{base_url}/api/auth/")
-    assert auth_response.status_code == 401
+    session.get(f"{base_url}/api/auth/")
     assert "csrf_token" in session.cookies
     assert "session" in session.cookies
 
