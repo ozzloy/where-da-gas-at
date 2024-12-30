@@ -27,6 +27,8 @@
     gap: 1rem;
 }
 .button-design {
+    color: #000;
+    text-decoration: none;
     padding: 1rem;
     border-radius: 1rem;
     background-color: #D9D9D9;

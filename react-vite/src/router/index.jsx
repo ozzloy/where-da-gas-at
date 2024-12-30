@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 import GoogleMaps from "../components/GoogleMapsDisplay";
 import StationDisplay from "../components/StationDisplay/StationDisplay";
+import SavedSpotsComponent from "../components/GoogleMapsDisplay/ControlCRUDComponents/SavedSpotsComponent";
 
 // This is the router configuration for the app.
 // If we want to add more routes, we can do so here.
@@ -19,7 +20,12 @@ export const router = createBrowserRouter([
       {
         path: "/station/:id",
         element: <StationDisplay />,
+      },
+      {
+        path: '/user/:id',
+        element: <SavedSpotsComponent/>
       }
+
     ],
   },
 ]);

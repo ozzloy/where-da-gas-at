@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
@@ -12,6 +12,16 @@ function SignupFormModal() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+
+  useEffect(() => {
+    const errors = {}
+    if (!email) {
+      errors.email = 'Email is required!';
+    }
+    if (user.length <= 0) {
+      errors.user = 'User cannot be empty!'
+    }
+  },[email, user])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,9 +50,11 @@ function SignupFormModal() {
 
   return (
     <>
+      <div className="signup-header">
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+          <div className="input-field">
         <label>
           Email
           <input
@@ -83,8 +95,10 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
-      </form>
+            <button type="submit">Sign Up</button>
+            </div>
+        </form>
+        </div>
     </>
   );
 }

@@ -4,12 +4,17 @@ import { useModal } from '../../../context/Modal';
 import { MdImageNotSupported } from 'react-icons/md';
 import { useGoogleFetchPhoto } from '../../../hooks/useGoogleFetchPhoto';
 import './SaveSpotConfirmation.css';
+import { useNavigate } from 'react-router-dom';
+
+
 
 
 function SaveSpotConfirmation() {
     const { closeModal } = useModal();
     const { selectedStation } = useContext(GoogleMapContext);
     const photoUrl = useGoogleFetchPhoto();
+    const navigate = useNavigate();
+
 
     return (
         <div className='modal-body'>
@@ -25,7 +30,8 @@ function SaveSpotConfirmation() {
                     }
             </div>
             <div className='button-container'>
-                <button className="button-design">Save</button>
+                <button className="button-design" onClick={() => navigate('/')} > Save
+                    </button>
                 <button className="button-design" onClick={closeModal}>Nahh I&apos;m good</button>
             </div>
         </div>
