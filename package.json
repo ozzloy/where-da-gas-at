@@ -14,5 +14,8 @@
   "license": "AGPL-3.0-or-later",
   "devDependencies": {
     "prettier": "^3.4.2"
+  },
+  "dependencies": {
+    "react-hot-toast": "^2.4.1"
   }
 }
