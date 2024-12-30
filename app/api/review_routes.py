@@ -18,7 +18,7 @@ def create_review():
         station_id = created_form.data.get("station_id")
         text = created_form.data.get("text")
         errors = {}
-        if not review:
+        if not text:
             errors["review"] = "review is required"
         if not station_id:
             errors["station_id"] = "station id is required"
@@ -41,6 +41,7 @@ def create_review():
         db.session.commit()
 
         return {"review": {str(review.id): review.to_dict()}}, 200
+    return created_form.errors, 401
 
 
 # Read one review
