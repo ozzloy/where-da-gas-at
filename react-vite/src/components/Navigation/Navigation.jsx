@@ -12,7 +12,11 @@ function Navigation() {
       <ul className="nav-data-container">
         <li>
           <NavLink to="/" className="logo-container">
-            <img src="/gasIcon.svg" className="logo" alt="logo" />
+            <img
+              src="../public/Logo.ico"
+              className="logo"
+              alt="logo"
+            />
             <p>Where da gas at?</p>
           </NavLink>
         </li>
@@ -23,6 +27,7 @@ function Navigation() {
       </ul>
     );
   }
+  return <></>;
 }
 
 export default Navigation;
