@@ -124,7 +124,7 @@ pipenv run flask seed all
 another option is to drop the db and recreate it
 
 ```bash
-sudo -u postgres psql -q -f reset-db-postgres.sql
+./reset-postgres.bash
 ```
 
 ### start the frontend
