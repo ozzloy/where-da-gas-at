@@ -1,79 +1,100 @@
 .control-buttons-container {
-    position: absolute;
-    align-items: center;
-    padding: 1rem;
-    z-index: 100000;
-    width: 100%; 
-    display: flex;
-    bottom: 0;
-    background: transparent;
-    align-items: flex-end;
-    justify-content: space-between;
-    max-width: 2560px;
+  position: absolute;
+  align-items: center;
+  padding: 1rem;
+  z-index: 100000;
+  width: 100%;
+  display: flex;
+  bottom: 0;
+  background: transparent;
+  align-items: flex-end;
+  justify-content: space-between;
+  max-width: 2560px;
 }
 
 .icon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
-    width: 50px;
-    height: 50px;
-    background-color: #D9D9D9;
-    border: none;
-    border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0.1rem;
+  width: 50px;
+  height: 50px;
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 100%;
+}
+
+.diplay-station-ico {
+  display: flex;
+  align-items: center;
+}
+
+.diplay-station-ico:hover .diplay-station-ico {
+  position: absolute;
+  height: 40px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.diplay-station-ico:hover .nearby-station {
+  transition: all 0.5s;
+  opacity: 0;
 }
 
 .crud-buttons-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
-    padding: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  padding: 0.5rem;
 }
 
 .user-interaction-button {
-    border-radius: 4rem;
-    background-color: rgb(142, 142, 142);
-    border: none;
+  border-radius: 4rem;
+  background-color: rgb(142, 142, 142);
+  border: none;
 }
 
 .control-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    bottom: 0;
-    right: 0;
-    height: 3rem;
-    width: 3rem;
-    padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  bottom: 0;
+  right: 0;
+  height: 3rem;
+  width: 3rem;
+  padding: 1rem;
 }
 
-.bookmark, .reviews {
-    width: 15px;
-    height: 15px;
-    border-radius: 0;
-    padding: 0;
+.bookmark,
+.reviews {
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  padding: 0;
 }
 
 @media screen and (min-width: 1440px) {
-    .control-buttons-container {
-        padding: 2rem;
-    }
-    .icon-container {
-        width: 5rem;
-        height: 5rem;
-    }
-    .control-button {
-        height: 5rem;
-        width: 5rem;
-    }
-    .bookmark, .reviews {
-        width: 30px;
-        height: 30px;
-    }
-    
+  .control-buttons-container {
+    padding: 2rem;
+  }
+  .icon-container {
+    width: 5rem;
+    height: 5rem;
+  }
+  .control-button {
+    height: 5rem;
+    width: 5rem;
+  }
+  .bookmark,
+  .reviews {
+    width: 30px;
+    height: 30px;
+  }
 }

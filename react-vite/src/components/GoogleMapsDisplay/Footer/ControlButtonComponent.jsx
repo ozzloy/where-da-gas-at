@@ -1,7 +1,12 @@
-import { FaMapMarkerAlt } from "react-icons/fa";
 import { useContext } from "react";
 import { GoogleMapContext } from "../../../context/GoogleMapContext";
-import { FaBookmark, FaTimes, FaCommentAlt, FaBars } from "react-icons/fa";
+import {
+  FaBookmark,
+  FaTimes,
+  FaCommentAlt,
+  FaBars,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 import OpenModalMenuItem from "../../Navigation/OpenModalMenuItem";
 import "./ControlButtonComponent.css";
 import SavedSpotsComponent from "../ControlCRUDComponents/SavedSpotsComponent";
@@ -38,7 +43,12 @@ function ControlButtonComponent() {
         {openSideMenu ? (
           <FaTimes className={`control-button`} />
         ) : (
-          <FaBars className={`control-button`} />
+          <>
+            <div className="diplay-station-ico">
+              <FaBars className={`control-button`} />
+              <span className="nearby-station"> Nearby Stations</span>
+            </div>
+          </>
         )}
       </button>
 
