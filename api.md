@@ -76,7 +76,7 @@ returns the information about the current user that is logged in.
         "id": 1,
         "name": "john smith",
         "email": "john.smith@example.com",
-        "user": "johnsmith"
+        "nick": "johnsmith"
       }
     }
   }
@@ -125,7 +125,7 @@ user's information.
         "id": 1,
         "name": "john smith",
         "email": "john.smith@example.com",
-        "user": "johnsmith"
+        "nick": "johnsmith"
       }
     }
   }
@@ -173,7 +173,7 @@ current user's information.
   {
     "name": "john smith",
     "email": "john.smith@example.com",
-    "user": "johnsmith",
+    "nick": "johnsmith",
     "password": "secret password"
   }
   ```
@@ -192,14 +192,14 @@ current user's information.
         "id": 1,
         "name": "john smith",
         "email": "john.smith@example.com",
-        "user": "johnsmith"
+        "nick": "johnsmith"
       }
     }
   }
   ```
 
 - error response: user already exists with the specified email or
-  username
+  nickname
 
   ```http
   http/1.1 500 internal server error
@@ -209,7 +209,7 @@ current user's information.
     "message": "user already exists",
     "errors": {
       "email": "user with that email already exists",
-      "user": "account with that username already exists"
+      "nick": "account with that nickname already exists"
     }
   }
   ```
@@ -228,7 +228,7 @@ update an extant user, and returns the current user's information.
   {
     "name": "john smith",
     "email": "john.smith2@example.com",
-    "user": "johnsmith2",
+    "nick": "johnsmith2",
     "password": "secret password2"
   }
   ```
@@ -247,14 +247,14 @@ update an extant user, and returns the current user's information.
         "id": 1,
         "name": "john smith",
         "email": "john.smith2@example.com",
-        "user": "johnsmith2"
+        "nick": "johnsmith2"
       }
     }
   }
   ```
 
 - error response: user already exists with the specified email or
-  username
+  nickname
 
   ```http
   http/1.1 500 internal server error
@@ -264,7 +264,7 @@ update an extant user, and returns the current user's information.
     "message": "user already exists",
     "errors": {
       "email": "user with that email already exists",
-      "user": "account with that username already exists"
+      "nick": "account with that nickname already exists"
     }
   }
   ```
@@ -279,7 +279,7 @@ update an extant user, and returns the current user's information.
     "message": "bad request",
     "errors": {
       "email": "invalid email",
-      "user": "username is required",
+      "nick": "nickname is required",
       "name": "name is required",
     }
   }

@@ -19,7 +19,7 @@ def make_random_string(length: int = 10) -> str:
 
 def make_user(overrides: Dict[str, Any] = None) -> Dict[str, Any]:
     user_data = {
-        "user": make_random_string(),
+        "nick": make_random_string(),
         "email": f"{make_random_string()}@example.com",
         "password": "password",
     }
@@ -30,7 +30,7 @@ def make_user(overrides: Dict[str, Any] = None) -> Dict[str, Any]:
 
 def modify_user(data):
     return {
-        "user": "a" + data["user"],
+        "nick": "a" + data["nick"],
         "email": "a" + data["email"],
         "password": "apassword",
     }

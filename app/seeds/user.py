@@ -3,17 +3,17 @@ from app.models import db, undo_table, User
 demo_email = "demo@example.com"
 user_seeds = [
     {
-        "user": "demo",
+        "nick": "demo",
         "email": demo_email,
         "password": "password",
     },
     {
-        "user": "marnie",
+        "nick": "marnie",
         "email": "marnie@example.com",
         "password": "password",
     },
     {
-        "user": "bobbie",
+        "nick": "bobbie",
         "email": "bobbie@example.com",
         "password": "password",
     },
@@ -27,7 +27,7 @@ def seed_user():
     # use the "users" array to insert records into the db
     for user_seed in user_seeds:
         user = User(
-            user=user_seed["user"],
+            nick=user_seed["nick"],
             email=user_seed["email"],
             password=user_seed["password"],
         )

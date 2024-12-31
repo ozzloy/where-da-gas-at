@@ -28,7 +28,7 @@ def test_create_review():
     #     "user": {
     #         "2": {
     #             "id": 2,
-    #             "user": "some_name",
+    #             "nick": "some_name",
     #             "email": "demo@example.com",
     #         }
     #     }
@@ -234,7 +234,7 @@ def test_update_review():
     #     "user": {
     #         "2": {
     #             "id": 2,
-    #             "user": "some_name",
+    #             "nick": "some_name",
     #             "email": "demo@example.com",
     #         }
     #     }
@@ -376,7 +376,7 @@ def test_delete_review():
     #     "user": {
     #         "2": {
     #             "id": 2,
-    #             "user": "some_name",
+    #             "nick": "some_name",
     #             "email": "demo@example.com",
     #         }
     #     }

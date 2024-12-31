@@ -15,8 +15,8 @@ def test_create_user_fail_duplicate_email():
     )
     # 401
     # {
-    #     "email": ["Email address is already in use."],
-    #     "user": ["Username is already in use."],
+    #     "email": ["email address is already in use."],
+    #     "nick": ["nickname is already in use."],
     # }
     assert post_auth_signup_response.status_code == 401
     assert (
@@ -24,7 +24,7 @@ def test_create_user_fail_duplicate_email():
         == "application/json"
     )
     errors = post_auth_signup_response.json()
-    required_keys = ["email", "user"]
+    required_keys = ["email", "nick"]
     assert all(key in errors for key in required_keys)
     assert all(key in required_keys for key in errors)
 
@@ -48,7 +48,7 @@ def test_create_user():
     #         "7": {
     #             "email": "bcpnpcmomt@example.com",
     #             "id": 7,
-    #             "user": "kpjkecmicx",
+    #             "nick": "kpjkecmicx",
     #         }
     #     }
     # }
@@ -89,7 +89,7 @@ def test_update_user():
     #         "19": {
     #             "email": "aanrdcjmxfn@example.com",
     #             "id": 19,
-    #             "user": "ablklfffoln",
+    #             "nick": "ablklfffoln",
     #         }
     #     }
     # }
@@ -106,7 +106,7 @@ def test_update_user():
 
     assert updated_user["id"] == user["id"]
     assert updated_user["email"] == user_update["email"]
-    assert updated_user["user"] == user_update["user"]
+    assert updated_user["nick"] == user_update["nick"]
 
     # attempt to delete this user.  it's ok if this fails.  it's just
     #   to try to keep the db clean

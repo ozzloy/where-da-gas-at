@@ -12,7 +12,7 @@ class User(db.Model, UserMixin, SchemaMixin):
     __tablename__ = "user"
 
     id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(db.String(40), nullable=False, unique=True)
+    nick = db.Column(db.String(40), nullable=False, unique=True)
     name = db.Column(db.String(40))
     email = db.Column(db.String(255), nullable=False, unique=True)
     password_hash = db.Column(db.String(255), nullable=False)
@@ -36,7 +36,7 @@ class User(db.Model, UserMixin, SchemaMixin):
     def to_dict(self):
         return {
             "id": self.id,
-            "user": self.user,
+            "nick": self.nick,
             "email": self.email,
             "saved_stations": [
                 station.id for station in self.saved_stations

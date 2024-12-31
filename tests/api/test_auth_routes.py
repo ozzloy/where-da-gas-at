@@ -29,4 +29,4 @@ def test_login_flow():
     data = login_response.json()
     assert data["email"] == DEMO_USER["email"]
     assert "id" in data
-    assert data["user"] == DEMO_USER["user"]
+    assert data["nick"] == DEMO_USER["nick"]

@@ -33,7 +33,7 @@ def validate_user(user):
     # {
     #     "id": 7,
     #     "email": "bcpnpcmomt@example.com",
-    #     "user": "kpjkecmicx",
+    #     "nick": "kpjkecmicx",
     #     "saved_stations": [],
     # }
 
