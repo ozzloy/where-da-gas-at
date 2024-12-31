@@ -7,7 +7,6 @@ from app.models.user import User
 from app.seeds.station import station_seeds
 from app.seeds.user import user_seeds
 
-
 user_emails = [user_seed["email"] for user_seed in user_seeds]
 station_uris = [station_seed["uri"] for station_seed in station_seeds]
 

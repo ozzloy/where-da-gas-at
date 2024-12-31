@@ -14,7 +14,6 @@ from typing import Dict, Any
 # TODO: add test for delete: review not found
 
 
-
 def test_create_review():
     # send http GET to http://localhost:8000/api/auth/
     # to get a csrf_token cookie, and a session cookie
@@ -114,7 +113,6 @@ def test_create_review():
         assert isinstance(review["review"], str)
         assert isinstance(review["user_id"], int)
         assert isinstance(review["station_id"], int)
-     
 
     validate_review_slice(reply_data)
 
@@ -181,7 +179,7 @@ def test_get_review():
     )
     assert login_response.status_code == 200
 
-#     # Get all reviews
+    # Get all reviews
     review_url = f"{base_url}/api/review/"
     review_response = session.get(review_url)
 
@@ -313,19 +311,21 @@ def test_update_review():
     lowest_id = min(int(id_) for id_ in review_slice.keys())
     old_review = review_slice[str(lowest_id)]
 
-    
     new_review_data = {
-        "review": old_review["review"] + ' updated review',
+        "review": old_review["review"] + " updated review",
         "station_id": old_review["station_id"],
     }
 
-
-    create_reply = session.post(f"{stem}/review", json=new_review_data)
+    create_reply = session.post(
+        f"{stem}/review", json=new_review_data
+    )
     review_id = list(create_reply.json()["review"].keys())[0]
 
     new_review_data["review"] = " new onee"
 
-    put_reply = session.put(f"{stem}/review/{review_id}", json=new_review_data)
+    put_reply = session.put(
+        f"{stem}/review/{review_id}", json=new_review_data
+    )
 
     assert put_reply.status_code == 200
     reply_data = put_reply.json()
@@ -358,7 +358,6 @@ def test_update_review():
         assert isinstance(review["review"], str)
         assert isinstance(review["user_id"], int)
         assert isinstance(review["station_id"], int)
-
 
     validate_review_slice(reply_data)
 
