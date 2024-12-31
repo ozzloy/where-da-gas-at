@@ -87,7 +87,9 @@ def create_current_user_station(station_id):
         return {"error": f"station {station_id} does not exist"}, 404
 
     # add the station to the user's list of saved stations
-    current_user.saved_stations.append(station)
+    stations = current_user.saved_stations
+    if station not in stations:
+        stations.append(station)
 
     # put that change in the db
     db.session.commit()
