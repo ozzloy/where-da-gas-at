@@ -1,9 +1,10 @@
 from app.models import db, undo_table, User
 
+demo_email = "demo@example.com"
 user_seeds = [
     {
-        "user": "Demo",
-        "email": "demo@example.com",
+        "user": "demo",
+        "email": demo_email,
         "password": "password",
     },
     {
