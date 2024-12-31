@@ -6,6 +6,7 @@ from .db import (
     environment,
     SchemaMixin,
 )
+from .user_station import user_station
 
 
 class Station(db.Model, SchemaMixin):
@@ -26,6 +27,11 @@ class Station(db.Model, SchemaMixin):
         ),
         nullable=False,
     )
+    saved_by = db.relationship(
+        "User",
+        secondary=user_station,
+        back_populates="saved_stations",
+    )
 
     def to_dict(self):
         return {
@@ -37,4 +43,5 @@ class Station(db.Model, SchemaMixin):
             "uri": self.uri,
             "location_id": self.location_id,
             "user_id": self.user_id,
+            "saved_by": self.saved_by,
         }

@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required, logout_user
-from app.models import db, User
+
+from app.models import db, Station, User
 
 user_routes = Blueprint("user", __name__)
 
@@ -67,3 +68,29 @@ def delete_user():
     user_id = current_user.id
     logout_user()
     return {"message": f"deleted user {user_id} successfully"}
+
+
+@user_routes.route(
+    "/current/station/<int:station_id>", methods=["POST"]
+)
+@login_required
+def create_current_user_station(station_id):
+    """
+    save a station for the current user
+    """
+    # make sure there is a station with station id.
+    station = Station.query.get(station_id)
+
+    # if there is not, return an error indicating that there is no
+    #  such station
+    if not station:
+        return {"error": f"station {station_id} does not exist"}, 404
+
+    # add the station to the user's list of saved stations
+    current_user.saved_stations.append(station)
+
+    # put that change in the db
+    db.session.commit()
+
+    # indicate success
+    return "", 201

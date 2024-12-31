@@ -5,6 +5,7 @@ from werkzeug.security import (
 )
 
 from .db import add_prefix_for_prod, db, environment, SchemaMixin
+from .user_station import user_station
 
 
 class User(db.Model, UserMixin, SchemaMixin):
@@ -15,6 +16,11 @@ class User(db.Model, UserMixin, SchemaMixin):
     name = db.Column(db.String(40))
     email = db.Column(db.String(255), nullable=False, unique=True)
     password_hash = db.Column(db.String(255), nullable=False)
+    saved_stations = db.relationship(
+        "Station",
+        secondary=user_station,
+        back_populates="saved_by",
+    )
 
     @property
     def password(self):
@@ -32,4 +38,5 @@ class User(db.Model, UserMixin, SchemaMixin):
             "id": self.id,
             "user": self.user,
             "email": self.email,
+            "saved_stations": self.saved_stations,
         }

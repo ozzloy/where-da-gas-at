@@ -1,16 +1,21 @@
 import requests
 from typing import Any, Dict, Tuple
-from .config import DEMO_USER, get_full_url
+from .config import DEMO_USER, get_full_url, make_station, make_user
+from .validators import validate_response, validate_state
 
 
-def create_authenticated_session() -> requests.Session:
+def create_session() -> requests.Session:
     session = requests.Session()
-
+    # get csrf and session cookies
     session.get(get_full_url("auth/"))
+    return session
 
+
+def create_authenticated_session(user=DEMO_USER) -> requests.Session:
+    session = create_session()
     login_response = session.post(
         get_full_url("auth/login"),
-        json=DEMO_USER,
+        json=user,
         headers={"Content-Type": "application/json"},
     )
 
