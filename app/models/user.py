@@ -38,5 +38,7 @@ class User(db.Model, UserMixin, SchemaMixin):
             "id": self.id,
             "user": self.user,
             "email": self.email,
-            "saved_stations": self.saved_stations,
+            "saved_stations": [
+                station.id for station in self.saved_stations
+            ],
         }

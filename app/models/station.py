@@ -43,5 +43,5 @@ class Station(db.Model, SchemaMixin):
             "uri": self.uri,
             "location_id": self.location_id,
             "user_id": self.user_id,
-            "saved_by": self.saved_by,
+            "saved_by": [user.id for user in self.saved_by],
         }
