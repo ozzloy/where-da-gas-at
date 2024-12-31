@@ -1,6 +1,6 @@
 from sqlalchemy.sql import text
 
-from app.models import db, User, undo_table
+from app.models import db, undo_table, User
 
 user_seeds = [
     {
