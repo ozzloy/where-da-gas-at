@@ -1,5 +1,6 @@
 from typing import Dict, Any
 import random
+from random import uniform
 from string import ascii_lowercase
 
 from app.seeds.user import user_seeds
@@ -33,6 +34,19 @@ def modify_user(data):
         "email": "a" + data["email"],
         "password": "apassword",
     }
+
+
+def make_station(user_id: int) -> Dict[str, Any]:
+    station_data = {
+        "name": make_random_string(),
+        "lat": uniform(-90, 90),
+        "lng": uniform(-180, 180),
+        "address": make_random_string(),
+        "uri": f"http://example.com/{make_random_string()}",
+        "location_id": make_random_string(),
+        "user_id": user_id,
+    }
+    return station_data
 
 
 def get_base_url() -> str:
