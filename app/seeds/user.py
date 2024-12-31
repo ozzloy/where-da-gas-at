@@ -19,6 +19,8 @@ user_seeds = [
     },
 ]
 
+emails = [user["email"] for user in user_seeds]
+
 
 # Adds a demo user, you can add other users here if you want
 def seed_user():

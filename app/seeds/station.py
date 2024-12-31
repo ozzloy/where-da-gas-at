@@ -2,10 +2,8 @@ from sqlalchemy.sql import text
 
 from app.models import db, Station, undo_table
 from app.models.user import User
-from .user import user_seeds
+from .user import emails
 
-
-emails = [user_seed["email"] for user_seed in user_seeds]
 
 station_seeds = [
     {
