@@ -133,6 +133,9 @@ def test_create_price():
     validate_station_slice(reply_data)
 
 
+from .auth import create_station
+
+
 def test_get_stations():
     """Test getting station after authentication"""
     # Setup
@@ -249,7 +252,7 @@ def test_get_station():
 
 
 # @pytest.mark.skip(reason="need create station first")
-def test_update_price():
+def test_update_station():
     # send http GET to http://localhost:8000/api/auth/
     # to get a csrf_token cookie, and a session cookie
     #
@@ -349,9 +352,8 @@ def test_update_price():
         "lng": most_recent_station["lng"] + 0.001,
         "address": most_recent_station["address"] + " Updated",
         "uri": most_recent_station["uri"],
-        "location_id": most_recent_station["location_id"]
+        "location_id": most_recent_station["location_id"],
     }
-
 
     update_reply = session.put(
         f"{stem}/api/station/{newest_id}", json=new_station
@@ -369,7 +371,7 @@ def test_update_price():
 
         station_data = data["station"]
         assert isinstance(station_data, dict)
-        
+
         station = station_data[str(newest_id)]
         assert station["id"] == newest_id
         assert station["name"] == new_station["name"]
@@ -453,17 +455,13 @@ def test_delete_station():
 
     login_data = {"email": "demo@example.com", "password": "password"}
     login_reply = session.post(f"{stem}/auth/login", json=login_data)
-    read_all_reply = session.get(f"{stem}/station")
-    state = read_all_reply.json()
-    
-    station_slice = state["station"]
-    station_id = max(int(id_) for id_ in station_slice.keys())
-    
-    delete_reply = session.delete(f"{stem}/station/{station_id}")
+    station = create_station(session, login_reply.json()["id"])
+
+    delete_reply = session.delete(f"{stem}/station/{station['id']}")
 
     assert delete_reply.status_code == 200
     reply_data = delete_reply.json()
     assert len(reply_data) == 1
     assert "message" in reply_data
-    delete_message = f"deleted station {station_id} successfully"
+    delete_message = f"deleted station {station['id']} successfully"
     assert reply_data["message"] == delete_message
