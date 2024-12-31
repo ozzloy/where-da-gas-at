@@ -96,3 +96,41 @@ def create_current_user_station(station_id):
 
     # indicate success
     return "", 201
+
+
+@user_routes.route(
+    "/current/station/<int:station_id>", methods=["DELETE"]
+)
+@login_required
+def delete_current_user_station(station_id):
+    """
+    delete a station for the current user
+    """
+    # make sure there is a station with station id.
+    station = Station.query.get(station_id)
+
+    # if there is not, return an error indicating that there is no
+    #  such station
+    if not station:
+        return {"error": f"station {station_id} does not exist"}, 404
+
+    # remove the station from the user's list of saved stations
+    stations = current_user.saved_stations
+
+    if station not in stations:
+        message = (
+            "station "
+            + str(station_id)
+            + " not in user "
+            + str(current_user.id)
+            + "'s saved stations"
+        )
+        return {"error": message}, 404
+
+    stations.remove(station)
+
+    # put that change in the db
+    db.session.commit()
+
+    # indicate success
+    return "", 204
