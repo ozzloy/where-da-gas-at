@@ -21,9 +21,6 @@ class Review(db.Model, SchemaMixin):
     )
     review = db.Column(db.Text, nullable=False)
 
-    user = db.relationship("User", back_populates="review")
-    station = db.relationship("Station", back_populates="review")
-
     def to_dict(self):
         return {
             "id": self.id,

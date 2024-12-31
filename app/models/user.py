@@ -16,9 +16,6 @@ class User(db.Model, UserMixin, SchemaMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     password_hash = db.Column(db.String(255), nullable=False)
 
-    station = db.relationship("Station", back_populates="user")
-    review = db.relationship("Review", back_populates="user")
-
     @property
     def password(self):
         return self.password_hash

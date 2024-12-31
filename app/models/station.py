@@ -27,9 +27,6 @@ class Station(db.Model, SchemaMixin):
         nullable=False,
     )
 
-    user = db.relationship("User", back_populates="station")
-    review = db.relationship("Review", back_populates="station")
-
     def to_dict(self):
         return {
             "id": self.id,
