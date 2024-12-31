@@ -3,6 +3,7 @@ import requests
 
 from .auth import create_authenticated_session
 from .config import DEMO_USER, get_full_url, make_user, modify_user
+from .validators import validate_state
 
 
 def test_create_user_fail_duplicate_email():
@@ -51,22 +52,10 @@ def test_create_user():
     #         }
     #     }
     # }
-    assert "user" in state
+    validate_state(state, ["user"])
 
     user_slice = state["user"]
     assert len(user_slice) == 1
-    user = next(iter(user_slice.values()))
-    required_keys = ["email", "id", "user"]
-    assert all(key in user for key in required_keys)
-    assert all(key in required_keys for key in user)
-
-    assert isinstance(user["email"], str)
-    assert isinstance(user["id"], int)
-    assert isinstance(user["user"], str)
-
-    # attempt to delete this user.  it's ok if this fails
-    # TODO:
-    # session.delete(get_full_url(""))
 
 
 def test_update_user():
@@ -110,18 +99,10 @@ def test_update_user():
         == "application/json"
     )
     state = update_user_response.json()
-    assert "user" in state
+    validate_state(state, ["user"])
     user_slice = state["user"]
     assert len(user_slice) == 1
     updated_user = next(iter(user_slice.values()))
-    required_keys = ["email", "id", "user"]
-
-    assert all(key in updated_user for key in required_keys)
-    assert all(key in required_keys for key in updated_user)
-
-    assert isinstance(user["email"], str)
-    assert isinstance(user["id"], int)
-    assert isinstance(user["user"], str)
 
     assert updated_user["id"] == user["id"]
     assert updated_user["email"] == user_update["email"]
