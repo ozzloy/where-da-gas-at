@@ -22,10 +22,12 @@ export const thunkAuthenticate = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(
-        error.message || { server: "Something went wrong. Please try again" }
+        error.message || {
+          server: "Something went wrong. Please try again",
+        },
       );
     }
-  }
+  },
 );
 
 export const thunkLogin = createAsyncThunk(
@@ -45,10 +47,12 @@ export const thunkLogin = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(
-        error.message || { server: "Something went wrong. Please try again" }
+        error.message || {
+          server: "Something went wrong. Please try again",
+        },
       );
     }
-  }
+  },
 );
 
 export const thunkSignup = createAsyncThunk(
@@ -72,10 +76,12 @@ export const thunkSignup = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(
-        error.message || { server: "Something went wrong. Please try again" }
+        error.message || {
+          server: "Something went wrong. Please try again",
+        },
       );
     }
-  }
+  },
 );
 
 export const thunkLogout = createAsyncThunk(
@@ -86,10 +92,12 @@ export const thunkLogout = createAsyncThunk(
       return null;
     } catch (error) {
       return rejectWithValue(
-        error.message || { server: "Something went wrong. Please try again" }
+        error.message || {
+          server: "Something went wrong. Please try again",
+        },
       );
     }
-  }
+  },
 );
 
 const sessionSlice = createSlice({

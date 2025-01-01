@@ -1,7 +1,5 @@
 function SavedSpotsComponent() {
-  return (
-    <div>Create the saved spots component</div>
-  )
+  return <div>Create the saved spots component</div>;
 }
 
-export default SavedSpotsComponent
+export default SavedSpotsComponent;

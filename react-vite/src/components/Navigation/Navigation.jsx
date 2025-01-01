@@ -7,18 +7,18 @@ import "./Navigation.css";
 function Navigation() {
   const { openSideMenu } = useContext(GoogleMapContext);
 
-  if (!openSideMenu) { 
+  if (!openSideMenu) {
     return (
       <ul className="nav-data-container">
         <li>
           <NavLink to="/" className="logo-container">
-              <img src="/gasIcon.svg" className="logo" alt="logo" />
-              <p>Where da gas at?</p>
+            <img src="/gasIcon.svg" className="logo" alt="logo" />
+            <p>Where da gas at?</p>
           </NavLink>
         </li>
-  
+
         <li>
-          <ProfileButton location="navigation-header"/>
+          <ProfileButton location="navigation-header" />
         </li>
       </ul>
     );

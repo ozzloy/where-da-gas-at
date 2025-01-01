@@ -1,12 +1,10 @@
-import {  useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { GoogleMapContext } from "../context/GoogleMapContext";
-
 
 const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const useGetCurrentLocation = () => {
-  
-  const {setCenter, center} = useContext(GoogleMapContext);
+  const { setCenter, center } = useContext(GoogleMapContext);
 
   useEffect(() => {
     const getCurrentLocation = async () => {
@@ -20,7 +18,7 @@ const useGetCurrentLocation = () => {
       try {
         const res = await fetch(
           `https://www.googleapis.com/geolocation/v1/geolocate?key=${API_KEY}`,
-          requestOptions
+          requestOptions,
         );
         const data = await res.json();
         setCenter(data.location);

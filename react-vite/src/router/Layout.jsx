@@ -23,17 +23,19 @@ export default function Layout() {
 
   return (
     <>
-      <APIProvider apiKey={import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY}>
+      <APIProvider
+        apiKey={import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY}
+      >
         <GoogleMapProvider>
           <ModalProvider>
             <div className="align-body">
               <div className="main-body-container">
                 <Navigation />
-                  {isLoaded && <Outlet />}
+                {isLoaded && <Outlet />}
               </div>
             </div>
             <Modal />
-            </ModalProvider>
+          </ModalProvider>
         </GoogleMapProvider>
       </APIProvider>
     </>

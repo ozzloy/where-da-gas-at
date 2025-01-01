@@ -17,5 +17,9 @@
   },
   "dependencies": {
     "react-hot-toast": "^2.4.1"
+  },
+  "prettier": {
+    "proseWrap": "always",
+    "printWidth": 70
   }
 }

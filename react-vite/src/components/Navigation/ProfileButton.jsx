@@ -5,13 +5,14 @@ import { thunkLogout } from "../../redux/session";
 import "./ProfileButton.css";
 import UserMenu from "./UserMenu";
 
-function ProfileButton({location}) {
+function ProfileButton({ location }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const sessionUser = useSelector((store) => store.session.user);
   const ulRef = useRef();
 
-  const userMenuClassName = location === "side-header" ? "side-header" : "nav-menu";
+  const userMenuClassName =
+    location === "side-header" ? "side-header" : "nav-menu";
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -43,9 +44,16 @@ function ProfileButton({location}) {
   return (
     <>
       <button onClick={toggleMenu} className="user-icon-button">
-        <FaUserCircle className="user-icon"/>
+        <FaUserCircle className="user-icon" />
       </button>
-      <UserMenu userMenuClassName={userMenuClassName} showMenu={showMenu} sessionUser={sessionUser} logout={logout} closeMenu={closeMenu} ulRef={ulRef}/>
+      <UserMenu
+        userMenuClassName={userMenuClassName}
+        showMenu={showMenu}
+        sessionUser={sessionUser}
+        logout={logout}
+        closeMenu={closeMenu}
+        ulRef={ulRef}
+      />
     </>
   );
 }

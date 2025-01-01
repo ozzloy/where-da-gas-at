@@ -6,11 +6,12 @@ import MapComponent from "./MapComponent";
 import ControlButtonComponent from "./Footer/ControlButtonComponent";
 import { GoogleMapContext } from "../../context/GoogleMapContext";
 
-
 function GoogleMaps() {
   const center = useGetCurrentLocation();
 
-  //Here we are grabbing the values from the global state that influences the google maps display. All the values are coming from the GoogleMapContext.
+  //Here we are grabbing the values from the global state that
+  //influences the google maps display. All the values are coming from
+  //the GoogleMapContext.
 
   const { openSideMenu } = useContext(GoogleMapContext);
 
@@ -21,16 +22,17 @@ function GoogleMaps() {
   //If you need to find a component on the map you'll find it here
   return (
     <div>
-      {/* This is the component that will display the list of stations within a certain radius also contains the filter button */}
+      {/* This is the component that will display the list of stations
+       * within a certain radius also contains the filter button */}
       <SideMenuDisplay openSideMenu={openSideMenu} />
-      {/* This is all the controls that the user can use on the app side menu button, current location button, favorites button, and the reviews button */}
+      {/* This is all the controls that the user can use on the app
+       * side menu button, current location button, favorites button,
+       * and the reviews button */}
       <ControlButtonComponent />
-      {/* Here we conditionally render the map component when the center has a value. The center is coming from the useGetCurrentLocation hook. */}
-      {center ? (
-        <MapComponent />
-      ) : (
-        'Loading...'
-      )}
+      {/* Here we conditionally render the map component when the
+       * center has a value. The center is coming from the
+       * useGetCurrentLocation hook. */}
+      {center ? <MapComponent /> : "Loading..."}
     </div>
   );
 }

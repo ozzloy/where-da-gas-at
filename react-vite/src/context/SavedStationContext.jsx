@@ -5,10 +5,9 @@
 //     // Accessing selectedStation from the GoogleMapContext
 //     const { selectedStation } = useContext(GoogleMapContext)
 
-
 //     return (
 //         <>
-        
+
 //         </>
 //     )
 // }

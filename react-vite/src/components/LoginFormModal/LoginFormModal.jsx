@@ -20,7 +20,7 @@ function LoginFormModal() {
       thunkLogin({
         email,
         password,
-      })
+      }),
     );
 
     if (serverResponse.type === "session/login/rejected") {
@@ -38,36 +38,43 @@ function LoginFormModal() {
         <h1>Log In</h1>
         <form onSubmit={handleSubmit}>
           <div className="input-field">
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        
-        <button disabled={disablebtn} type="submit">Log In</button>
+            <label>
+              Email
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
+            {errors.email && <p>{errors.email}</p>}
+            <label>
+              Password
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+            {errors.password && <p>{errors.password}</p>}
 
-        <button className="demo_btn" onClick={() => {
-          setEmail('demo@example.com');
-          setPassword('password')
-            }}>Demo User</button>
-            </div>
+            <button disabled={disablebtn} type="submit">
+              Log In
+            </button>
+
+            <button
+              className="demo_btn"
+              onClick={() => {
+                setEmail("demo@example.com");
+                setPassword("password");
+              }}
+            >
+              Demo User
+            </button>
+          </div>
         </form>
-        </div>
+      </div>
     </>
   );
 }
