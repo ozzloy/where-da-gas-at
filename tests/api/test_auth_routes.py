@@ -1,6 +1,6 @@
 import requests
 
-from .config import DEMO_USER
+from .config import DEMO_KING
 
 
 def test_login_flow():
@@ -27,6 +27,6 @@ def test_login_flow():
     # Verify login succeeded
     assert login_response.status_code == 200
     data = login_response.json()
-    assert data["email"] == DEMO_USER["email"]
+    assert data["email"] == DEMO_KING["email"]
     assert "id" in data
-    assert data["nick"] == DEMO_USER["nick"]
+    assert data["nick"] == DEMO_KING["nick"]

@@ -17,10 +17,10 @@ class Price(db.Model, SchemaMixin):
         nullable=False,
     )
     fuel_type = Column(String)
-    user_id = Column(
+    king_id = Column(
         Integer,
         ForeignKey(
-            add_prefix_for_prod("user.id"), ondelete="CASCADE"
+            add_prefix_for_prod("king.id"), ondelete="CASCADE"
         ),
         nullable=False,
     )
@@ -31,5 +31,5 @@ class Price(db.Model, SchemaMixin):
             "price": self.price,
             "station_id": self.station_id,
             "fuel_type": self.fuel_type,
-            "user_id": self.user_id,
+            "king_id": self.king_id,
         }

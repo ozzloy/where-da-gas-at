@@ -15,11 +15,11 @@
 }
 ```
 
-## user authentication/authorization
+## king authentication/authorization
 
 ### all endpoints that require authentication
 
-all endpoints that require a current user to be logged in.
+all endpoints that require a current king to be logged in.
 
 - request: endpoints that require authentication
 - error response:
@@ -35,7 +35,7 @@ all endpoints that require a current user to be logged in.
 
 ### all endpoints that require proper authorization
 
-all endpoints that require authentication and the current user does
+all endpoints that require authentication and the current king does
 not have the correct role(s) or permission(s).
 
 - response:
@@ -49,27 +49,27 @@ not have the correct role(s) or permission(s).
 
 ## endpoints
 
-### user
+### king
 
-#### get the current user
+#### get the current king
 
-returns the information about the current user that is logged in.
+returns the information about the current king that is logged in.
 
 - require authentication: false
 - request
 
   ```http
-  get /api/user/current
+  get /api/king/current
   ```
 
-- successful response when there is a logged in user
+- successful response when there is a logged in king
 
   ```http
   http/1.1 200 ok
   content-type: application/json
 
   {
-    "user":
+    "king":
     {
       "1":
       {
@@ -82,21 +82,21 @@ returns the information about the current user that is logged in.
   }
   ```
 
-- successful response when there is no logged in user
+- successful response when there is no logged in king
 
   ```http
   http/1.1 200 ok
   content-type: application/json
 
   {
-    "user": null
+    "king": null
   }
   ```
 
-#### log in a user
+#### log in a king
 
-logs in a current user with valid credentials and returns the current
-user's information.
+logs in a current king with valid credentials and returns the current
+king's information.
 
 - require authentication: false
 - request
@@ -118,7 +118,7 @@ user's information.
   content-type: application/json
 
   {
-    "user":
+    "king":
     {
       "1":
       {
@@ -152,22 +152,22 @@ user's information.
     "message": "bad request",
     "errors":
     {
-      "credential": "email or username is required",
+      "credential": "email or nickname is required",
       "password": "password is required"
     }
   }
   ```
 
-#### sign up a user
+#### sign up a king
 
-creates a new user, logs them in as the current user, and returns the
-current user's information.
+creates a new king, logs them in as the current king, and returns the
+current king's information.
 
 - require authentication: false
 - request
 
   ```http
-  post /api/user
+  post /api/king
   content-type: application/json
 
   {
@@ -185,7 +185,7 @@ current user's information.
   content-type: application/json
 
   {
-    "user":
+    "king":
     {
       "1":
       {
@@ -198,7 +198,7 @@ current user's information.
   }
   ```
 
-- error response: user already exists with the specified email or
+- error response: king already exists with the specified email or
   nickname
 
   ```http
@@ -206,23 +206,23 @@ current user's information.
   content-type: application/json
 
   {
-    "message": "user already exists",
+    "message": "king already exists",
     "errors": {
-      "email": "user with that email already exists",
+      "email": "king with that email already exists",
       "nick": "account with that nickname already exists"
     }
   }
   ```
 
-#### update a user
+#### update a king
 
-update an extant user, and returns the current user's information.
+update an extant king, and returns the current king's information.
 
 - require authentication: true
 - request
 
   ```http
-  put /api/user/1
+  put /api/king/1
   content-type: application/json
 
   {
@@ -240,7 +240,7 @@ update an extant user, and returns the current user's information.
   content-type: application/json
 
   {
-    "user":
+    "king":
     {
       "1":
       {
@@ -253,7 +253,7 @@ update an extant user, and returns the current user's information.
   }
   ```
 
-- error response: user already exists with the specified email or
+- error response: king already exists with the specified email or
   nickname
 
   ```http
@@ -261,9 +261,9 @@ update an extant user, and returns the current user's information.
   content-type: application/json
 
   {
-    "message": "user already exists",
+    "message": "king already exists",
     "errors": {
-      "email": "user with that email already exists",
+      "email": "king with that email already exists",
       "nick": "account with that nickname already exists"
     }
   }
@@ -285,12 +285,12 @@ update an extant user, and returns the current user's information.
   }
   ```
 
-#### delete a user
+#### delete a king
 
 - require authentication: true
 - request
   ```http
-  delete /api/user/
+  delete /api/king/
   ```
 - success:
 
@@ -298,19 +298,19 @@ update an extant user, and returns the current user's information.
   http/1.1 200 ok
 
   {
-    "message": "deleted user 1 successfully"
+    "message": "deleted king 1 successfully"
   }
   ```
 
-#### get all stations for the current user
+#### get all stations for the current king
 
-returns all the stations owned (created) by the current user.
+returns all the stations owned (created) by the current king.
 
 - require authentication: true
 - request
 
   ```http
-  get /api/user/current/station
+  get /api/king/current/station
   ```
 
 - example successful response
@@ -350,15 +350,15 @@ returns all the stations owned (created) by the current user.
   }
   ```
 
-#### get all reviews for current user
+#### get all reviews for current king
 
-returns all the reviews owned (created) by the current user.
+returns all the reviews owned (created) by the current king.
 
 - require authentication: true
 - request
 
   ```http
-  get /api/user/current/review
+  get /api/king/current/review
   ```
 
 - example successful response
@@ -375,7 +375,7 @@ returns all the reviews owned (created) by the current user.
         "id": 1,
         "review": "wow, what a great station"
         "station_id": 2,
-        "user_id": 1,
+        "king_id": 1,
         "created": "2021-11-19 20:39:36",
         "updated": "2023-11-19 20:39:36"
       },
@@ -384,7 +384,7 @@ returns all the reviews owned (created) by the current user.
         "id": 12,
         "review": "wow, what a great station"
         "station_id": 2,
-        "user_id": 1,
+        "king_id": 1,
         "created": "2021-11-19 20:39:36",
         "updated": "2023-11-19 20:39:36"
       },
@@ -392,16 +392,16 @@ returns all the reviews owned (created) by the current user.
   }
   ```
 
-#### get all prices for current user
+#### get all prices for current king
 
-returns all prices for the current user
+returns all prices for the current king
 
 - requires authentication: true
 
 - request
 
   ```http
-  get /api/user/1/price
+  get /api/king/1/price
   ```
 
 - success
@@ -418,7 +418,7 @@ returns all prices for the current user
         "id": 1,
         "price": 456.789,
         "station_id": 1,
-        "user_id": 1,
+        "king_id": 1,
         "fuel_type": "one of: electric, unleaded, leaded, or premium",
         "created": "2021-11-19 20:39:36",
         "updated": "2021-11-19 20:39:36"
@@ -428,7 +428,7 @@ returns all prices for the current user
         "id": 12,
         "price": 132.45
         "station_id": 1,
-        "user_id": 1,
+        "king_id": 1,
         "fuel_type": "one of: electric, unleaded, leaded, or premium",
         "created": "2021-11-19 20:39:36",
         "updated": "2021-11-19 20:39:36"
@@ -717,7 +717,7 @@ returns all the reviews owned (created) by the station.
         "id": 1,
         "review": "wow, what a great station"
         "station_id": 1,
-        "user_id": 1,
+        "king_id": 1,
         "created": "2021-11-19 20:39:36",
         "updated": "2023-11-19 20:39:36"
       },
@@ -726,7 +726,7 @@ returns all the reviews owned (created) by the station.
         "id": 12,
         "review": "wow, what a great station"
         "station_id": 1,
-        "user_id": 1,
+        "king_id": 1,
         "created": "2021-11-19 20:39:36",
         "updated": "2023-11-19 20:39:36"
       },
@@ -759,7 +759,7 @@ returns all prices for the station
       {
         "id": 1,
         "price": 456.789,
-        "user_id": 1,
+        "king_id": 1,
         "station_id": 1,
         "fuel_type": "one of: electric, unleaded, leaded, or premium",
         "created": "2021-11-19 20:39:36",
@@ -769,7 +769,7 @@ returns all prices for the station
       {
         "id": 12,
         "price": 132.45
-        "user_id": 1,
+        "king_id": 1,
         "station_id": 1,
         "fuel_type": "one of: electric, unleaded, leaded, or premium",
         "created": "2021-11-19 20:39:36",
@@ -793,7 +793,7 @@ returns all prices for the station
 
   {
     "price": 456.789,
-    "user_id": 1,
+    "king_id": 1,
     "station_id": 1,
     "fuel_type": "one of: electric, unleaded, leaded, or premium"
   }
@@ -812,7 +812,7 @@ returns all prices for the station
       {
         "id": 1,
         "price": 456.789,
-        "user_id": 1,
+        "king_id": 1,
         "station_id": 1,
         "fuel_type": "one of: electric, unleaded, leaded, or premium",
         "created": "2021-11-19 20:39:36",
@@ -831,7 +831,7 @@ returns all prices for the station
     "errors":
     {
       "price": "price is required",
-      "user_id": "user id is required",
+      "king_id": "king id is required",
       "station_id": "station id is required",
       "fuel_type": "fuel type is required"
     }
@@ -861,7 +861,7 @@ returns all prices for the station
       {
         "id": 1,
         "price": 456.789,
-        "user_id": 1,
+        "king_id": 1,
         "station_id": 1,
         "fuel_type": "one of: electric, unleaded, leaded, or premium",
         "created": "2021-11-19 20:39:36",
@@ -904,7 +904,7 @@ returns all prices for the station
       {
         "id": 1,
         "price": 456.789,
-        "user_id": 1,
+        "king_id": 1,
         "station_id": 1,
         "fuel_type": "one of: electric, unleaded, leaded, or premium",
         "created": "2021-11-19 20:39:36",
@@ -914,7 +914,7 @@ returns all prices for the station
       {
         "id": 2,
         "price": 123.456,
-        "user_id": 1,
+        "king_id": 1,
         "station_id": 1,
         "fuel_type": "one of: electric, unleaded, leaded, or premium",
         "created": "2022-11-19 20:39:36",
@@ -954,7 +954,7 @@ returns all prices for the station
       {
         "id": 1,
         "price": 666.49
-        "user_id": 1,
+        "king_id": 1,
         "station_id": 2,
         "fuel_type": "one of: electric, unleaded, leaded, or premium",
         "created": "2021-11-19 20:39:36",
@@ -973,7 +973,7 @@ returns all prices for the station
     "errors":
     {
       "price": "price is required",
-      "user_id": "user id is required",
+      "king_id": "king id is required",
       "station_id": "station id is required",
       "fuel_type": "fuel type is required"
     }
@@ -1042,7 +1042,7 @@ returns all prices for the station
         "id": 1,
         "review": 456.789,
         "station_id": 1,
-        "user_id": 1,
+        "king_id": 1,
         "created": "2021-11-19 20:39:36",
         "updated": "2021-11-19 20:39:36"
       }
@@ -1088,7 +1088,7 @@ returns all prices for the station
         "id": 1,
         "review": 456.789,
         "station_id": 1,
-        "user_id": 1,
+        "king_id": 1,
         "created": "2021-11-19 20:39:36",
         "updated": "2021-11-19 20:39:36"
       }
@@ -1130,7 +1130,7 @@ returns all prices for the station
         "id": 1,
         "review": 456.789,
         "station_id": 1,
-        "user_id": 1,
+        "king_id": 1,
         "created": "2021-11-19 20:39:36",
         "updated": "2021-11-19 20:39:36"
       }
@@ -1139,7 +1139,7 @@ returns all prices for the station
         "id": 2,
         "review": 123.456,
         "station_id": 1,
-        "user_id": 1,
+        "king_id": 1,
         "created": "2022-11-19 20:39:36",
         "updated": "2022-11-19 20:39:36"
       }
@@ -1160,7 +1160,7 @@ returns all prices for the station
   {
     "review": 666.49,
     "station_id": 2,
-    "user_id": 1
+    "king_id": 1
   }
   ```
 
@@ -1178,7 +1178,7 @@ returns all prices for the station
         "id": 1,
         "review": "wow, what a great station"
         "station_id": 2,
-        "user_id": 1,
+        "king_id": 1,
         "created": "2021-11-19 20:39:36",
         "updated": "2023-11-19 20:39:36"
       }
@@ -1196,7 +1196,7 @@ returns all prices for the station
     {
       "review": "review is required",
       "station_id": "station id is required",
-      "user_id": 1
+      "king_id": 1
     }
   }
   ```

@@ -3,32 +3,32 @@ import random
 from random import uniform
 from string import ascii_lowercase
 
-from app.seeds.user import user_seeds
+from app.seeds.king import king_seeds
 
 PROTOCOL = "http"
 HOST = "localhost"
 PORT = 8000
 PATH_PREFIX = "/api"
 
-DEMO_USER = user_seeds[0]
+DEMO_KING = king_seeds[0]
 
 
 def make_random_string(length: int = 10) -> str:
     return "".join(random.choices(ascii_lowercase, k=length))
 
 
-def make_user(overrides: Dict[str, Any] = None) -> Dict[str, Any]:
-    user_data = {
+def make_king(overrides: Dict[str, Any] = None) -> Dict[str, Any]:
+    king_data = {
         "nick": make_random_string(),
         "email": f"{make_random_string()}@example.com",
         "password": "password",
     }
     if overrides:
-        user_data.update(overrides)
-    return user_data
+        king_data.update(overrides)
+    return king_data
 
 
-def modify_user(data):
+def modify_king(data):
     return {
         "nick": "a" + data["nick"],
         "email": "a" + data["email"],
@@ -36,7 +36,7 @@ def modify_user(data):
     }
 
 
-def make_station(user_id: int) -> Dict[str, Any]:
+def make_station(king_id: int) -> Dict[str, Any]:
     station_data = {
         "name": make_random_string(),
         "lat": uniform(-90, 90),
@@ -44,7 +44,7 @@ def make_station(user_id: int) -> Dict[str, Any]:
         "address": make_random_string(),
         "uri": f"http://example.com/{make_random_string()}",
         "location_id": make_random_string(),
-        "user_id": user_id,
+        "king_id": king_id,
     }
     return station_data
 

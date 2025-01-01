@@ -1,15 +1,15 @@
-from flask_login import UserMixin
+from flask_login import UserMixin as KingMixin
 from werkzeug.security import (
     generate_password_hash,
     check_password_hash,
 )
 
 from .db import add_prefix_for_prod, db, environment, SchemaMixin
-from .user_station import user_station
+from .king_station import king_station
 
 
-class User(db.Model, UserMixin, SchemaMixin):
-    __tablename__ = "user"
+class King(db.Model, KingMixin, SchemaMixin):
+    __tablename__ = "king"
 
     id = db.Column(db.Integer, primary_key=True)
     nick = db.Column(db.String(40), nullable=False, unique=True)
@@ -18,7 +18,7 @@ class User(db.Model, UserMixin, SchemaMixin):
     password_hash = db.Column(db.String(255), nullable=False)
     saved_stations = db.relationship(
         "Station",
-        secondary=user_station,
+        secondary=king_station,
         back_populates="saved_by",
     )
 

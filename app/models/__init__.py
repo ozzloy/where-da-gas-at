@@ -6,6 +6,6 @@ from .db import (
     schema,
     undo_table,
 )
+from .king import King
 from .review import Review
 from .station import Station
-from .user import User

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import current_user, login_required
+from flask_login import current_user as current_king, login_required
 
 from app.forms import EditStationForm, StationForm
 from app.models import Station, db
@@ -15,7 +15,7 @@ def read_stations():
         "station": {
             station.id: station.to_dict()
             for station in stations
-            if station.user_id == current_user.id
+            if station.king_id == current_king.id
         }
     }
 
@@ -40,7 +40,7 @@ def create_station():
             address=form.data["address"],
             uri=form.data["uri"],
             location_id=form.data["location_id"],
-            user_id=current_user.id,
+            king_id=current_king.id,
         )
         print(station)
         db.session.add(station)
@@ -73,9 +73,9 @@ def update_station(id):
 @station_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_station(id):
-    if current_user.id:
+    if current_king.id:
         station = Station.query.get(id)
-        if station and station.user_id == current_user.id:
+        if station and station.king_id == current_king.id:
             db.session.delete(station)
             db.session.commit()
             return {

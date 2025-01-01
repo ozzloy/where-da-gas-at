@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user as current_king
 from ..models import db, Review
 from ..forms import ReviewForm
 
@@ -13,29 +13,30 @@ review_routes = Blueprint("review", __name__)
 def create_review():
     created_form = ReviewForm()
     created_form["csrf_token"].data = request.cookies["csrf_token"]
+    created_form["king_id"].data = current_king.id
     if created_form.validate_on_submit():
-        station_id = (created_form.data.get["station_id"],)
-        review = created_form.data.get["review"]
+        print(f"review_routes.py:{created_form = }")
+        station_id = created_form.data.get("station_id")
+        review = created_form.data.get("review")
 
         # TODO: return only messages that apply
-        if not review or station_id:
+        errors = {}
+        if not review:
+            errors["review"] = "review is required"
+        if not station_id:
+            errors["station_id"] = "station id is required"
+        if 0 < len(errors):
             return (
-                jsonify(
-                    {
-                        "message": "bad request",
-                        "error": {
-                            "review": "review is required",
-                            "station_id": "station id is required",
-                            "user_id": "user id is required",
-                        },
-                    }
-                ),
+                {
+                    "message": "bad request",
+                    "error": errors,
+                },
                 400,
             )
 
         review = Review(
             station_id=station_id,
-            user_id=current_user.id,
+            king_id=current_king.id,
             review=review,
         )
 
@@ -76,7 +77,7 @@ def read_reviews():
         return {"error": str(e)}, 500
 
 
-# Edit a review(require user login)
+# Edit a review(require king login)
 @review_routes.route("/<int:review_id>", methods=["PUT"])
 @login_required
 def update_review(review_id):
@@ -101,7 +102,7 @@ def update_review(review_id):
                         "error": {
                             "review": "review is required",
                             "station_id": "station id is required",
-                            "user_id": f"{review.id}",
+                            "king_id": f"{review.id}",
                         },
                     }
                 ),
@@ -109,10 +110,10 @@ def update_review(review_id):
             )
 
         # unathorized
-        if not current_user.id == review.user_id:
+        if not current_king.id == review.king_id:
             return {"error": {"message": "Unauthorized"}}, 401
 
-        review.user_id = updated_form.data["user_id"]
+        review.king_id = updated_form.data["king_id"]
         review.station_id = updated_form.data["station_id"]
         review.review = updated_form.data["review"]
 
@@ -126,7 +127,7 @@ def update_review(review_id):
         return {"error": str(e)}, 500
 
 
-# Delete a review(require user login)
+# Delete a review(require king login)
 @review_routes.route("/<int:review_id>", methods=["DELETE"])
 @login_required
 def deleted_review(review_id):
@@ -134,7 +135,7 @@ def deleted_review(review_id):
         review = Review.query.filter(Review.id == review_id).one()
 
         # unathorized
-        if not current_user.id == review.user_id:
+        if not current_king.id == review.king_id:
             return {"error": {"message": "Unauthorized"}}, 401
 
         # failure

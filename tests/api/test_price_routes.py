@@ -7,7 +7,7 @@ from typing import Dict, Any
 # TODO: test failure to create due to not being logged in
 
 # TODO: test failure to update because price was created by another
-# user
+# king
 
 # TODO: add test for read: price not found
 
@@ -26,7 +26,7 @@ def test_create_price():
     #
     # store the response which should look like:
     # {
-    #     "user": {
+    #     "king": {
     #         "2": {
     #             "id": 2,
     #             "nick": "some_name",
@@ -34,7 +34,7 @@ def test_create_price():
     #         }
     #     }
     # }
-    # save the user id for checking later
+    # save the king id for checking later
     #
     # then
     # send http POST to "http://localhost:8000/api/price"
@@ -53,14 +53,14 @@ def test_create_price():
     #     {
     #       "id": 1,
     #       "price": 456.789,
-    #       "user_id": 1,
+    #       "king_id": 1,
     #       "station_id": 1,
     #       "fuel_type": "premium",
     #     }
     #   }
     # }
     # but not these exact values, just these types of values
-    # make sure the user_id matches the user id from the prior response
+    # make sure the king_id matches the king id from the prior response
     protocol = "http"
     host = "localhost"
     port = 8000
@@ -105,7 +105,7 @@ def test_create_price():
         required_fields = {
             "id",
             "price",
-            "user_id",
+            "king_id",
             "station_id",
             "fuel_type",
         }
@@ -116,7 +116,7 @@ def test_create_price():
 
         assert isinstance(price["id"], int)
         assert isinstance(price["price"], (int, float))
-        assert isinstance(price["user_id"], int)
+        assert isinstance(price["king_id"], int)
         assert isinstance(price["station_id"], int)
         assert isinstance(price["fuel_type"], str)
 
@@ -162,14 +162,14 @@ def test_get_prices():
         assert "fuel_type" in price_data
         assert "price" in price_data
         assert "station_id" in price_data
-        assert "user_id" in price_data
+        assert "king_id" in price_data
 
         # Verify data types
         assert isinstance(price_data["id"], int)
         assert isinstance(price_data["fuel_type"], str)
         assert isinstance(price_data["price"], (int, float))
         assert isinstance(price_data["station_id"], int)
-        assert isinstance(price_data["user_id"], int)
+        assert isinstance(price_data["king_id"], int)
 
 
 def test_get_price():
@@ -226,7 +226,7 @@ def test_get_price():
         assert single_price["fuel_type"] == price["fuel_type"]
         assert single_price["price"] == price["price"]
         assert single_price["station_id"] == price["station_id"]
-        assert single_price["user_id"] == price["user_id"]
+        assert single_price["king_id"] == price["king_id"]
 
 
 @pytest.mark.skip(reason="need create station first")
@@ -241,7 +241,7 @@ def test_update_price():
     #
     # store the response which should look like:
     # {
-    #     "user": {
+    #     "king": {
     #         "2": {
     #             "id": 2,
     #             "nick": "some_name",
@@ -249,7 +249,7 @@ def test_update_price():
     #         }
     #     }
     # }
-    # save the user id for checking later
+    # save the king id for checking later
     #
     # then get all prices
     # send http GET to "http://localhost:8000/api/price"
@@ -262,7 +262,7 @@ def test_update_price():
     #     {
     #       "id": 1,
     #       "price": 456.789,
-    #       "user_id": 1,
+    #       "king_id": 1,
     #       "station_id": 1,
     #       "fuel_type": "premium",
     #     }
@@ -274,12 +274,12 @@ def test_update_price():
     #     {
     #       "id": 1,
     #       "price": 456.789,
-    #       "user_id": 1,
+    #       "king_id": 1,
     #       "station_id": 1,
     #       "fuel_type": "premium",
     #     }
     # create a new price with different data, by adding 1 to price
-    #   and removing id and user_id fields
+    #   and removing id and king_id fields
     #     {
     #       "price": 457.789,
     #       "station_id": 1,
@@ -295,7 +295,7 @@ def test_update_price():
     #     {
     #       "id": 1,
     #       "price": 456.789,
-    #       "user_id": 1,
+    #       "king_id": 1,
     #       "station_id": 1,
     #       "fuel_type": "premium",
     #     }
@@ -327,7 +327,7 @@ def test_update_price():
 
     new_price = old_price | {"price": old_price["price"] + 1}
     del new_price["id"]
-    del new_price["user_id"]
+    del new_price["king_id"]
 
     update_reply = session.put(
         f"{stem}/price/{lowest_id}", json=new_price
@@ -351,7 +351,7 @@ def test_update_price():
         required_fields = {
             "id",
             "price",
-            "user_id",
+            "king_id",
             "station_id",
             "fuel_type",
         }
@@ -362,7 +362,7 @@ def test_update_price():
 
         assert isinstance(price["id"], int)
         assert isinstance(price["price"], (int, float))
-        assert isinstance(price["user_id"], int)
+        assert isinstance(price["king_id"], int)
         assert isinstance(price["station_id"], int)
         assert isinstance(price["fuel_type"], str)
 
@@ -381,15 +381,15 @@ def test_delete_price():
     #
     # store the response which should look like:
     # {
-    #     "user": {
+    #     "king": {
     #         "2": {
     #             "id": 2,
-    #             "user": "some_name",
+    #             "king": "some_name",
     #             "email": "demo@example.com",
     #         }
     #     }
     # }
-    # save the user id for checking later
+    # save the king id for checking later
     #
     # then create a price
     # send http post to "http://localhost:8000/api/price"
@@ -408,7 +408,7 @@ def test_delete_price():
     #     {
     #       "id": 1,
     #       "price": 456.789,
-    #       "user_id": 1,
+    #       "king_id": 1,
     #       "station_id": 1,
     #       "fuel_type": "premium",
     #     }

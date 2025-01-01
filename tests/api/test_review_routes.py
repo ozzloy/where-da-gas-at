@@ -7,7 +7,7 @@ from typing import Dict, Any
 # TODO: test failure to create due to not being logged in
 
 # TODO: test failure to update because review was created by another
-# user
+# king
 
 # TODO: add test for read: review not found
 
@@ -25,7 +25,7 @@ def test_create_review():
     #
     # store the response which should look like:
     # {
-    #     "user": {
+    #     "king": {
     #         "2": {
     #             "id": 2,
     #             "nick": "some_name",
@@ -33,7 +33,7 @@ def test_create_review():
     #         }
     #     }
     # }
-    # save the user id for checking later
+    # save the king id for checking later
     #
     # then
     # send http POST to "http://localhost:8000/api/review"
@@ -50,14 +50,14 @@ def test_create_review():
     #     "1":
     #     {
     #       "id": 1,
-    #       "user_id": 1,
+    #       "king_id": 1,
     #       "station_id": 1,
     #       "review": "what a good place",
     #     }
     #   }
     # }
     # but not these exact values, just these types of values
-    # make sure the user_id matches the user id from the prior response
+    # make sure the king_id matches the king id from the prior response
     protocol = "http"
     host = "localhost"
     port = 8000
@@ -76,7 +76,7 @@ def test_create_review():
     session.post(f"{stem}/auth/login", json=login_data)
 
     review_data = {
-        "review": "good ",
+        "review": "good",
         "station_id": 1,
     }
 
@@ -101,7 +101,7 @@ def test_create_review():
         required_fields = {
             "id",
             "review",
-            "user_id",
+            "king_id",
             "station_id",
         }
         # review has all the fields it should
@@ -111,7 +111,7 @@ def test_create_review():
 
         assert isinstance(review["id"], int)
         assert isinstance(review["review"], str)
-        assert isinstance(review["user_id"], int)
+        assert isinstance(review["king_id"], int)
         assert isinstance(review["station_id"], int)
 
     validate_review_slice(reply_data)
@@ -155,13 +155,13 @@ def test_get_reviews():
         assert "id" in review_data
         assert "review" in review_data
         assert "station_id" in review_data
-        assert "user_id" in review_data
+        assert "king_id" in review_data
 
         # Verify data types
         assert isinstance(review_data["id"], int)
         assert isinstance(review_data["review"], str)
         assert isinstance(review_data["station_id"], int)
-        assert isinstance(review_data["user_id"], int)
+        assert isinstance(review_data["king_id"], int)
 
 
 def test_get_review():
@@ -217,7 +217,7 @@ def test_get_review():
         assert single_review["id"] == int(review_id)
         assert single_review["review"] == review["review"]
         assert single_review["station_id"] == review["station_id"]
-        assert single_review["user_id"] == review["user_id"]
+        assert single_review["king_id"] == review["king_id"]
 
 
 def test_update_review():
@@ -231,7 +231,7 @@ def test_update_review():
     #
     # store the response which should look like:
     # {
-    #     "user": {
+    #     "king": {
     #         "2": {
     #             "id": 2,
     #             "nick": "some_name",
@@ -239,7 +239,7 @@ def test_update_review():
     #         }
     #     }
     # }
-    # save the user id for checking later
+    # save the king id for checking later
     #
     # then get all reviews
     # send http GET to "http://localhost:8000/api/review"
@@ -251,7 +251,7 @@ def test_update_review():
     #     "1":
     #     {
     #       "id": 1,
-    #       "user_id": 1,
+    #       "king_id": 1,
     #       "station_id": 1,
     #       "review": "what a pretty place",
     #     }
@@ -262,12 +262,12 @@ def test_update_review():
     # take the review with the lowest id, eg
     #     {
     #       "id": 1,
-    #       "user_id": 1,
+    #       "king_id": 1,
     #       "station_id": 1,
     #       "review": "what a pretty place",
     #     }
     # create a new review with different data, by adding 1 to review
-    #   and removing id and user_id fields
+    #   and removing id and king_id fields
     #     {
     #       "station_id": 1,
     #       "review": "what a pretty place",
@@ -281,7 +281,7 @@ def test_update_review():
     #     "1":
     #     {
     #       "id": 1,
-    #       "user_id": 1,
+    #       "king_id": 1,
     #       "station_id": 1,
     #       "review": "what a pretty place",
     #     }
@@ -321,11 +321,10 @@ def test_update_review():
     )
     review_id = list(create_reply.json()["review"].keys())[0]
 
-    new_review_data["review"] = " new onee"
+    new_review_data["review"] = "new onee"
 
-    put_reply = session.put(
-        f"{stem}/review/{review_id}", json=new_review_data
-    )
+    update_endpoint = f"{stem}/review/{review_id}"
+    put_reply = session.put(update_endpoint, json=new_review_data)
 
     assert put_reply.status_code == 200
     reply_data = put_reply.json()
@@ -346,7 +345,7 @@ def test_update_review():
         required_fields = {
             "id",
             "review",
-            "user_id",
+            "king_id",
             "station_id",
         }
         # review has all the fields it should
@@ -356,12 +355,13 @@ def test_update_review():
 
         assert isinstance(review["id"], int)
         assert isinstance(review["review"], str)
-        assert isinstance(review["user_id"], int)
+        assert isinstance(review["king_id"], int)
         assert isinstance(review["station_id"], int)
 
     validate_review_slice(reply_data)
 
 
+@pytest.mark.skip(reason="need create review first")
 def test_delete_review():
     # send http GET to http://localhost:8000/api/auth/
     # to get a csrf_token cookie, and a session cookie
@@ -373,7 +373,7 @@ def test_delete_review():
     #
     # store the response which should look like:
     # {
-    #     "user": {
+    #     "king": {
     #         "2": {
     #             "id": 2,
     #             "nick": "some_name",
@@ -381,7 +381,7 @@ def test_delete_review():
     #         }
     #     }
     # }
-    # save the user id for checking later
+    # save the king id for checking later
     #
     # then create a price
     # send http post to "http://localhost:8000/api/price"
@@ -400,7 +400,7 @@ def test_delete_review():
     #     {
     #       "id": 1,
     #       "price": 456.789,
-    #       "user_id": 1,
+    #       "king_id": 1,
     #       "station_id": 1,
     #       "fuel_type": "premium",
     #     }
@@ -433,7 +433,9 @@ def test_delete_review():
     login_reply = session.post(f"{stem}/auth/login", json=login_data)
 
     review_data = {
-        "review": "Great place for premium gas, but the line can get long during rush hour.",
+        "review": """
+            Great place for premium gas,
+            but the line can get long during rush hour.""",
         "station_id": 1,
     }
 

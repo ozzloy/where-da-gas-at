@@ -3,7 +3,7 @@ import requests
 from sqlalchemy import inspect
 
 from app.models import db
-from app.models.user import User
+from app.models.king import King
 from app.models.station import Station
 
 python_types = {
@@ -29,7 +29,7 @@ def validate_response(
     return response.json()
 
 
-def validate_user(user):
+def validate_king(king):
     # {
     #     "id": 7,
     #     "email": "bcpnpcmomt@example.com",
@@ -37,13 +37,13 @@ def validate_user(user):
     #     "saved_stations": [],
     # }
 
-    mapper = inspect(User)
+    mapper = inspect(King)
     relationships = [
         relationship.key for relationship in mapper.relationships
     ]
     columns = [
         column
-        for column in User.__table__.columns
+        for column in King.__table__.columns
         if column.name != "password_hash"
     ]
     allowed_keys = [column.name for column in columns] + relationships
@@ -52,14 +52,14 @@ def validate_user(user):
     ]
 
     for key in required_keys:
-        assert key in user
-    for key in user:
+        assert key in king
+    for key in king:
         assert key in allowed_keys
 
     for column in columns:
-        if column.name in user:
+        if column.name in king:
             python_type = python_types[type(column.type)]
-            assert isinstance(user[column.name], python_type)
+            assert isinstance(king[column.name], python_type)
 
 
 def validate_station(station):
@@ -71,7 +71,7 @@ def validate_station(station):
     #     "address": "zxcvasdfqw",
     #     "uri": "http://example.com/uiopjklmnh",
     #     "location_id": "qwertyuiop",
-    #     "user_id": 5,
+    #     "king_id": 5,
     #     "saved_by": [],
     # }
 
@@ -96,9 +96,9 @@ def validate_station(station):
             assert isinstance(station[column.name], python_type)
 
 
-def validate_user_slice(user_slice):
-    for user in user_slice.values():
-        validate_user(user)
+def validate_king_slice(king_slice):
+    for king in king_slice.values():
+        validate_king(king)
 
 
 def validate_station_slice(station_slice):
@@ -109,8 +109,8 @@ def validate_station_slice(station_slice):
 def validate_slice(state, slice_name):
     assert slice_name in state
     slice = state[slice_name]
-    if slice_name == "user":
-        return validate_user_slice(state["user"])
+    if slice_name == "king":
+        return validate_king_slice(state["king"])
     if slice_name == "station":
         return validate_station_slice(state["station"])
     else:

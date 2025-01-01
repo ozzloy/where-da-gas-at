@@ -2,16 +2,16 @@ import pytest
 import requests
 
 from .auth import create_authenticated_session
-from .config import DEMO_USER, get_full_url, make_user, modify_user
+from .config import DEMO_KING, get_full_url, make_king, modify_king
 from .validators import validate_state
 
 
-def test_create_user_fail_duplicate_email():
+def test_create_king_fail_duplicate_email():
     session = requests.Session()
     get_auth_response = session.get(get_full_url("auth/"))
 
     post_auth_signup_response = session.post(
-        get_full_url("auth/signup"), json=DEMO_USER
+        get_full_url("auth/signup"), json=DEMO_KING
     )
     # 401
     # {
@@ -29,12 +29,12 @@ def test_create_user_fail_duplicate_email():
     assert all(key in required_keys for key in errors)
 
 
-def test_create_user():
+def test_create_king():
     session = requests.Session()
     get_auth_response = session.get(get_full_url("auth/"))
 
     post_auth_signup_response = session.post(
-        get_full_url("auth/signup"), json=make_user()
+        get_full_url("auth/signup"), json=make_king()
     )
     assert post_auth_signup_response.status_code == 200
 
@@ -44,7 +44,7 @@ def test_create_user():
     )
     state = post_auth_signup_response.json()
     # {
-    #     "user": {
+    #     "king": {
     #         "7": {
     #             "email": "bcpnpcmomt@example.com",
     #             "id": 7,
@@ -52,21 +52,21 @@ def test_create_user():
     #         }
     #     }
     # }
-    validate_state(state, ["user"])
+    validate_state(state, ["king"])
 
-    user_slice = state["user"]
-    assert len(user_slice) == 1
+    king_slice = state["king"]
+    assert len(king_slice) == 1
 
 
-def test_update_user():
-    # create a user, so that we can update that user
-    # then update that user
-    # finally, delete that user
+def test_update_king():
+    # create a king, so that we can update that king
+    # then update that king
+    # finally, delete that king
     session = requests.Session()
     get_auth_response = session.get(get_full_url("auth/"))
 
     post_auth_signup_response = session.post(
-        get_full_url("auth/signup"), json=make_user()
+        get_full_url("auth/signup"), json=make_king()
     )
 
     assert (
@@ -74,18 +74,18 @@ def test_update_user():
         == "application/json"
     )
     state = post_auth_signup_response.json()
-    user_slice = state["user"]
-    user = next(iter(user_slice.values()))
+    king_slice = state["king"]
+    king = next(iter(king_slice.values()))
 
-    user_update = modify_user(user)
-    update_user_response = session.put(
-        get_full_url(f"user/{user['id']}"), json=user_update
+    king_update = modify_king(king)
+    update_king_response = session.put(
+        get_full_url(f"king/{king['id']}"), json=king_update
     )
-    assert update_user_response.status_code == 200
-    # ..update_user_response = <Response [200]>
-    # updated_user =
+    assert update_king_response.status_code == 200
+    # ..update_king_response = <Response [200]>
+    # updated_king =
     # {
-    #     "user": {
+    #     "king": {
     #         "19": {
     #             "email": "aanrdcjmxfn@example.com",
     #             "id": 19,
@@ -95,31 +95,26 @@ def test_update_user():
     # }
 
     assert (
-        update_user_response.headers.get("Content-Type").lower()
+        update_king_response.headers.get("Content-Type").lower()
         == "application/json"
     )
-    state = update_user_response.json()
-    validate_state(state, ["user"])
-    user_slice = state["user"]
-    assert len(user_slice) == 1
-    updated_user = next(iter(user_slice.values()))
+    state = update_king_response.json()
+    validate_state(state, ["king"])
+    king_slice = state["king"]
+    assert len(king_slice) == 1
+    updated_king = next(iter(king_slice.values()))
 
-    assert updated_user["id"] == user["id"]
-    assert updated_user["email"] == user_update["email"]
-    assert updated_user["nick"] == user_update["nick"]
-
-    # attempt to delete this user.  it's ok if this fails.  it's just
-    #   to try to keep the db clean
-    # TODO:
-    # session.delete(get_full_url(""))
+    assert updated_king["id"] == king["id"]
+    assert updated_king["email"] == king_update["email"]
+    assert updated_king["nick"] == king_update["nick"]
 
 
-def test_delete_user():
+def test_delete_king():
     session = requests.Session()
     get_auth_response = session.get(get_full_url("auth/"))
 
     post_auth_signup_response = session.post(
-        get_full_url("auth/signup"), json=make_user()
+        get_full_url("auth/signup"), json=make_king()
     )
 
     assert (
@@ -127,17 +122,17 @@ def test_delete_user():
         == "application/json"
     )
     state = post_auth_signup_response.json()
-    user_slice = state["user"]
-    user = next(iter(user_slice.values()))
+    king_slice = state["king"]
+    king = next(iter(king_slice.values()))
 
-    delete_user_response = session.delete(get_full_url("user/"))
-    assert delete_user_response.status_code == 200
+    delete_king_response = session.delete(get_full_url("king/"))
+    assert delete_king_response.status_code == 200
     assert (
-        delete_user_response.headers.get("Content-Type").lower()
+        delete_king_response.headers.get("Content-Type").lower()
         == "application/json"
     )
-    data = delete_user_response.json()
+    data = delete_king_response.json()
     assert "message" in data
     assert (
-        data["message"] == f"deleted user {user['id']} successfully"
+        data["message"] == f"deleted king {king['id']} successfully"
     )

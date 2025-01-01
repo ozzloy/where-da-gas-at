@@ -5,10 +5,10 @@ class Review(db.Model, SchemaMixin):
     __tablename__ = "review"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(
+    king_id = db.Column(
         db.Integer,
         db.ForeignKey(
-            add_prefix_for_prod("user.id"), ondelete="CASCADE"
+            add_prefix_for_prod("king.id"), ondelete="CASCADE"
         ),
         nullable=False,
     )
@@ -24,7 +24,7 @@ class Review(db.Model, SchemaMixin):
     def to_dict(self):
         return {
             "id": self.id,
-            "user_id": self.user_id,
+            "king_id": self.king_id,
             "station_id": self.station_id,
             "review": self.review,
         }

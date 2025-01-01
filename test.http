@@ -7,39 +7,39 @@
 # GET "/"
 GET :protocol://:host::port/:path-prefix/up
 
-# create user
-POST :protocol://:host::port/:path-prefix/user
+# create king
+POST :protocol://:host::port/:path-prefix/king
 Content-Type: application/json
 
 {
-  "name": "test user",
+  "name": "test king",
   "email": "test3@example.com",
-  "user": "testuser3",
+  "nick": "testnick3",
   "password": "sekrit"
 }
 # success:
 # 200
 # {
-#   "user": {
+#   "king": {
 #     "6": {
 #       "id": 6,
-#       "name": "test user",
-#       "user": "testuser3"
+#       "name": "test king",
+#       "nick": "testnick3"
 #     }
 #   }
 # }
 #
 #
-# read user
-GET  :protocol://:host::port/:path-prefix/user/6
+# read king
+GET  :protocol://:host::port/:path-prefix/king/6
 # success:
 # 200
 # {
-#   "user": {
+#   "king": {
 #     "6": {
 #       "id": 6,
-#       "name": "test user",
-#       "user": "testuser3"
+#       "name": "test king",
+#       "nick": "testnick3"
 #     }
 #   }
 # }
@@ -47,46 +47,46 @@ GET  :protocol://:host::port/:path-prefix/user/6
 # failure:
 # 404
 # {
-#   "error": "user 6 not found"
+#   "error": "king 6 not found"
 # }
 #
 #
-PATCH :protocol://:host::port/:path-prefix/user/6
+PATCH :protocol://:host::port/:path-prefix/king/6
 Content-Type: application/json
 
 {
   "name": "updated name",
   "email": "updated-email1@example.com",
-  "user": "updated_user1",
+  "nick": "updated_nick1",
   "password": "updated secrit"
 }
 # success: 200
 # {
-#   "user": {
+#   "king": {
 #     "6": {
 #       "id": 6,
 #       "name": "updated name",
-#       "user": "updated_user1"
+#       "nick": "updated_nick1"
 #     }
 #   }
 # }
 #
-# failure, user not found
+# failure, king not found
 # 404 not found
 # {
-#   "error": "user 6 not found"
+#   "error": "king 6 not found"
 # }
 #
 #
-DELETE :protocol://:host::port/:path-prefix/user/5
+DELETE :protocol://:host::port/:path-prefix/king/5
 # success:
 # 200
 # {
-#   "message": "deleted user 5 successfully"
+#   "message": "deleted king 5 successfully"
 # }
 #
-# failure: user not found
+# failure: king not found
 # 404
 # {
-#   "error": "user 5 not found"
+#   "error": "king 5 not found"
 # }

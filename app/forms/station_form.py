@@ -21,7 +21,7 @@ class StationForm(FlaskForm):
     )
     name = StringField("name", validators=[DataRequired()])
     uri = StringField("uri", validators=[DataRequired()])
-    user_id = StringField("user_id", validators=[DataRequired()])
+    king_id = StringField("king_id", validators=[DataRequired()])
 
 
 class EditStationForm(FlaskForm):
@@ -33,4 +33,4 @@ class EditStationForm(FlaskForm):
     )
     name = StringField("name", validators=[DataRequired()])
     uri = StringField("uri", validators=[DataRequired()])
-    user_id = StringField("user_id", validators=[DataRequired()])
+    king_id = StringField("king_id", validators=[DataRequired()])

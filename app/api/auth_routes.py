@@ -1,13 +1,13 @@
 from flask import Blueprint, request
-from app.models import User, db
-from app.forms import LoginForm
-from app.forms import SignUpForm
 from flask_login import (
-    current_user,
-    login_user,
-    logout_user,
+    current_user as current_king,
+    login_user as login_king,
+    logout_user as logout_king,
     login_required,
 )
+
+from app.forms import LoginForm, SignUpForm
+from app.models import db, King
 
 auth_routes = Blueprint("auth", __name__)
 
@@ -15,17 +15,17 @@ auth_routes = Blueprint("auth", __name__)
 @auth_routes.route("/")
 def authenticate():
     """
-    Authenticates a user.
+    Authenticates a king.
     """
-    if current_user.is_authenticated:
-        return current_user.to_dict()
+    if current_king.is_authenticated:
+        return current_king.to_dict()
     return {"errors": {"message": "Unauthorized"}}, 401
 
 
 @auth_routes.route("/login", methods=["POST"])
 def login():
     """
-    Logs a user in
+    Logs a king in
     """
     form = LoginForm()
     # Get the csrf_token from the request cookie and put it into the
@@ -35,38 +35,38 @@ def login():
     if not form.validate_on_submit():
         return form.errors, 401
 
-    # Add the user to the session, we are logged in!
-    user = User.query.filter(User.email == form.data["email"]).first()
-    login_user(user)
-    return user.to_dict()
+    # Add the king to the session, we are logged in!
+    king = King.query.filter(King.email == form.data["email"]).first()
+    login_king(king)
+    return king.to_dict()
 
 
 @auth_routes.route("/logout")
 def logout():
     """
-    Logs a user out
+    Logs a king out
     """
-    logout_user()
-    return {"message": "User logged out"}
+    logout_king()
+    return {"message": "King logged out"}
 
 
 @auth_routes.route("/signup", methods=["POST"])
 def sign_up():
     """
-    Creates a new user and logs them in
+    Creates a new king and logs them in
     """
     form = SignUpForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        user = User(
+        king = King(
             nick=form.data["nick"],
             email=form.data["email"],
             password=form.data["password"],
         )
-        db.session.add(user)
+        db.session.add(king)
         db.session.commit()
-        login_user(user)
-        return {"user": {user.id: user.to_dict()}}
+        login_king(king)
+        return {"king": {king.id: king.to_dict()}}
     return form.errors, 401
 
 

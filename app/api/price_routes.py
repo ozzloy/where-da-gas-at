@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user as current_king
 
 from app.models import db
 from app.models.price import Price
@@ -12,10 +12,10 @@ price_routes = Blueprint("price", __name__)
 @login_required
 def create_price():
     """
-    create a new price for logged in user.
+    create a new price for logged in king.
     request body requires keys: fuel_type, price, station_id
     """
-    # get current logged in user's id
+    # get current logged in king's id
     # use that to create a price object
     # the fields fuel_type, price, and station_id should
     # come from the body's json
@@ -26,7 +26,7 @@ def create_price():
         column.name
         for column in Price.__table__.columns
         if not column.nullable
-        and column.name not in ["id", "user_id"]
+        and column.name not in ["id", "king_id"]
     ]
 
     missing_fields = [
@@ -41,7 +41,7 @@ def create_price():
         price=data["price"],
         station_id=data["station_id"],
         fuel_type=data["fuel_type"],
-        user_id=current_user.id,
+        king_id=current_king.id,
     )
 
     db.session.add(price)
@@ -56,7 +56,7 @@ def create_price():
         {
           "id": 1,
           "price": 456.789,
-          "user_id": 1,
+          "king_id": 1,
           "station_id": 1,
           "fuel_type": "one of: electric, unleaded, leaded, or premium",
           "created": "2021-11-19 20:39:36",
@@ -88,9 +88,9 @@ def read_price(id):
 @price_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_price(id):
-    user_id = current_user.id
+    king_id = current_king.id
     price = Price.query.get(id)
-    if not price.user_id == user_id:
+    if not price.king_id == king_id:
         return {"message": "forbidden"}, 403
 
     # otherwise, get the info from the request's json
@@ -107,12 +107,12 @@ def update_price(id):
 @price_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_price(id):
-    user_id = current_user.id
+    king_id = current_king.id
     price = Price.query.get(id)
     if not price:
         return {"message": f"price {id} not found"}, 404
 
-    if not price.user_id == user_id:
+    if not price.king_id == king_id:
         return {"message": "forbidden"}, 403
 
     # otherwise, delete the price

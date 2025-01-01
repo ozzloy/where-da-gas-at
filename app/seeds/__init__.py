@@ -1,9 +1,9 @@
 from flask.cli import AppGroup
 
 from app.seeds.price import seed_price, undo_price
-from .user import seed_user, undo_user
+from .king import seed_king, undo_king
 from .station import seed_station, undo_station
-from .user_station import seed_user_station, undo_user_station
+from .king_station import seed_king_station, undo_king_station
 from .review import seed_review, undo_review
 
 # Creates a seed group to hold our commands
@@ -14,9 +14,9 @@ seed_commands = AppGroup("seed")
 # Creates the `flask seed all` command
 @seed_commands.command("all")
 def seed():
-    seed_user()
+    seed_king()
     seed_station()
-    seed_user_station()
+    seed_king_station()
     seed_review()
     seed_price()
     # Add other seed functions here
@@ -27,7 +27,7 @@ def seed():
 def undo():
     undo_review()
     undo_station()
-    undo_user_station()
-    undo_user()
+    undo_king_station()
+    undo_king()
     undo_price()
     # Add other undo functions here

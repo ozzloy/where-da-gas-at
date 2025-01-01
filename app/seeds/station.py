@@ -1,8 +1,6 @@
-from sqlalchemy.sql import text
-
 from app.models import db, Station, undo_table
-from app.models.user import User
-from .user import emails
+from app.models.king import King
+from .king import emails
 
 
 station_seeds = [
@@ -34,8 +32,8 @@ station_seeds = [
 
 
 def seed_station():
-    users = User.query.filter(User.email.in_(emails)).all()
-    for user, station_seed in zip(users, station_seeds):
+    kings = King.query.filter(King.email.in_(emails)).all()
+    for king, station_seed in zip(kings, station_seeds):
         station = Station(
             name=station_seed["name"],
             lat=station_seed["lat"],
@@ -43,7 +41,7 @@ def seed_station():
             address=station_seed["address"],
             uri=station_seed["uri"],
             location_id=station_seed["location_id"],
-            user_id=user.id,
+            king_id=king.id,
         )
         db.session.add(station)
     db.session.commit()

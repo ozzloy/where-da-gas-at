@@ -2,18 +2,18 @@ from sqlalchemy.sql import text
 
 from app.models import db, Review, undo_table
 from app.models.station import Station
-from app.models.user import User
-from app.seeds.user import user_seeds
+from app.models.king import King
+from app.seeds.king import king_seeds
 from app.seeds.station import station_seeds
 
 
-user_emails = [user_seed["email"] for user_seed in user_seeds]
+king_emails = [king_seed["email"] for king_seed in king_seeds]
 station_uris = [station_seed["uri"] for station_seed in station_seeds]
 
 
 review_seeds = [
     {
-        "user_id": 1,
+        "king_id": 1,
         "station_id": 1,
         "review": """
           Great place for premium gas,
@@ -21,7 +21,7 @@ review_seeds = [
         """,
     },
     {
-        "user_id": 1,
+        "king_id": 1,
         "station_id": 3,
         "review": """
           Love this place!
@@ -30,7 +30,7 @@ review_seeds = [
         """,
     },
     {
-        "user_id": 2,
+        "king_id": 2,
         "station_id": 2,
         "review": """
           Best fuel stop in town!
@@ -38,7 +38,7 @@ review_seeds = [
         """,
     },
     {
-        "user_id": 2,
+        "king_id": 2,
         "station_id": 1,
         "review": """
           Excellent experience!
@@ -46,7 +46,7 @@ review_seeds = [
         """,
     },
     {
-        "user_id": 3,
+        "king_id": 3,
         "station_id": 3,
         "review": """
           Charging works well, but the place is often crowded.
@@ -54,7 +54,7 @@ review_seeds = [
         """,
     },
     {
-        "user_id": 3,
+        "king_id": 3,
         "station_id": 1,
         "review": """
           Excellent experience!
@@ -65,7 +65,7 @@ review_seeds = [
 
 
 def seed_review():
-    users = User.query.filter(User.email.in_(user_emails)).all()
+    kings = King.query.filter(King.email.in_(king_emails)).all()
     stations = Station.query.filter(
         Station.uri.in_(station_uris)
     ).all()
@@ -73,7 +73,7 @@ def seed_review():
     for review_seed in review_seeds:
         review = Review(
             review=review_seed["review"],
-            user_id=users[review_seed["user_id"] - 1].id,
+            king_id=kings[review_seed["king_id"] - 1].id,
             station_id=stations[review_seed["station_id"] - 1].id,
         )
         db.session.add(review)

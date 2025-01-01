@@ -6,7 +6,7 @@ from .db import (
     environment,
     SchemaMixin,
 )
-from .user_station import user_station
+from .king_station import king_station
 
 
 class Station(db.Model, SchemaMixin):
@@ -20,16 +20,16 @@ class Station(db.Model, SchemaMixin):
     uri = db.Column(db.Text, nullable=False)
     location_id = db.Column(db.String(255), nullable=False)
 
-    user_id = db.Column(
+    king_id = db.Column(
         db.Integer,
         db.ForeignKey(
-            add_prefix_for_prod("user.id"), ondelete="CASCADE"
+            add_prefix_for_prod("king.id"), ondelete="CASCADE"
         ),
         nullable=False,
     )
     saved_by = db.relationship(
-        "User",
-        secondary=user_station,
+        "King",
+        secondary=king_station,
         back_populates="saved_stations",
     )
 
@@ -42,6 +42,6 @@ class Station(db.Model, SchemaMixin):
             "address": self.address,
             "uri": self.uri,
             "location_id": self.location_id,
-            "user_id": self.user_id,
-            "saved_by": [user.id for user in self.saved_by],
+            "saved_by": [king.id for king in self.saved_by],
+            "king_id": self.king_id,
         }
