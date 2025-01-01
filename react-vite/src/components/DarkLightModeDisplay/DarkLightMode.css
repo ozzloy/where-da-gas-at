@@ -1,2 +1,16 @@
-/* button {
-} */
+.icon {
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.light {
+  background-color: white;
+  color: black;
+  height: 100vh;
+}
+
+.dark {
+  background-color: black;
+  color: green;
+  height: 100vh;
+}

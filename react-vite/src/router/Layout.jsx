@@ -7,6 +7,7 @@ import Navigation from "../components/Navigation/Navigation";
 import { GoogleMapProvider } from "../context/GoogleMapContext";
 import "../index.css";
 import { APIProvider } from "@vis.gl/react-google-maps";
+import { ThemeProvider } from "../context/ThemeContext";
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -23,21 +24,23 @@ export default function Layout() {
 
   return (
     <>
-      <APIProvider
-        apiKey={import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY}
-      >
-        <GoogleMapProvider>
-          <ModalProvider>
-            <div className="align-body">
-              <div className="main-body-container">
-                <Navigation />
-                {isLoaded && <Outlet />}
+      <ThemeProvider>
+        <APIProvider
+          apiKey={import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY}
+        >
+          <GoogleMapProvider>
+            <ModalProvider>
+              <div className="align-body">
+                <div className="main-body-container">
+                  <Navigation />
+                  {isLoaded && <Outlet />}
+                </div>
               </div>
-            </div>
-            <Modal />
-          </ModalProvider>
-        </GoogleMapProvider>
-      </APIProvider>
+              <Modal />
+            </ModalProvider>
+          </GoogleMapProvider>
+        </APIProvider>
+      </ThemeProvider>
     </>
   );
 }
