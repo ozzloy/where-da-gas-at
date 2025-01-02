@@ -19,7 +19,7 @@ def create_review():
         text = created_form.data.get("text")
         errors = {}
         if not text:
-            errors["review"] = "review is required"
+            errors["text"] = "text is required"
         if not station_id:
             errors["station_id"] = "station id is required"
         if 0 < len(errors):
@@ -52,9 +52,9 @@ def read_review(review_id):
 
         # failure
         if not review:
-            return {"error": f"text {review.id} not found"}, 404
+            return {"error": f"review {review.id} not found"}, 404
 
-        return {"text": {str(review.id): review.to_dict()}}, 200
+        return {"review": {str(review.id): review.to_dict()}}, 200
 
     except Exception as e:
         return {"error": str(e)}, 500
@@ -66,7 +66,7 @@ def read_reviews():
     try:
         reviews = Review.query.all()
         return {
-            "text": {
+            "review": {
                 str(review.id): review.to_dict() for review in reviews
             }
         }, 200
@@ -119,7 +119,7 @@ def update_review(review_id):
         db.session.commit()
 
         # success
-        return jsonify(review.to_dict()), 200
+        return {"review": {str(review.id): review.to_dict()}}, 200
 
     except Exception as e:
         return {"error": str(e)}, 500
@@ -138,14 +138,14 @@ def deleted_review(review_id):
 
         # failure
         if not review:
-            return {"error": f"text {review.id} is not found"}
+            return {"error": f"review {review.id} is not found"}
 
         db.session.delete(review)
         db.session.commit()
 
         # success
         return {
-            "message": f"deleted text {review.id} successfully",
+            "message": f"deleted review {review.id} successfully",
         }, 200
 
     except Exception as e:
