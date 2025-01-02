@@ -76,7 +76,6 @@ def test_create_station():
         "lng": -122.03377579999999,
         "address": "3020 Issaquah-Pine Lake Rd SE, Sammamish, WA 98075, USA",
         "uri": "https://maps.google.com/?cid=90028760738209365",
-        "king_id": 1,
     }
 
     create_reply = session.post(f"{stem}/station", json=station_data)
@@ -104,7 +103,6 @@ def test_create_station():
             "lng",
             "address",
             "uri",
-            "king_id",
         }
         # station has all the fields it should
         for field in required_fields:
@@ -119,7 +117,6 @@ def test_create_station():
         assert isinstance(station["lng"], (int, float))
         assert isinstance(station["address"], str)
         assert isinstance(station["uri"], str)
-        assert isinstance(station["king_id"], int)
 
     validate_station_slice(reply_data)
 
@@ -165,7 +162,6 @@ def test_get_stations():
         assert "lng" in station_data
         assert "address" in station_data
         assert "uri" in station_data
-        assert "king_id" in station_data
 
         # Verify data types
         assert isinstance(station_data["id"], str)
@@ -174,7 +170,6 @@ def test_get_stations():
         assert isinstance(station_data["lng"], (int, float))
         assert isinstance(station_data["address"], str)
         assert isinstance(station_data["uri"], str)
-        assert isinstance(station_data["king_id"], int)
 
 
 def test_get_station():
@@ -233,7 +228,6 @@ def test_get_station():
         assert single_station["lng"] == station["lng"]
         assert single_station["address"] == station["address"]
         assert single_station["uri"] == station["uri"]
-        assert single_station["king_id"] == station["king_id"]
 
 
 # @pytest.mark.skip(reason="need create station first")
@@ -364,7 +358,6 @@ def test_update_station():
         assert station["lng"] == new_station["lng"]
         assert station["address"] == new_station["address"]
         assert station["uri"] == new_station["uri"]
-        assert station["king_id"] == most_recent_station["king_id"]
 
     validate_station_slice(reply_data)
 

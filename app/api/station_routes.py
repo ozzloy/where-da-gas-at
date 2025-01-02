@@ -13,9 +13,7 @@ def read_stations():
     stations = Station.query.all()
     return {
         "station": {
-            station.id: station.to_dict()
-            for station in stations
-            if station.king_id == current_king.id
+            station.id: station.to_dict() for station in stations
         }
     }
 
@@ -40,7 +38,6 @@ def create_station():
             lng=form.data["lng"],
             address=form.data["address"],
             uri=form.data["uri"],
-            king_id=current_king.id,
         )
         print(station)
         db.session.add(station)
@@ -73,12 +70,11 @@ def update_station(id):
 @station_routes.route("/<string:id>", methods=["DELETE"])
 @login_required
 def delete_station(id):
-    if current_king.id:
-        station = Station.query.get(id)
-        if station and station.king_id == current_king.id:
-            db.session.delete(station)
-            db.session.commit()
-            return {
-                "message": f"deleted station {station.id} successfully"
-            }
-    return {"error": "Station not found or unauthorized"}, 401
+    station = Station.query.get(id)
+
+    if not station:
+        return {"error": "Station not found"}, 401
+
+    db.session.delete(station)
+    db.session.commit()
+    return {"message": f"deleted station {station.id} successfully"}

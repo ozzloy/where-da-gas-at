@@ -41,7 +41,6 @@ def seed_station():
             lng=station_seed["lng"],
             address=station_seed["address"],
             uri=station_seed["uri"],
-            king_id=king.id,
         )
         db.session.add(station)
     db.session.commit()

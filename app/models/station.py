@@ -19,14 +19,6 @@ class Station(db.Model, SchemaMixin):
     address = db.Column(db.String(255), nullable=False)
     uri = db.Column(db.Text, nullable=False)
 
-    king_id = db.Column(
-        db.Integer,
-        db.ForeignKey(
-            add_prefix_for_prod("king.id"), ondelete="CASCADE"
-        ),
-        nullable=False,
-    )
-
     saved_by = db.relationship(
         "King",
         secondary=king_station,
@@ -42,5 +34,4 @@ class Station(db.Model, SchemaMixin):
             "address": self.address,
             "uri": self.uri,
             "saved_by": [king.id for king in self.saved_by],
-            "king_id": self.king_id,
         }

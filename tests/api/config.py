@@ -44,7 +44,6 @@ def make_station(king_id: int) -> Dict[str, Any]:
         "lng": uniform(-180, 180),
         "address": make_random_string(),
         "uri": f"http://example.com/{make_random_string()}",
-        "king_id": king_id,
     }
     return station_data
 
