@@ -20,7 +20,7 @@ def read_stations():
     }
 
 
-@station_routes.route("/<int:id>", methods=["GET"])
+@station_routes.route("/<string:id>", methods=["GET"])
 @login_required
 def read_station(id):
     station = Station.query.get(id)
@@ -34,22 +34,22 @@ def create_station():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         station = Station(
+            id=form.data["id"],
             name=form.data["name"],
             lat=form.data["lat"],
             lng=form.data["lng"],
             address=form.data["address"],
             uri=form.data["uri"],
-            location_id=form.data["location_id"],
             king_id=current_king.id,
         )
         print(station)
         db.session.add(station)
         db.session.commit()
-        return {"station": {str(station.id): station.to_dict()}}
+        return {"station": {station.id: station.to_dict()}}
     return form.errors, 401
 
 
-@station_routes.route("/<int:id>", methods=["PUT"])
+@station_routes.route("/<string:id>", methods=["PUT"])
 @login_required
 def update_station(id):
     data = request.get_json()
@@ -59,18 +59,18 @@ def update_station(id):
     if not station:
         return {"error": f"station {id} not found"}, 401
 
+    station.id = data.get("id", station.id)
     station.name = data.get("name", station.name)
     station.lat = data.get("lat", station.lat)
     station.lng = data.get("lng", station.lng)
     station.address = data.get("address", station.address)
     station.uri = data.get("uri", station.uri)
-    station.location_id = data.get("location_id", station.location_id)
 
     db.session.commit()
-    return {"station": {str(station.id): station.to_dict()}}
+    return {"station": {station.id: station.to_dict()}}
 
 
-@station_routes.route("/<int:id>", methods=["DELETE"])
+@station_routes.route("/<string:id>", methods=["DELETE"])
 @login_required
 def delete_station(id):
     if current_king.id:

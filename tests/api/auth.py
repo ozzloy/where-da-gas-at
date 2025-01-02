@@ -1,5 +1,6 @@
 import requests
 from typing import Any, Dict, Tuple
+
 from .config import DEMO_KING, get_full_url, make_station, make_king
 from .validators import validate_response, validate_state
 

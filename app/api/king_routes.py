@@ -75,7 +75,7 @@ def delete_king():
 
 
 @king_routes.route(
-    "/current/station/<int:station_id>", methods=["POST"]
+    "/current/station/<string:station_id>", methods=["POST"]
 )
 @login_required
 def create_current_king_station(station_id):
@@ -103,7 +103,7 @@ def create_current_king_station(station_id):
 
 
 @king_routes.route(
-    "/current/station/<int:station_id>", methods=["DELETE"]
+    "/current/station/<string:station_id>", methods=["DELETE"]
 )
 @login_required
 def delete_current_king_station(station_id):

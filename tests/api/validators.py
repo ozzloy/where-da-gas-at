@@ -64,13 +64,12 @@ def validate_king(king):
 
 def validate_station(station):
     # {
-    #     "id": 7,
+    #     "id": "qwertyuiop",
     #     "name": "kpjkecmicx",
     #     "lat": -90,
     #     "lng": -180,
     #     "address": "zxcvasdfqw",
     #     "uri": "http://example.com/uiopjklmnh",
-    #     "location_id": "qwertyuiop",
     #     "king_id": 5,
     #     "saved_by": [],
     # }

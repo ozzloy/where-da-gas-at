@@ -23,9 +23,11 @@ def test_create_review():
     login_data = {"email": "demo@example.com", "password": "password"}
     session.post(f"{stem}/auth/login", json=login_data)
 
+    # TODO: dynamically create station_id by creating a station
+    #       with a known id, and use that id here
     review_data = {
         "text": "good place",
-        "station_id": 1,
+        "station_id": "ChIJuwnmD-ZvkFQRVZ5eT67YPwE",
     }
 
     create_reply = session.post(f"{stem}/review", json=review_data)

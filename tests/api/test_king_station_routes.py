@@ -10,6 +10,7 @@ def test_create_king_station():
 
     endpoint = get_full_url(f"king/current/station/{station['id']}")
     response = session.post(endpoint)
+
     validate_response(response, 201, expect_json=False)
 
 

@@ -38,12 +38,12 @@ def modify_king(data):
 
 def make_station(king_id: int) -> Dict[str, Any]:
     station_data = {
+        "id": make_random_string(),
         "name": make_random_string(),
         "lat": uniform(-90, 90),
         "lng": uniform(-180, 180),
         "address": make_random_string(),
         "uri": f"http://example.com/{make_random_string()}",
-        "location_id": make_random_string(),
         "king_id": king_id,
     }
     return station_data

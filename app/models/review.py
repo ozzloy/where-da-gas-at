@@ -13,7 +13,7 @@ class Review(db.Model, SchemaMixin):
         nullable=False,
     )
     station_id = db.Column(
-        db.Integer,
+        db.String,
         db.ForeignKey(
             add_prefix_for_prod("station.id"), ondelete="CASCADE"
         ),

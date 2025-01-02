@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user as current_king
+
 from ..models import db, Review
 from ..forms import ReviewForm
 

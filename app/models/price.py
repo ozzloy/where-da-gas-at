@@ -10,7 +10,7 @@ class Price(db.Model, SchemaMixin):
 
     price = Column(Float, nullable=False)
     station_id = Column(
-        Integer,
+        String,
         ForeignKey(
             add_prefix_for_prod("station.id"), ondelete="CASCADE"
         ),

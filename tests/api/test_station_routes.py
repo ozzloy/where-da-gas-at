@@ -5,16 +5,6 @@ from typing import Dict, Any
 from .auth import create_station
 
 
-# TODO: test failure to create due to not being logged in
-
-# TODO: test failure to update because price was created by another
-# king
-
-# TODO: add test for read: price not found
-
-# TODO: add test for delete: price not found
-
-
 @pytest.mark.skip(reason="not sure why this is failing")
 def test_create_station():
     # send http GET to http://localhost:8000/api/auth/
@@ -80,12 +70,12 @@ def test_create_station():
     login_reply = session.post(f"{stem}/auth/login", json=login_data)
 
     station_data = {
+        "id": "ChIJuwnmD-ZvkFQRVZ5eT67YPwE-this-is-a-test",
         "name": "Wook Electric Vehicle Charging Station",
         "lat": 47.5832543,
         "lng": -122.03377579999999,
         "address": "3020 Issaquah-Pine Lake Rd SE, Sammamish, WA 98075, USA",
         "uri": "https://maps.google.com/?cid=90028760738209365",
-        "location_id": "ChIJuwnmD-ZvkFQRVZ5eT67YPwE-this-is-a-test",
         "king_id": 1,
     }
 
@@ -104,7 +94,7 @@ def test_create_station():
         assert len(station_slice) == 1
 
         station_id = list(station_slice.keys())[0]
-        assert isinstance(int(station_id), int)
+        assert isinstance(station_id, str)
         station = station_slice[station_id]
 
         required_fields = {
@@ -114,7 +104,6 @@ def test_create_station():
             "lng",
             "address",
             "uri",
-            "location_id",
             "king_id",
         }
         # station has all the fields it should
@@ -124,13 +113,12 @@ def test_create_station():
         for field in station:
             assert field in required_fields
 
-        assert isinstance(station["id"], int)
+        assert isinstance(station["id"], str)
         assert isinstance(station["name"], str)
         assert isinstance(station["lat"], (int, float))
         assert isinstance(station["lng"], (int, float))
         assert isinstance(station["address"], str)
         assert isinstance(station["uri"], str)
-        assert isinstance(station["location_id"], str)
         assert isinstance(station["king_id"], int)
 
     validate_station_slice(reply_data)
@@ -177,17 +165,15 @@ def test_get_stations():
         assert "lng" in station_data
         assert "address" in station_data
         assert "uri" in station_data
-        assert "location_id" in station_data
         assert "king_id" in station_data
 
         # Verify data types
-        assert isinstance(station_data["id"], int)
+        assert isinstance(station_data["id"], str)
         assert isinstance(station_data["name"], str)
         assert isinstance(station_data["lat"], (int, float))
         assert isinstance(station_data["lng"], (int, float))
         assert isinstance(station_data["address"], str)
         assert isinstance(station_data["uri"], str)
-        assert isinstance(station_data["location_id"], str)
         assert isinstance(station_data["king_id"], int)
 
 
@@ -240,14 +226,13 @@ def test_get_station():
 
         # Verify the single station data
         assert "station" in detail_data
-        single_station = detail_data["station"][str(station_id)]
-        assert single_station["id"] == int(station_id)
+        single_station = detail_data["station"][station_id]
+        assert single_station["id"] == station_id
         assert single_station["name"] == station["name"]
         assert single_station["lat"] == station["lat"]
         assert single_station["lng"] == station["lng"]
         assert single_station["address"] == station["address"]
         assert single_station["uri"] == station["uri"]
-        assert single_station["location_id"] == station["location_id"]
         assert single_station["king_id"] == station["king_id"]
 
 
@@ -344,15 +329,15 @@ def test_update_station():
     state = read_all_reply.json()
 
     station_slice = state["station"]
-    newest_id = max(int(id_) for id_ in station_slice.keys())
-    most_recent_station = station_slice[str(newest_id)]
+    newest_id = list(station_slice.keys())[0]
+    most_recent_station = station_slice[newest_id]
     new_station = {
+        "id": most_recent_station["id"],
         "name": most_recent_station["name"] + " Updated",
         "lat": most_recent_station["lat"] + 0.001,
         "lng": most_recent_station["lng"] + 0.001,
         "address": most_recent_station["address"] + " Updated",
         "uri": most_recent_station["uri"],
-        "location_id": most_recent_station["location_id"],
     }
 
     update_reply = session.put(
@@ -372,14 +357,13 @@ def test_update_station():
         station_data = data["station"]
         assert isinstance(station_data, dict)
 
-        station = station_data[str(newest_id)]
+        station = station_data[newest_id]
         assert station["id"] == newest_id
         assert station["name"] == new_station["name"]
         assert station["lat"] == new_station["lat"]
         assert station["lng"] == new_station["lng"]
         assert station["address"] == new_station["address"]
         assert station["uri"] == new_station["uri"]
-        assert station["location_id"] == new_station["location_id"]
         assert station["king_id"] == most_recent_station["king_id"]
 
     validate_station_slice(reply_data)

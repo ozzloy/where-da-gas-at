@@ -15,9 +15,10 @@ king_station = Table(
     ),
     db.Column(
         "station_id",
-        db.Integer,
+        db.String,
         db.ForeignKey(
-            add_prefix_for_prod("station.id"), ondelete="CASCADE"
+            add_prefix_for_prod("station.id"),
+            ondelete="CASCADE",
         ),
         primary_key=True,
     ),

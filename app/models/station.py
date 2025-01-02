@@ -12,13 +12,12 @@ from .king_station import king_station
 class Station(db.Model, SchemaMixin):
     __tablename__ = "station"
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.String(255), nullable=False, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
     address = db.Column(db.String(255), nullable=False)
     uri = db.Column(db.Text, nullable=False)
-    location_id = db.Column(db.String(255), nullable=False)
 
     king_id = db.Column(
         db.Integer,
@@ -27,6 +26,7 @@ class Station(db.Model, SchemaMixin):
         ),
         nullable=False,
     )
+
     saved_by = db.relationship(
         "King",
         secondary=king_station,
@@ -41,7 +41,6 @@ class Station(db.Model, SchemaMixin):
             "lng": self.lng,
             "address": self.address,
             "uri": self.uri,
-            "location_id": self.location_id,
             "saved_by": [king.id for king in self.saved_by],
             "king_id": self.king_id,
         }

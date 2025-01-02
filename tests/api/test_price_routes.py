@@ -168,7 +168,7 @@ def test_get_prices():
         assert isinstance(price_data["id"], int)
         assert isinstance(price_data["fuel_type"], str)
         assert isinstance(price_data["price"], (int, float))
-        assert isinstance(price_data["station_id"], int)
+        assert isinstance(price_data["station_id"], str)
         assert isinstance(price_data["king_id"], int)
 
 
@@ -363,7 +363,7 @@ def test_update_price():
         assert isinstance(price["id"], int)
         assert isinstance(price["price"], (int, float))
         assert isinstance(price["king_id"], int)
-        assert isinstance(price["station_id"], int)
+        assert isinstance(price["station_id"], str)
         assert isinstance(price["fuel_type"], str)
 
     validate_price_slice(reply_data)
