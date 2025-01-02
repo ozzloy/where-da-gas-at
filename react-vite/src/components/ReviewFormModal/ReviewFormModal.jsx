@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from "react";
-// import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { GoogleMapContext } from "../../context/GoogleMapContext";
 import { useGetSelectedStation } from "../../hooks/useGetSelectedStation";
@@ -8,7 +7,6 @@ import "./ReviewFormModal.css";
 export default function ReviewFormModal({ id }) {
   const { setSelectedStation } = useContext(GoogleMapContext);
   const stationInfo = useGetSelectedStation({ id });
-  //   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [text, setText] = useState("");
 

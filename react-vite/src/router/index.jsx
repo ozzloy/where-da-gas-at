@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
         element: <StationDisplay />,
       },
       {
-        path: "/user/:id",
+        path: "/review/:id",
         element: <UserReviewsDisplay />,
       },
     ],
