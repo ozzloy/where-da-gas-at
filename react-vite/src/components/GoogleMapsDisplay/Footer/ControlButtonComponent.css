@@ -25,26 +25,6 @@
   border-radius: 100%;
 }
 
-.diplay-station-ico {
-  display: flex;
-  align-items: center;
-}
-
-.diplay-station-ico:hover .diplay-station-ico {
-  position: absolute;
-  height: 40px;
-  width: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.5s;
-}
-
-.diplay-station-ico:hover .nearby-station {
-  transition: all 0.5s;
-  opacity: 0;
-}
-
 .crud-buttons-container {
   display: flex;
   justify-content: center;

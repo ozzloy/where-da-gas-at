@@ -46,7 +46,6 @@ function ControlButtonComponent() {
           <>
             <div className="diplay-station-ico">
               <FaBars className={`control-button`} />
-              <span className="nearby-station"> Nearby Stations</span>
             </div>
           </>
         )}

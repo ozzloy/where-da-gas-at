@@ -11,19 +11,20 @@ export default function UserReviewsDisplay() {
   if (texts.length === 0) {
     return "no reivew";
   }
+
+  // console.log("what is texts show here!!!!", texts);
   return (
     <div>
       <h2>User Reviews</h2>
       <ul>
-        {texts &&
-          texts.text
-            .filter((review) => review.id === sessionUser.id)
-            .map((text) => (
-              <li key={text.id}>
-                <p>{text.text}</p>
-                <p>Station ID: {text.station_id}</p>
-              </li>
-            ))}
+        {texts // reviews
+          .filter((review) => review.id === sessionUser.id)
+          .map((review) => (
+            <li key={review.id}>
+              <p>{review.text}</p>
+              <p>Station ID: {review.station_id}</p>
+            </li>
+          ))}
       </ul>
     </div>
   );
