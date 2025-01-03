@@ -101,6 +101,24 @@ def create_current_king_station(station_id):
     # indicate success
     return "", 201
 
+@king_routes.route(
+    "/current/station/<string:station_id>", methods=["GET"]
+)
+@login_required
+def get_current_king_station(station_id):
+    """
+    get a station for the current king
+    """
+    # make sure there is a station with station id.
+    station = Station.query.get(station_id)
+
+    # if there is not, return an error indicating that there is no
+    #  such station
+    if not station:
+        return {"error": f"station {station_id} does not exist"}, 404
+
+    # return the station details
+    return {"station": station.to_dict()}, 200
 
 @king_routes.route(
     "/current/station/<string:station_id>", methods=["DELETE"]
