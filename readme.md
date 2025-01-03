@@ -172,9 +172,14 @@ tests/api/test_auth_routes.py .                              [100%]
 
 ## deploy
 
-TODO fill out these commands
+TODO make sure these commands actually work
 
 ```bash
 cd react-vite
 npm run build
+git add dist
+git commit -m "add new dist for deployment"
+git push
 ```
+
+then do whatever on render.com, idk
