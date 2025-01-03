@@ -1,4 +1,4 @@
-import "./primaryType.css";
+import "./PrimaryType.css";
 import { GoogleMapContext } from "../../../context/GoogleMapContext";
 import { useContext } from "react";
 
