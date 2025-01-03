@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { ReviewContext } from "../../context/UserReviewContext";
+import { useState, useContext } from "react";
 import "./ReviewForm.css";
 
 export default function ReviewFormModal({
@@ -8,6 +9,8 @@ export default function ReviewFormModal({
 }) {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const { setUpdate } = useContext(ReviewContext);
 
   if (!stationInfo) return <h1>Loading...</h1>;
 
@@ -41,6 +44,7 @@ export default function ReviewFormModal({
     } catch (e) {
       console.error("error ocuur on posting a review", e);
     } finally {
+      setUpdate((prev) => !prev);
       setLoading(false);
     }
   };

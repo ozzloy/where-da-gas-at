@@ -6,16 +6,19 @@ king_seeds = [
         "nick": "demo",
         "email": demo_email,
         "password": "password",
+        "name": "Demo user"
     },
     {
         "nick": "marnie",
         "email": "marnie@example.com",
         "password": "password",
+        "name": "Marnie s"
     },
     {
         "nick": "bobbie",
         "email": "bobbie@example.com",
         "password": "password",
+        "name": "Bobbie Robert"
     },
 ]
 
@@ -30,6 +33,7 @@ def seed_king():
             nick=king_seed["nick"],
             email=king_seed["email"],
             password=king_seed["password"],
+            name=king_seed['name']
         )
         db.session.add(king)
 

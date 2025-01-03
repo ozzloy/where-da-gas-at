@@ -5,6 +5,18 @@ export default function ReviewStationProvider({ children }) {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [update, setUpdate] = useState(false);
+
+  const contextValues = {
+    reviews,
+    setReviews,
+    loading,
+    setLoading,
+    error,
+    setError,
+    update,
+    setUpdate,
+  };
 
   useEffect(() => {
     const fetchTexts = async () => {
@@ -23,11 +35,11 @@ export default function ReviewStationProvider({ children }) {
       }
     };
     fetchTexts();
-  }, []);
+  }, [update]);
 
   return (
     <>
-      <ReviewContext.Provider value={{ reviews, loading, error }}>
+      <ReviewContext.Provider value={contextValues}>
         {children}
       </ReviewContext.Provider>
     </>

@@ -13,7 +13,7 @@ class King(db.Model, KingMixin, SchemaMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     nick = db.Column(db.String(40), nullable=False, unique=True)
-    name = db.Column(db.String(40))
+    name = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     password_hash = db.Column(db.String(255), nullable=False)
     saved_stations = db.relationship(
@@ -37,6 +37,7 @@ class King(db.Model, KingMixin, SchemaMixin):
         return {
             "id": self.id,
             "nick": self.nick,
+            "name": self.name,
             "email": self.email,
             "saved_stations": [
                 station.id for station in self.saved_stations

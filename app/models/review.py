@@ -1,4 +1,5 @@
 from .db import add_prefix_for_prod, db, environment, SchemaMixin
+from .king import King
 
 
 class Review(db.Model, SchemaMixin):
@@ -22,9 +23,12 @@ class Review(db.Model, SchemaMixin):
     text = db.Column(db.Text, nullable=False)
 
     def to_dict(self):
+        king = King.query.get(self.king_id)
+        
         return {
             "id": self.id,
             "king_id": self.king_id,
+            "king_name": king.name,
             "station_id": self.station_id,
             "text": self.text,
         }

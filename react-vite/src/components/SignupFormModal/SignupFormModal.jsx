@@ -8,6 +8,7 @@ function SignupFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [nick, setNick] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -21,7 +22,10 @@ function SignupFormModal() {
     if (nick.length <= 0) {
       errors.nick = "Nick cannot be empty!";
     }
-  }, [email, nick]);
+    if (name.length <= 0) {
+      errors.name = "Name cannot be empty";
+    }
+  }, [email, nick, name]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,6 +42,7 @@ function SignupFormModal() {
         email,
         nick,
         password,
+        name,
       }),
     );
 
@@ -75,6 +80,16 @@ function SignupFormModal() {
               />
             </label>
             {errors.nick && <p>{errors.nick}</p>}
+            <label>
+              Name
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </label>
+            {errors.name && <p>{errors.name}</p>}
             <label>
               Password
               <input

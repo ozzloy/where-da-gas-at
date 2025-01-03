@@ -57,7 +57,7 @@ export const thunkLogin = createAsyncThunk(
 
 export const thunkSignup = createAsyncThunk(
   authActionTypes.signup,
-  async ({ email, nick, password }, { rejectWithValue }) => {
+  async ({ email, nick, password, name }, { rejectWithValue }) => {
     try {
       const response = await fetch("/api/auth/signup", {
         method: "POST",
@@ -66,6 +66,7 @@ export const thunkSignup = createAsyncThunk(
           email,
           nick,
           password,
+          name,
         }),
       });
       if (!response.ok) {

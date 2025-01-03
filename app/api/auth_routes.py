@@ -57,16 +57,20 @@ def sign_up():
     """
     form = SignUpForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+
     if form.validate_on_submit():
+        print('b')
         king = King(
             nick=form.data["nick"],
             email=form.data["email"],
             password=form.data["password"],
+            name=form.data["name"]
         )
         db.session.add(king)
         db.session.commit()
         login_king(king)
         return {"king": {king.id: king.to_dict()}}
+    print(f"what does show", form.errors)
     return form.errors, 401
 
 
