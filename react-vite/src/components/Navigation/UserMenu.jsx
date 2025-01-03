@@ -18,9 +18,9 @@ function UserMenu({
           className={`${userMenuClassName} profile-dropdown`}
           ref={ulRef}
         >
-          {sessionUser && sessionUser.user ? (
+          {sessionUser && sessionUser.nick ? (
             <div className="modal-item-container">
-              <li>{sessionUser.user}</li>
+              <li>{sessionUser.nick}</li>
               <li>{sessionUser.email}</li>
               <li>
                 <button className="logout-button" onClick={logout}>

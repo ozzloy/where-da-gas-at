@@ -7,7 +7,7 @@ import "./SignupForm.css";
 function SignupFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
-  const [user, setUser] = useState("");
+  const [nick, setNick] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -18,10 +18,10 @@ function SignupFormModal() {
     if (!email) {
       errors.email = "Email is required!";
     }
-    if (user.length <= 0) {
-      errors.user = "User cannot be empty!";
+    if (nick.length <= 0) {
+      errors.nick = "Nick cannot be empty!";
     }
-  }, [email, user]);
+  }, [email, nick]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ function SignupFormModal() {
     const serverResponse = await dispatch(
       thunkSignup({
         email,
-        user,
+        nick,
         password,
       }),
     );
@@ -66,15 +66,15 @@ function SignupFormModal() {
             </label>
             {errors.email && <p>{errors.email}</p>}
             <label>
-              Username
+              Nickname
               <input
                 type="text"
-                value={user}
-                onChange={(e) => setUser(e.target.value)}
+                value={nick}
+                onChange={(e) => setNick(e.target.value)}
                 required
               />
             </label>
-            {errors.user && <p>{errors.user}</p>}
+            {errors.nick && <p>{errors.nick}</p>}
             <label>
               Password
               <input
