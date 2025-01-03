@@ -132,7 +132,20 @@ another option is to drop the db and recreate it
 ```bash
 cd where-da-gas-at/react-vite
 npm i
-npm run preview
+npm run dev
+```
+
+which should produce output like this
+
+```
+8:22:39 PM [vite] warning: LintOnStart is turned on, and it will check for all matching files.
+  Plugin: vite-plugin-eslint
+
+  VITE v4.5.2  ready in 753 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h to show help
 ```
 
 ## test
