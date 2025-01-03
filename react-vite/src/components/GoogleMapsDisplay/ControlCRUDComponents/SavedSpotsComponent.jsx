@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 function SavedSpotsComponent() {
-  const sessionUser = useSelector((state) => state.session.user);
+  // const sessionUser = useSelector((state) => state.session.user);
 
   // async function getSavedSpots() {
   //   const response = await fetch(`/api/users/${sessionUser.id}/savedSpots`);
