@@ -1,56 +1,54 @@
-.side-menu-display-container{
-    position: fixed;
-    flex-direction: column;
-    top: 0;
-    left: 0;
-    z-index: 10000;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    padding: 3rem 0rem;
-    align-items: center;
-    background-color: rgba(187, 187, 187, 0.747);
-    transition: transform 0.4s ease;
-    overflow: scroll;
+.side-menu-display-container {
+  position: fixed;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 3rem 0rem;
+  align-items: center;
+  background-color: rgba(187, 187, 187, 0.747);
+  transition: transform 0.4s ease;
+  overflow: scroll;
 }
 
 @media screen and (min-width: 768px) {
-    .side-menu-display-container {
-        width: 50%;
-    }
-    
+  .side-menu-display-container {
+    width: 50%;
+  }
 }
 
 .open-side-menu {
-    transform: translateX(0);
-    gap: 1rem;
+  transform: translateX(0);
+  gap: 1rem;
 }
 .close-side-menu {
-    transform: translateX(-200%);
+  transform: translateX(-200%);
 }
 
-.side-menu-display-header{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
+.side-menu-display-header {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
 }
 
 .station-list-container {
-    max-height: 65vh;
-    overflow: scroll;
-    width: 100%;
-    overflow-x: hidden;
+  max-height: 65vh;
+  overflow: scroll;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-
 .station-display-name {
-    font-size: 1rem;
-    font-weight: 500;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 @media screen and (min-width: 1440px) {
-    .station-display-name {
-        font-size: 2rem;
-    }
+  .station-display-name {
+    font-size: 2rem;
+  }
 }

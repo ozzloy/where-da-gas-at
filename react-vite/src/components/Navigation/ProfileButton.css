@@ -1,60 +1,59 @@
 .user-icon-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: .6rem;
-    border-radius: 100%;
-    border: solid 1px #000;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem;
+  border-radius: 100%;
+  border: solid 1px #000;
+  cursor: pointer;
 }
 
 .profile-dropdown {
-    position: absolute;
-    z-index: 10000;
-    min-width: 8rem;
-    margin-right: 1rem;
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}  
+  position: absolute;
+  z-index: 10000;
+  min-width: 8rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .side-header {
-    background-color: rgb(212, 212, 212);
+  background-color: rgb(212, 212, 212);
 }
 
 .nav-menu {
-    right: 0;
-    background-color: rgba(212, 212, 212, 0.788);
+  right: 0;
+  background-color: rgba(212, 212, 212, 0.788);
 }
 
 .user-icon {
-    width: 1rem;
-    height: 1rem;
-    cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 1440px) {
-    .user-icon {
-        width: 2rem;
-        height: 2rem;
-    }
+  .user-icon {
+    width: 2rem;
+    height: 2rem;
+  }
 
-    .profile-dropdown {
-        min-width: 20rem;
-        min-height: 10rem;
-    }
+  .profile-dropdown {
+    min-width: 20rem;
+    min-height: 10rem;
+  }
 
-    .modal-item-container {
-        display: flex;
-        padding: 1rem;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-    }
-    
+  .modal-item-container {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
 }

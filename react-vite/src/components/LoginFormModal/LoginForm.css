@@ -6,17 +6,15 @@
   position: relative;
   border-bottom: solid 1px #ccc;
   padding: 20px;
-
 }
 
-.input-field{
+.input-field {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10px;
   gap: 5px;
-
 }
 
 input {

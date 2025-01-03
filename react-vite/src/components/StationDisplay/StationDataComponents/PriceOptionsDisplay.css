@@ -1,20 +1,19 @@
 .options-container {
-    display: flex;
-    overflow: scroll;
-    width: 100%;
+  display: flex;
+  overflow: scroll;
+  width: 100%;
 }
 
-
 .price-option-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0.5rem;
-    padding: 0.5rem;
-    min-height: 5rem;
-    width: 100%;
-    border: 1px solid #000;
-    border-radius: 0.5rem;
-    background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  min-height: 5rem;
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 0.5rem;
+  background-color: #f0f0f0;
 }

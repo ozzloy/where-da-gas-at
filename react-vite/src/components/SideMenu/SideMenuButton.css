@@ -16,5 +16,5 @@
     z-index: 100000;
 } */
 .close-side-menu-button {
-    transform: rotate(-180deg);
+  transform: rotate(-180deg);
 }

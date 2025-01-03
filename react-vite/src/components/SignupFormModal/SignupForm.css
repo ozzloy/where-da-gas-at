@@ -8,13 +8,12 @@
   padding: 10px;
 }
 
-.input-field{
+.input-field {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2px;
-
 }
 
 .close_btn {
@@ -23,5 +22,4 @@
   left: 10px;
   cursor: pointer;
   border: none;
-
 }
