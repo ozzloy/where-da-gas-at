@@ -36,7 +36,10 @@ function StationDisplay() {
         <p>{stationInfo.formattedAddress}</p>
         <PriceOptionsDisplay stationInfo={stationInfo} />
         <div className="review-map-container">
-          <ReviewsDisplay stationInfo={stationInfo} />
+          <ReviewsDisplay
+            stationInfo={stationInfo}
+            onReviewAdded={console.log}
+          />
           <Map
             center={center}
             style={{
@@ -45,7 +48,10 @@ function StationDisplay() {
               minHeight: "32rem",
             }}
             mapId={
-              import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID ||
+              import.meta.env
+                .VITE_REACT_APP_GOOGLE_MAP_ID_DARK_MODE ||
+              import.meta.env
+                .VITE_REACT_APP_GOOGLE_MAP_ID_LIGHT_MODE ||
               "e2ea39204ffcffc4"
             }
             zoom={18}

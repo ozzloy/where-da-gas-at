@@ -28,15 +28,3 @@ html {
   max-width: 2560px;
   width: 100%;
 }
-
-html.light {
-  background-color: white;
-  color: black;
-  height: 100vh;
-}
-
-html.dark {
-  background-color: black;
-  color: green;
-  height: 100vh;
-}

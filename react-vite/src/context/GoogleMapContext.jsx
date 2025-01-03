@@ -19,6 +19,7 @@ export function GoogleMapProvider({ children }) {
     "electric_vehicle_charging_station",
   ]);
   const [zoom, setZoom] = useState(17);
+
   //Use map hook is made by vis.gl to get the map instance
   //We can use this to get all the information about the map
   const map = useMap();

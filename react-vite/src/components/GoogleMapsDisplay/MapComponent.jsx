@@ -1,5 +1,5 @@
 import { Map, AdvancedMarker } from "@vis.gl/react-google-maps";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { GoogleMapContext } from "../../context/GoogleMapContext";
 import "./MapComponent.css";
 import GoogleMapsNearByLocations from "./GoogleMapsNearByLocations";
@@ -18,6 +18,16 @@ function MapComponent() {
     setZoom,
   } = useContext(GoogleMapContext);
 
+  const [mapId, setMapId] = useState(
+    import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID_DARK_MODE,
+  );
+
+  const toggleTheme = () => {
+    setMapId(import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID_LIGHT_MODE);
+  };
+
+  // console.log("what will be the mapId Shown", mapId);
+
   //This useEffect will run when the map and newCenter is available
   useEffect(() => {
     if (map && newCenter) {
@@ -32,41 +42,40 @@ function MapComponent() {
     }
   };
   return (
-    //This is the main map rendered on the screen. There are a lot of
-    //prebuilt props that can be used to customize the map.
-    <Map
-      // onLoad={onLoad}
-      onDragend={handleDragEnd}
-      style={{ width: "100%", height: "100vh" }}
-      defaultCenter={center}
-      mapId={
-        import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID ||
-        "e2ea39204ffcffc4"
-      }
-      defaultZoom={15}
-      zoom={zoom}
-      onZoomChanged={() => setZoom(map.getZoom())}
-      onClick={() => selectedStation && setSelectedStation(null)}
-      disableDefaultUI={true}
-      gestureHandling={"greedy"}
-    >
-      <AdvancedMarker position={center}>
-        <div>
-          <img
-            className="user-marker"
-            src="/user.svg"
-            width={32}
-            height={32}
-          />
-        </div>
-      </AdvancedMarker>
-      {/* Here we conditionally render the Info Window Component. If a
-       * user selects a station the it will appear */}
-      {selectedStation && <InfoWindowComponent />}
-      {/* This is the component that will render all the nearby
-       * station markers on the map */}
-      <GoogleMapsNearByLocations nearbyStations={nearbyStations} />
-    </Map>
+    <>
+      <button onClick={() => toggleTheme}></button>
+
+      <Map
+        // onLoad={onLoad}
+        onDragend={handleDragEnd}
+        style={{ width: "100%", height: "100vh" }}
+        defaultCenter={center}
+        mapId={mapId}
+        defaultZoom={15}
+        zoom={zoom}
+        onZoomChanged={() => setZoom(map.getZoom())}
+        onClick={() => selectedStation && setSelectedStation(null)}
+        disableDefaultUI={true}
+        gestureHandling={"greedy"}
+      >
+        <AdvancedMarker position={center}>
+          <div>
+            <img
+              className="user-marker"
+              src="/user.svg"
+              width={32}
+              height={32}
+            />
+          </div>
+        </AdvancedMarker>
+        {/* Here we conditionally render the Info Window Component. If a
+         * user selects a station the it will appear */}
+        {selectedStation && <InfoWindowComponent />}
+        {/* This is the component that will render all the nearby
+         * station markers on the map */}
+        <GoogleMapsNearByLocations nearbyStations={nearbyStations} />
+      </Map>
+    </>
   );
 }
 
