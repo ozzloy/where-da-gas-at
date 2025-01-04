@@ -17,14 +17,22 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
 }
 
-.main-body-container {
+.main-body-container-dark {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: white;
+  background: rgba(48, 70, 95, 0.3);
+  max-width: 2560px;
+  width: 100%;
+}
+
+.main-body-container-light {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: rgb(244, 250, 252);
   max-width: 2560px;
   width: 100%;
 }
