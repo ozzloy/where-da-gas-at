@@ -102,6 +102,21 @@ def create_current_king_station(station_id):
     return "", 201
 
 
+@king_routes.route("/current/stations", methods=["GET"])
+@login_required
+def get_current_king_stations():
+    """
+    get all stations for the current king
+    """
+    # make sure there is a station with station id.
+    stations = current_king.saved_stations
+
+    # return the station details
+    return {
+        "stations": [station.to_dict() for station in stations]
+    }, 200
+
+
 @king_routes.route(
     "/current/station/<string:station_id>", methods=["DELETE"]
 )

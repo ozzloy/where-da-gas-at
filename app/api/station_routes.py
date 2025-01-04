@@ -36,6 +36,9 @@ def create_station():
     form = StationForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
+        existing_station = Station.query.get(form.data["id"])
+        if existing_station:
+            return {"error": f"Station with id {form.data['id']} already exists"}, 400
         station = Station(
             id=form.data["id"],
             name=form.data["name"],
@@ -48,7 +51,7 @@ def create_station():
         db.session.add(station)
         db.session.commit()
         return {"station": {station.id: station.to_dict()}}
-    return form.errors, 401
+    return form.errors, 400
 
 
 @station_routes.route("/<string:id>", methods=["PUT"])
