@@ -1,6 +1,7 @@
 import { Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 import { useEffect, useContext, useState } from "react";
 import { GoogleMapContext } from "../../context/GoogleMapContext";
+import { useSelector } from "react-redux";
 import "./MapComponent.css";
 import GoogleMapsNearByLocations from "./GoogleMapsNearByLocations";
 import InfoWindowComponent from "./InfoWindowComponent";
@@ -20,11 +21,14 @@ function MapComponent() {
   } = useContext(GoogleMapContext);
 
   const { theme } = useTheme();
-
   const [mapId, setMapId] = useState(
     import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID_DARK_MODE,
   );
 
+  const [stations, setStations] = useState([]);
+  const sessionUser = useSelector((state) => state.session.user);
+
+  //This useEffect will run when the map and newCenter is available
   useEffect(() => {
     if (map && newCenter) {
       map.setCenter(newCenter);
@@ -45,6 +49,83 @@ function MapComponent() {
       setNewCenter({ lat: newCenter.lat(), lng: newCenter.lng() });
     }
   };
+
+  useEffect(() => {
+    if (sessionUser.errors) return;
+
+    const fetchStations = async () => {
+      try {
+        const res = await fetch("/api/station/", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        setStations(Object.values(data.station));
+      } catch (error) {
+        console.error("Failed to fetch stations:", error);
+      }
+    };
+    fetchStations();
+  }, [sessionUser]);
+
+  useEffect(() => {
+    if (sessionUser.errors) return;
+
+    const postStation = async (station) => {
+      const body = {
+        id: station.id,
+        name: station.displayName.text,
+        lat: station.location.latitude,
+        lng: station.location.longitude,
+        address: station.formattedAddress,
+        uri: station.googleMapsUri,
+      };
+
+      try {
+        const res = await fetch("/api/station/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        });
+
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        console.log("Station saved successfully:", data);
+      } catch (error) {
+        console.error("Failed to post station:", error);
+      }
+    };
+
+    const postUnsavedStations = async () => {
+      const existingStationIds = stations.map(
+        (station) => station.id,
+      );
+      console.log("Existing station IDs:", existingStationIds);
+      const unsavedStations = nearbyStations.filter(
+        (station) => !existingStationIds.includes(station.id),
+      );
+
+      console.log("Unsaved stations:", unsavedStations);
+      for (const station of unsavedStations) {
+        await postStation(station);
+      }
+    };
+
+    postUnsavedStations();
+  }, [nearbyStations, sessionUser, stations]);
+
   return (
     <>
       {/* <button onClick={() => toggleTheme}></button> */}
