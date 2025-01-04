@@ -39,11 +39,11 @@ function StationDisplay() {
     lat: stationInfo.location.latitude,
     lng: stationInfo.location.longitude,
   };
-  console.log(stationInfo);
+
   return (
     <section className={`station-display-main-container-${theme}`}>
       <div className="image-scroll-track">
-        <StationImageDisplay />
+        {stationInfo.photos && <StationImageDisplay />}
       </div>
       <div className="station-data-container">
         <h1>{stationInfo.displayName.text}</h1>

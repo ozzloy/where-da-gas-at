@@ -18,7 +18,7 @@ function useGetSelectedStation({ id }) {
       };
       try {
         const response = await fetch(
-          `https://places.googleapis.com/v1/places/${id}?key=${API_KEY}`,
+          `https://places.googleapis.com/v1/places/${id}`,
           requestOptions,
         );
         if (!response.ok) {

@@ -55,8 +55,8 @@ li {
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 4rem;
+  height: 4rem;
 }
 
 @media screen and (min-width: 1440px) {
