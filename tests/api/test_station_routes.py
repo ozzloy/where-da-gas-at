@@ -3,6 +3,7 @@ import requests
 from typing import Dict, Any
 
 from .auth import create_station
+from .validators import is_close
 
 
 @pytest.mark.skip(reason="not sure why this is failing")
@@ -354,8 +355,8 @@ def test_update_station():
         station = station_data[newest_id]
         assert station["id"] == newest_id
         assert station["name"] == new_station["name"]
-        assert station["lat"] == new_station["lat"]
-        assert station["lng"] == new_station["lng"]
+        assert is_close(station["lat"], new_station["lat"])
+        assert is_close(station["lng"], new_station["lng"])
         assert station["address"] == new_station["address"]
         assert station["uri"] == new_station["uri"]
 

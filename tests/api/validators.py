@@ -14,6 +14,15 @@ python_types = {
 }
 
 
+def is_close(a, b, delta=0.000000000000004):
+    # FAILED tests/api/test_station_routes.py::test_update_station
+    # assert
+    #  47.6174997
+    # -47.617499699999996
+    #   0.000000000000004
+    return abs(a - b) <= delta
+
+
 def validate_response(
     response: requests.Response,
     status: int = 200,
