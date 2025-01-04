@@ -21,7 +21,12 @@ def read_stations():
 @station_routes.route("/<string:id>", methods=["GET"])
 @login_required
 def read_station(id):
+    """
+    get a station by id
+    """
     station = Station.query.get(id)
+    if not station:
+        return {"error": f"station {station_id} does not exist"}, 404
     return {"station": {station.id: station.to_dict()}}
 
 
