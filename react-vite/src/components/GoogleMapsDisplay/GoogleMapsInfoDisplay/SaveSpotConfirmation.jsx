@@ -21,9 +21,7 @@ function SaveSpotConfirmation() {
     }
 
     try {
-      const res = await fetch(
-        `/api/king/current/station/${selectedStation.id}`,
-      );
+      const res = await fetch(`/api/station/${selectedStation.id}`);
       if (!res.ok) {
         console.log("Station does not exist");
       }
@@ -35,7 +33,7 @@ function SaveSpotConfirmation() {
 
     try {
       const response = await fetch(
-        `/api/king/current/station/${selectedStation.id}`,
+        `/api/station/${selectedStation.id}`,
         {
           method: "POST",
           headers: {
