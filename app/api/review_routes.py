@@ -87,34 +87,17 @@ def update_review(review_id):
         updated_form["csrf_token"].data = request.cookies[
             "csrf_token"
         ]
+        updated_form["king_id"].data = current_king.id
 
-        if updated_form.validate_on_submit():
-            review = Review.query.filter(
-                Review.id == review_id
-            ).first()
-
-        # failure
+        review = Review.query.get(review_id)
         if not review:
-            # TODO: return only messages that apply
-            return (
-                jsonify(
-                    {
-                        "message": "bad request",
-                        "error": {
-                            "text": "text is required",
-                            "station_id": "station id is required",
-                            "king_id": f"{review.id}",
-                        },
-                    }
-                ),
-                400,
-            )
-
-        # unathorized
-        if not current_king.id == review.king_id:
+            return {"message": f"review {review_id} couldn't be found"}, 404
+        if not updated_form.validate_on_submit():
+            return updated_form.errors, 400
+        
+        if not review.king_id == current_king.id:
             return {"error": {"message": "Unauthorized"}}, 401
-
-        review.king_id = updated_form.data["king_id"]
+        
         review.station_id = updated_form.data["station_id"]
         review.text = updated_form.data["text"]
 

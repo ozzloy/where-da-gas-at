@@ -1,16 +1,23 @@
 import { ReviewContext } from "../../context/UserReviewContext";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import "./ReviewForm.css";
 
 export default function ReviewFormModal({
   onClose,
   stationInfo,
   onSubmitReview,
+  review = null,
 }) {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { setUpdate } = useContext(ReviewContext);
+
+  useEffect(() => {
+    if (review) {
+      setText(review.text);
+    }
+  }, [review]);
 
   if (!stationInfo) return <h1>Loading...</h1>;
 
@@ -25,14 +32,26 @@ export default function ReviewFormModal({
     setLoading(true);
 
     try {
-      // Correct the fetch request syntax
-      const res = await fetch("/api/review/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newText),
-      });
+      let res;
+      if (review) {
+        // Update existing review with PUT method
+        res = await fetch(`/api/review/${review.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newText),
+        });
+      } else {
+        // Create new review with POST method
+        res = await fetch("/api/review/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newText),
+        });
+      }
 
       if (!res.ok) {
         throw new Error("Failed to submit review");
@@ -70,7 +89,7 @@ export default function ReviewFormModal({
           type="submit"
           disabled={text.length <= 0 || loading}
         >
-          Submit Your Review
+          {review ? "Edit Your Review" : "Sumbit Your Review"}
         </button>
       </form>
       <button

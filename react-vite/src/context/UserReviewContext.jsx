@@ -23,7 +23,6 @@ export default function ReviewStationProvider({ children }) {
       try {
         const res = await fetch("/api/review");
         const data = await res.json();
-        // console.log("what is my data shows", data);
         if (!res.ok) {
           throw new Error("Failed to fetch reviews");
         }
