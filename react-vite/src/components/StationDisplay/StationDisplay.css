@@ -1,16 +1,37 @@
-.image-scroll-track {
+.image-scroll-track-dark {
   display: flex;
   width: 100%;
   gap: 1rem;
+  background-color: black;
 }
 
-.station-display-main-container {
+.image-scroll-track-light {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  background-color: white;
+}
+
+.station-display-main-container-dark {
   display: flex;
   flex-direction: column;
   margin-top: 7rem;
   align-items: center;
   width: 100%;
   height: 100%;
+  background-color: black;
+  color: green;
+}
+
+.station-display-main-container-light {
+  display: flex;
+  flex-direction: column;
+  margin-top: 7rem;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  color: black;
 }
 
 .station-data-container {

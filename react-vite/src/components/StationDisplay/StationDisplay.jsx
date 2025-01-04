@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GoogleMapContext } from "../../context/GoogleMapContext";
 import { useGetSelectedStation } from "../../hooks/useGetSelectedStation";
 import "./StationDisplay.css";
@@ -7,10 +7,16 @@ import StationImageDisplay from "./StationDataComponents/StationImageDisplay";
 import PriceOptionsDisplay from "./StationDataComponents/PriceOptionsDisplay";
 import ReviewsDisplay from "./StationDataComponents/ReviewsDisplay";
 import { AdvancedMarker, Map } from "@vis.gl/react-google-maps";
+import { useTheme } from "../../context/ThemeContext";
 
 function StationDisplay() {
   const { id } = useParams();
   const stationInfo = useGetSelectedStation({ id });
+  const { theme } = useTheme();
+
+  const [mapId, setMapId] = useState(
+    import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID_DARK_MODE,
+  );
 
   const { setSelectedStation } = useContext(GoogleMapContext);
 
@@ -20,6 +26,14 @@ function StationDisplay() {
     }
   }, [stationInfo, setSelectedStation]);
 
+  useEffect(() => {
+    setMapId(
+      theme === "dark"
+        ? import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID_DARK_MODE
+        : import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID_LIGHT_MODE,
+    );
+  }, [theme]);
+
   if (!stationInfo) return <h1>Loading...</h1>;
   const center = {
     lat: stationInfo.location.latitude,
@@ -27,7 +41,7 @@ function StationDisplay() {
   };
   console.log(stationInfo);
   return (
-    <section className="station-display-main-container">
+    <section className={`station-display-main-container-${theme}`}>
       <div className="image-scroll-track">
         <StationImageDisplay />
       </div>
@@ -47,13 +61,7 @@ function StationDisplay() {
               height: "100%",
               minHeight: "32rem",
             }}
-            mapId={
-              import.meta.env
-                .VITE_REACT_APP_GOOGLE_MAP_ID_DARK_MODE ||
-              import.meta.env
-                .VITE_REACT_APP_GOOGLE_MAP_ID_LIGHT_MODE ||
-              "e2ea39204ffcffc4"
-            }
+            mapId={mapId}
             zoom={18}
             disableDefaultUI={true}
             gestureHandling={"greedy"}

@@ -7,6 +7,7 @@ import SideHeaderComponent from "./SideMenuHeaderComponents/SideHeaderComponent"
 
 function SideMenuDisplay({ openSideMenu }) {
   const { center } = useContext(GoogleMapContext);
+
   const nearbyStations = useGetNearByStations({
     center,
   });

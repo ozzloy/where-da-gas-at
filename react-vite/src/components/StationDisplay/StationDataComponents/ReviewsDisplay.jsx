@@ -10,9 +10,14 @@ import { ReviewContext } from "../../../context/UserReviewContext";
 
 function ReviewsDisplay({ stationInfo, onReviewAdded }) {
   const { setModalContent, closeModal } = useModal();
+  const { reviews, setReviews } = useContext(ReviewContext);
 
   const sessionUser = useSelector((store) => store.session.user);
-  const { reviews, setReviews } = useContext(ReviewContext);
+  const userReview = reviews.find(
+    (review) =>
+      review.station_id === stationInfo.id &&
+      review.king_id === sessionUser.id,
+  );
 
   // handle sumbitted reivew in modal
   const handleSumbitReview = (newReview) => {
@@ -45,12 +50,10 @@ function ReviewsDisplay({ stationInfo, onReviewAdded }) {
   };
 
   const deleteReview = async (review_id) => {
-    // console.log("what is review show_id ?", review_id);
     try {
       const res = await fetch(`/api/review/${review_id}`, {
         method: "DELETE",
       });
-
       if (!res.ok) {
         throw new Error("Failed to delete review");
       }
@@ -67,11 +70,14 @@ function ReviewsDisplay({ stationInfo, onReviewAdded }) {
     return (
       <div className="reviews-container">
         <div className="user-info-display">
-          <span>
-            <button onClick={() => openCommentModal()}>
-              Write Your Review
-            </button>
-          </span>
+          {!userReview && (
+            <span>
+              <button onClick={() => openCommentModal()}>
+                Write Your Review
+              </button>
+            </span>
+          )}
+
           {reviews
             .filter((review) => review.station_id === stationInfo.id)
             .map((review) => (
@@ -91,7 +97,6 @@ function ReviewsDisplay({ stationInfo, onReviewAdded }) {
                         Edit
                       </button>
                     </span>
-
                     <span>
                       <button
                         onClick={() => handleDeletedModal(review.id)}

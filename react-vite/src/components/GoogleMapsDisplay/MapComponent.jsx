@@ -4,6 +4,7 @@ import { GoogleMapContext } from "../../context/GoogleMapContext";
 import "./MapComponent.css";
 import GoogleMapsNearByLocations from "./GoogleMapsNearByLocations";
 import InfoWindowComponent from "./InfoWindowComponent";
+import { useTheme } from "../../context/ThemeContext";
 
 function MapComponent() {
   const {
@@ -18,22 +19,25 @@ function MapComponent() {
     setZoom,
   } = useContext(GoogleMapContext);
 
+  const { theme } = useTheme();
+
   const [mapId, setMapId] = useState(
     import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID_DARK_MODE,
   );
 
-  const toggleTheme = () => {
-    setMapId(import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID_LIGHT_MODE);
-  };
-
-  // console.log("what will be the mapId Shown", mapId);
-
-  //This useEffect will run when the map and newCenter is available
   useEffect(() => {
     if (map && newCenter) {
       map.setCenter(newCenter);
     }
   }, [map, newCenter, center]);
+
+  useEffect(() => {
+    setMapId(
+      theme === "dark"
+        ? import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID_DARK_MODE
+        : import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID_LIGHT_MODE,
+    );
+  }, [theme]);
 
   const handleDragEnd = () => {
     if (map) {
@@ -43,7 +47,7 @@ function MapComponent() {
   };
   return (
     <>
-      <button onClick={() => toggleTheme}></button>
+      {/* <button onClick={() => toggleTheme}></button> */}
 
       <Map
         // onLoad={onLoad}

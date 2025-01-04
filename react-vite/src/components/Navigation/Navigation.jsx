@@ -12,9 +12,9 @@ function Navigation() {
 
   if (!openSideMenu) {
     return (
-      <ul className="nav-data-container">
+      <ul className={`nav-data-container-${theme}`}>
         <li>
-          <NavLink to="/" className="logo-container">
+          <NavLink to="/" className={`logo-container-${theme}`}>
             <img src="/Logo.ico" className="logo" alt="logo" />
             <p>Where da gas at?</p>
           </NavLink>

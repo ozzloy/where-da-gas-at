@@ -4,7 +4,7 @@
   overflow: scroll;
 }
 
-.gas-station-image {
+.gas-station-image-dark {
   width: 100%;
   height: 100%;
   max-width: 30rem;
@@ -14,7 +14,22 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  background-color: black;
 }
+
+.gas-station-image-light {
+  width: 100%;
+  height: 100%;
+  max-width: 30rem;
+  max-height: 30rem;
+  min-width: 10rem;
+  min-height: 10rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
 @media screen and (min-width: 1440px) {
   .gas-station-image-container {
     justify-content: center;

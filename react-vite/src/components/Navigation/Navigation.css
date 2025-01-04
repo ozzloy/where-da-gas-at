@@ -1,4 +1,21 @@
-.nav-data-container {
+.nav-data-container-dark {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  height: 10%;
+  width: 100%;
+  max-width: 2560px;
+  position: absolute;
+  z-index: 200000;
+  background: rgba(36, 48, 62, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(36, 48, 62, 0.3);
+}
+
+.nav-data-container-light {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,7 +32,16 @@
   border: 1px solid rgba(235, 235, 235, 0.3);
 }
 
-.logo-container {
+.logo-container-dark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  color: green;
+  text-decoration: none;
+}
+
+.logo-container-light {
   display: flex;
   justify-content: center;
   align-items: center;
