@@ -1,5 +1,3 @@
-from sqlalchemy.sql import text
-
 from app.models import db, Review, undo_table
 from app.models.station import Station
 from app.models.king import King
