@@ -20,6 +20,7 @@ def make_random_string(length: int = 10) -> str:
 def make_king(overrides: Dict[str, Any] = None) -> Dict[str, Any]:
     king_data = {
         "nick": make_random_string(),
+        "name": make_random_string(),
         "email": f"{make_random_string()}@example.com",
         "password": "password",
     }
