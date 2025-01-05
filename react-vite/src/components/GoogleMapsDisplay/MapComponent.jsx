@@ -51,7 +51,7 @@ function MapComponent() {
   };
 
   useEffect(() => {
-    if (sessionUser?.errors) return;
+    if (sessionUser === null || sessionUser.errors) return;
 
     const fetchStations = async () => {
       try {

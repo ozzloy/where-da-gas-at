@@ -13,10 +13,11 @@ function ReviewsDisplay({ stationInfo, onReviewAdded }) {
   const { reviews, setReviews } = useContext(ReviewContext);
 
   const sessionUser = useSelector((store) => store.session.user);
+
   const userReview = reviews.find(
     (review) =>
       review.station_id === stationInfo.id &&
-      review.king_id === sessionUser.id,
+      review.king_id === sessionUser?.id,
   );
 
   // handle sumbitted reivew in modal
