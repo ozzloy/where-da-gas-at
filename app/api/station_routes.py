@@ -26,7 +26,7 @@ def read_station(id):
     """
     station = Station.query.get(id)
     if not station:
-        return {"error": f"station {station_id} does not exist"}, 404
+        return {"error": f"station {id} does not exist"}, 404
     return {"station": {station.id: station.to_dict()}}
 
 
@@ -41,7 +41,7 @@ def create_station():
         return form.errors, 400
 
     created_status = 201
-    update_ok_status = 200
+    updated_ok_status = 200
 
     status = created_status
 
