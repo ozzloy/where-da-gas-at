@@ -1,19 +1,22 @@
 import { ReviewContext } from "../../../context/UserReviewContext";
 import { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useModal } from "../../../context/Modal";
+import ReviewFormModal from "../../ReviewFormModal/ReviewFormModal";
+import DeletedReviewFormModal from "../../DeletedReviewFormModal/DeletedReviewFormModal";
 import "./UserReviewDisplay.css";
 
-export default function UserReviewsDisplay() {
-  const { reviews, loading, error } = useContext(ReviewContext);
+export default function UserReviewsDisplay({ onReviewAdded }) {
+  const { reviews, setReviews, loading, error } =
+    useContext(ReviewContext);
   const sessionUser = useSelector((store) => store.session.user);
   const [station, setStation] = useState({});
+  const { closeModal, setModalContent } = useModal();
 
   useEffect(() => {
     async function fetchStation() {
       const res = await fetch(`/api/station/`);
       const data = await res.json();
-
-      console.log(data);
 
       if (!res.ok) {
         throw new Error("Failed to get stations");
@@ -23,10 +26,56 @@ export default function UserReviewsDisplay() {
     fetchStation();
   }, []);
 
+  // handle sumbitted reivew in modal
+  const handleSumbitReview = (newReview) => {
+    onReviewAdded(newReview);
+    closeModal();
+  };
+
+  // open the modal for writing a review
+  const onReviewEdited = (review) => {
+    setModalContent(
+      <ReviewFormModal
+        onClose={closeModal}
+        stationId={review.station_id}
+        onSubmitReview={handleSumbitReview}
+        review={review}
+      />,
+    );
+  };
+
+  // handle for deleting a reivew
+  const onReviewDeleted = (review_id) => {
+    setModalContent(
+      <DeletedReviewFormModal
+        onDelete={() => deleteReview(review_id)}
+        onClose={closeModal}
+        type="Review"
+      />,
+    );
+  };
+
+  const deleteReview = async (review_id) => {
+    try {
+      const res = await fetch(`/api/review/${review_id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to delete review");
+      }
+      setReviews((prevReviews) =>
+        prevReviews.filter((review) => review.id !== review_id),
+      );
+    } catch (e) {
+      console.error("Error deleting reivew", e);
+    }
+    closeModal();
+  };
+
   if (loading) return <p>Loading reviews...</p>;
   if (error) return <p>Error: {error}</p>;
   if (reviews.length === 0) {
-    return "no reivew";
+    return <p>No Review Yet</p>;
   }
 
   return (
@@ -44,6 +93,14 @@ export default function UserReviewsDisplay() {
                   : review.station_id}
               </p>
               <p>Review: {review.text}</p>
+              <div>
+                <button onClick={() => onReviewEdited(review)}>
+                  Edit
+                </button>
+                <button onClick={() => onReviewDeleted(review.id)}>
+                  Delete
+                </button>
+              </div>
             </li>
           ))}
       </ul>

@@ -11,7 +11,7 @@ import { useTheme } from "../../context/ThemeContext";
 
 function StationDisplay() {
   const { id } = useParams();
-  const stationInfo = useGetSelectedStation({ id });
+  const stationInfo = useGetSelectedStation(id);
   const { theme } = useTheme();
 
   const [mapId, setMapId] = useState(

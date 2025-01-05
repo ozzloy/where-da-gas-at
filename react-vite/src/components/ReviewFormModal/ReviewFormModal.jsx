@@ -1,16 +1,17 @@
 import { ReviewContext } from "../../context/UserReviewContext";
 import { useState, useContext, useEffect } from "react";
 import "./ReviewForm.css";
+import { useGetSelectedStation } from "../../hooks/useGetSelectedStation";
 
 export default function ReviewFormModal({
   onClose,
-  stationInfo,
+  stationId,
   onSubmitReview,
   review = null,
 }) {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const stationInfo = useGetSelectedStation(stationId);
   const { setUpdate } = useContext(ReviewContext);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function ReviewFormModal({
     }
   }, [review]);
 
-  if (!stationInfo) return <h1>Loading...</h1>;
+  if (!stationInfo) return <h1>Loading Station Info</h1>;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

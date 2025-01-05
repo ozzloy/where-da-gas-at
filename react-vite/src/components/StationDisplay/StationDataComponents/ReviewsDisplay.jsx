@@ -32,7 +32,7 @@ function ReviewsDisplay({ stationInfo, onReviewAdded }) {
     setModalContent(
       <ReviewFormModal
         onClose={closeModal}
-        stationInfo={stationInfo}
+        stationId={stationInfo.id}
         onSubmitReview={handleSumbitReview}
         review={review}
       />,

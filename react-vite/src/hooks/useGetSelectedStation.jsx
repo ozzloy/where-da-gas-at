@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const API_KEY = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 
-function useGetSelectedStation({ id }) {
+function useGetSelectedStation(id) {
   const [selectedStationData, setSelectedStationData] =
     useState(null);
 
