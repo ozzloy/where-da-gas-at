@@ -33,12 +33,27 @@ def read_station(id):
 @station_routes.route("/", methods=["POST"])
 @login_required
 def create_station():
+    """insert new station, or update extant station"""
     form = StationForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        existing_station = Station.query.get(form.data["id"])
-        if existing_station:
-            return {"error": f"Station with id {form.data['id']} already exists"}, 400
+
+    if not form.validate_on_submit():
+        return form.errors, 400
+
+    created_status = 201
+    update_ok_status = 200
+
+    status = created_status
+
+    station = Station.query.get(form.data["id"])
+    if station:
+        station.name = form.data["name"]
+        station.lat = form.data["lat"]
+        station.lng = form.data["lng"]
+        station.address = form.data["address"]
+        station.uri = form.data["uri"]
+        status = updated_ok_status
+    else:
         station = Station(
             id=form.data["id"],
             name=form.data["name"],
@@ -47,11 +62,10 @@ def create_station():
             address=form.data["address"],
             uri=form.data["uri"],
         )
-        print(station)
         db.session.add(station)
-        db.session.commit()
-        return {"station": {station.id: station.to_dict()}}
-    return form.errors, 400
+
+    db.session.commit()
+    return {"station": {station.id: station.to_dict()}}, status
 
 
 @station_routes.route("/<string:id>", methods=["PUT"])
