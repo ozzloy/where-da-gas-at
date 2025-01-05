@@ -21,7 +21,7 @@ station_seeds = [
         "uri": "https://maps.google.com/?cid=1862383325217865551",
     },
     {
-        "id": "0-example-location-id",
+        "id": "ChIJQdYjqXSXwoARujvHbmWZB4M",
         "name": "Tesla Supercharger",
         "lat": 47.6164997,
         "lng": -122.0332938,

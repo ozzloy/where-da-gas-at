@@ -9,7 +9,7 @@ export function GoogleMapProvider({ children }) {
   //These are all the bits of state that will be shared between the components
   //If you need to add more feel free to add them here
   const [center, setCenter] = useState(null);
-  const [nearbyStations, setNearbyStations] = useState(null);
+  const [nearbyStations, setNearbyStations] = useState([]);
   const [openSideMenu, setOpenSideMenu] = useState(false);
   const [newCenter, setNewCenter] = useState(center);
   const [selectedStation, setSelectedStation] = useState(null);
