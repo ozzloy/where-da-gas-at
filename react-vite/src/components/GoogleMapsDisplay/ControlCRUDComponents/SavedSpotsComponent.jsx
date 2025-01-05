@@ -69,9 +69,6 @@ function SavedSpotsComponent() {
     try {
       const res = await fetch(`/api/king/current/station/${id}`, {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
       });
 
       if (!res.ok) {
@@ -100,16 +97,27 @@ function SavedSpotsComponent() {
         const userStations = Object.values(userStationData.stations);
 
         const stationsData = await Promise.all(
-          userStations.map(async (spot) => {
-            const selectedStationData = await fetchSelectedStation(
-              spot.id,
-            );
-            const photoUrls = await fetchPhotoUrl(
-              selectedStationData,
-            );
-            return { ...selectedStationData, photoUrls };
+          userStations.map(async (station) => {
+            try {
+              const selectedStationData = await fetchSelectedStation(
+                station.id,
+              );
+
+              const photoUrls = await fetchPhotoUrl(
+                selectedStationData,
+              );
+              return { ...selectedStationData, photoUrls };
+            } catch (e) {
+              return {
+                id: "no id",
+                googleMapsUri: "no googleMap exists",
+                photos: [],
+                displayName: { text: "no displayname text exists" },
+              };
+            }
           }),
         );
+        console.log("stationData =", stationsData);
 
         setSelectedStations(stationsData);
       } catch (error) {
@@ -167,19 +175,19 @@ function SavedSpotsComponent() {
   return (
     <div className="saved-spots-container">
       <h3>Saved Stations: </h3>
-      {selectedStations.map((spot, index) => {
-        if (spot) {
+      {selectedStations.map((station, index) => {
+        if (station) {
           return (
-            <div key={spot + index} className="saved-spot-item">
+            <div key={station + index} className="saved-spot-item">
               <div
                 className="delete-icon-container"
-                onClick={() => setOpenConfirmation(spot.id)}
+                onClick={() => setOpenConfirmation(station.id)}
               >
                 <FaTrash className="delete-icon" />
               </div>
               <DisplayCard
-                selectedStation={spot}
-                photoUrl={photoUrl[spot.id]}
+                selectedStation={station}
+                photoUrl={photoUrl[station.id]}
               />
             </div>
           );
