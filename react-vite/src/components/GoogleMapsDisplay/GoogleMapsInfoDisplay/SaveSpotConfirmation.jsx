@@ -22,21 +22,8 @@ function SaveSpotConfirmation() {
     }
 
     try {
-      const res = await fetch(`/api/station/${selectedStation.id}`);
-      console.log(res);
-      if (res.status === 403 || res.status === 404) {
-        console.log("Station does not exist");
-      } else {
-        setMessage("Station is already saved");
-        return;
-      }
-    } catch (err) {
-      console.error("Failed to save station:", err);
-    }
-
-    try {
       const response = await fetch(
-        `/api/station/${String(selectedStation.id)}`,
+        `/api/king/current/station/${String(selectedStation.id)}`,
         {
           method: "POST",
           headers: {
@@ -50,9 +37,10 @@ function SaveSpotConfirmation() {
         throw new Error("Network response was not ok");
       }
 
-      setMessage(
-        `Station saved successfully: ${selectedStation.displayName.text}`,
-      );
+      const message =
+        "Station saved successfully: " +
+        selectedStation.displayName.text;
+      setMessage(message);
     } catch (err) {
       console.error("Failed to save station:", err);
     }
