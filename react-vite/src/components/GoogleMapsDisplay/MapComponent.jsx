@@ -51,16 +51,11 @@ function MapComponent() {
   };
 
   useEffect(() => {
-    if (sessionUser.errors) return;
+    if (sessionUser?.errors) return;
 
     const fetchStations = async () => {
       try {
-        const res = await fetch("/api/station/", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const res = await fetch("/api/station/");
 
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -76,7 +71,7 @@ function MapComponent() {
   }, [sessionUser]);
 
   useEffect(() => {
-    if (sessionUser.errors) return;
+    if (sessionUser?.errors) return;
 
     const postStation = async (station) => {
       const body = {
