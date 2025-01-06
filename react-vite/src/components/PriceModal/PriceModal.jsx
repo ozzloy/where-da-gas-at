@@ -10,6 +10,7 @@ export default function PriceModal({
   price = null,
 }) {
   const [amount, setAmount] = useState(0);
+  const [fuelType, setFuelType] = useState("unleaded");
   const [loading, setLoading] = useState(false);
   const stationInfo = useGetSelectedStation(stationId);
   const { setUpdate } = useContext(PriceContext);
@@ -17,6 +18,7 @@ export default function PriceModal({
   useEffect(() => {
     if (price) {
       setAmount(price.price);
+      setFuelType(price.fuel_type);
     }
   }, [price]);
 
@@ -28,7 +30,7 @@ export default function PriceModal({
     const newPrice = {
       station_id: stationId,
       price: amount,
-      fuel_type: "unleaded",
+      fuel_type: fuelType,
     };
 
     setLoading(true);
@@ -62,7 +64,7 @@ export default function PriceModal({
         <div className="price-modal">
           <h1>
             What is the price of{" "}
-            <select>
+            <select onChange={(e) => setFuelType(e.target.value)}>
               <option>unleaded</option>
               <option>leaded</option>
               <option>premium</option>
