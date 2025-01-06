@@ -115,20 +115,24 @@ function ReviewsDisplay({
     closeModal();
   };
 
-  if (stationInfo && stationInfo.reviews && sessionUser) {
+  if (stationInfo && stationInfo.reviews) {
     return (
       <div className="reviews-container">
         <div className="user-info-display">
-          <span>
-            <button onClick={() => openCommentModal()}>
-              Write Your Review
-            </button>
-          </span>
-          <span>
-            <button onClick={() => openPriceModal()}>
-              Set Your Price
-            </button>
-          </span>
+          {sessionUser?.nick && (
+            <>
+              <span>
+                <button onClick={() => openCommentModal()}>
+                  Write Your Review
+                </button>
+              </span>
+              <span>
+                <button onClick={() => openPriceModal()}>
+                  Set Your Price
+                </button>
+              </span>
+            </>
+          )}
 
           {prices
             .filter((price) => price.station_id === stationInfo.id)
@@ -142,7 +146,7 @@ function ReviewsDisplay({
                   ${price.price.toFixed(2)}: {price.fuel_type}
                 </p>
 
-                {sessionUser.id === price.king_id && (
+                {sessionUser?.id === price.king_id && (
                   <>
                     <span>
                       <button onClick={() => openPriceModal(price)}>
@@ -170,7 +174,7 @@ function ReviewsDisplay({
                 </div>
                 <p>{review.text}</p>
 
-                {sessionUser.id === review.king_id && (
+                {sessionUser?.id === review.king_id && (
                   <>
                     <span>
                       <button
