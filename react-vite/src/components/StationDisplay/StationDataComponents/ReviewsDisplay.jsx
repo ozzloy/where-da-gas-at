@@ -72,11 +72,16 @@ function ReviewsDisplay({ stationInfo, onReviewAdded }) {
       <div className="reviews-container">
         <div className="user-info-display">
           {!userReview && (
-            <span>
-              <button onClick={() => openCommentModal()}>
-                Write Your Review
-              </button>
-            </span>
+            <>
+              <span>
+                <button onClick={() => openCommentModal()}>
+                  Write Your Review
+                </button>
+              </span>
+              <span>
+                <button>Write Your Price</button>
+              </span>
+            </>
           )}
 
           {reviews
