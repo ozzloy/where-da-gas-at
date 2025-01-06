@@ -1,6 +1,7 @@
 import StarRating from "./StarRating";
 import { FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import DeletePriceModal from "../../DeletePriceModal";
 import ReviewFormModal from "../../ReviewFormModal/ReviewFormModal";
 import DeletedReviewFormModal from "../../DeletedReviewFormModal/DeletedReviewFormModal";
 import { useModal } from "../../../context/Modal";
@@ -67,14 +68,26 @@ function ReviewsDisplay({
   const handleDeletedModal = (review_id) => {
     setModalContent(
       <DeletedReviewFormModal
-        onDelete={() => deleteReview(review_id)}
+        onDelete={() => deletedReview(review_id)}
         onClose={closeModal}
         type="Review"
       />,
     );
   };
 
-  const deleteReview = async (review_id) => {
+  // handle for deleting a price
+  const handleDeletedPrice = (price_id) => {
+    setModalContent(
+      <DeletePriceModal
+        onDelete={() => deletedPrice(price_id)}
+        onClose={closeModal}
+        type="Review"
+      />,
+    );
+  };
+
+  // for review
+  const deletedReview = async (review_id) => {
     try {
       const res = await fetch(`/api/review/${review_id}`, {
         method: "DELETE",
@@ -87,6 +100,23 @@ function ReviewsDisplay({
       );
     } catch (e) {
       console.error("Error deleting reivew", e);
+    }
+    closeModal();
+  };
+
+  const deletedPrice = async (price_id) => {
+    try {
+      const res = await fetch(`/api/price/${price_id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to delete price");
+      }
+      setPrices((prevPrices) =>
+        prevPrices.filter((price) => price.id !== price_id),
+      );
+    } catch (e) {
+      console.error("Error deleting price", e);
     }
     closeModal();
   };
@@ -129,7 +159,7 @@ function ReviewsDisplay({
                     </span>
                     <span>
                       <button
-                        onClick={() => handleDeletedModal(price.id)}
+                        onClick={() => handleDeletedPrice(price.id)}
                       >
                         Delete
                       </button>
