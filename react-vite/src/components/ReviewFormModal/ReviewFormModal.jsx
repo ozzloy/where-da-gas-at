@@ -25,7 +25,7 @@ export default function ReviewFormModal({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newText = {
+    const newReview = {
       station_id: stationInfo.id,
       text,
     };
@@ -41,7 +41,7 @@ export default function ReviewFormModal({
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(newText),
+          body: JSON.stringify(newReview),
         });
       } else {
         // Create new review with POST method
@@ -50,7 +50,7 @@ export default function ReviewFormModal({
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(newText),
+          body: JSON.stringify(newReview),
         });
       }
 
@@ -90,7 +90,7 @@ export default function ReviewFormModal({
           type="submit"
           disabled={text.length <= 0 || loading}
         >
-          {review ? "Edit Your Review" : "Sumbit Your Review"}
+          {review ? "Edit Your Review" : "Submit Your Review"}
         </button>
       </form>
       <button
