@@ -138,7 +138,9 @@ function ReviewsDisplay({
                   <FaUser />
                   <p>{price.king_name}</p>
                 </div>
-                <p>${price.price.toFixed(2)}</p>
+                <p>
+                  ${price.price.toFixed(2)}: {price.fuel_type}
+                </p>
 
                 {sessionUser.id === price.king_id && (
                   <>
