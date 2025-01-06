@@ -96,28 +96,23 @@ function SavedSpotsComponent() {
         const userStationData = await res.json();
         const userStations = Object.values(userStationData.stations);
 
-        const stationsData = await Promise.all(
-          userStations.map(async (station) => {
-            try {
-              const selectedStationData = await fetchSelectedStation(
-                station.id,
-              );
+        const stationsData = (
+          await Promise.all(
+            userStations.map(async (station) => {
+              try {
+                const selectedStationData =
+                  await fetchSelectedStation(station.id);
 
-              const photoUrls = await fetchPhotoUrl(
-                selectedStationData,
-              );
-              return { ...selectedStationData, photoUrls };
-            } catch (e) {
-              return {
-                id: "no id",
-                googleMapsUri: "no googleMap exists",
-                photos: [],
-                displayName: { text: "no displayname text exists" },
-              };
-            }
-          }),
-        );
-        console.log("stationData =", stationsData);
+                const photoUrls = await fetchPhotoUrl(
+                  selectedStationData,
+                );
+                return { ...selectedStationData, photoUrls };
+              } catch (e) {
+                return null;
+              }
+            }),
+          )
+        ).filter(Boolean);
 
         setSelectedStations(stationsData);
       } catch (error) {
