@@ -61,8 +61,14 @@ export default function PriceModal({
       <form onSubmit={handleSubmit}>
         <div className="price-modal">
           <h1>
-            What is the price of unleaded fuel at{" "}
-            {stationInfo.displayName.text || "this station"} ?{" "}
+            What is the price of{" "}
+            <select>
+              <option>unleaded</option>
+              <option>leaded</option>
+              <option>premium</option>
+              <option>Tesla Supercharger</option>
+            </select>{" "}
+            fuel at {stationInfo.displayName.text || "this station"} ?{" "}
           </h1>
           <input
             type="number"
