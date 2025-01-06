@@ -81,7 +81,7 @@ function ReviewsDisplay({
       <DeletePriceModal
         onDelete={() => deletedPrice(price_id)}
         onClose={closeModal}
-        type="Review"
+        type="Price"
       />,
     );
   };
