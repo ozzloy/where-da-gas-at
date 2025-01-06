@@ -1,15 +1,15 @@
 import { createContext, useState, useEffect } from "react";
-export const ReviewContext = createContext();
 
-export default function ReviewStationProvider({ children }) {
-  const [reviews, setReviews] = useState([]);
+export const PriceContext = createContext();
+export default function PriceProvider({ children }) {
+  const [prices, setPrices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [update, setUpdate] = useState(false);
 
   const contextValues = {
-    reviews,
-    setReviews,
+    prices,
+    setPrices,
     loading,
     setLoading,
     error,
@@ -19,26 +19,26 @@ export default function ReviewStationProvider({ children }) {
   };
 
   useEffect(() => {
-    const fetchTexts = async () => {
+    const fetchPrices = async () => {
       try {
-        const res = await fetch("/api/review");
+        const res = await fetch("/api/price/");
         const data = await res.json();
         if (!res.ok) {
-          throw new Error("Failed to fetch reviews");
+          throw new Error("Failed to fetch prices");
         }
-        setReviews(Object.values(data.review));
+        setPrices(Object.values(data.price));
       } catch (e) {
         setError(e.message);
       } finally {
         setLoading(false);
       }
     };
-    fetchTexts();
+    fetchPrices();
   }, [update]);
 
   return (
-    <ReviewContext.Provider value={contextValues}>
+    <PriceContext.Provider value={contextValues}>
       {children}
-    </ReviewContext.Provider>
+    </PriceContext.Provider>
   );
 }

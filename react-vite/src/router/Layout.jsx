@@ -9,6 +9,7 @@ import "../index.css";
 import { APIProvider } from "@vis.gl/react-google-maps";
 import { ThemeProvider, useTheme } from "../context/ThemeContext";
 import ReviewStationProvider from "../context/UserReviewContext";
+import PriceProvider from "../context/PriceContext";
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -32,15 +33,17 @@ export default function Layout() {
         >
           <GoogleMapProvider>
             <ReviewStationProvider>
-              <ModalProvider>
-                <div className="align-body">
-                  <div className={`main-body-container-${theme}`}>
-                    <Navigation />
-                    {isLoaded && <Outlet />}
+              <PriceProvider>
+                <ModalProvider>
+                  <div className="align-body">
+                    <div className={`main-body-container-${theme}`}>
+                      <Navigation />
+                      {isLoaded && <Outlet />}
+                    </div>
                   </div>
-                </div>
-                <Modal />
-              </ModalProvider>
+                  <Modal />
+                </ModalProvider>
+              </PriceProvider>
             </ReviewStationProvider>
           </GoogleMapProvider>
         </APIProvider>

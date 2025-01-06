@@ -53,6 +53,7 @@ function StationDisplay() {
           <ReviewsDisplay
             stationInfo={stationInfo}
             onReviewAdded={console.log}
+            onPriceAdded={console.log}
           />
           <Map
             center={center}

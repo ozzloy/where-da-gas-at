@@ -7,8 +7,13 @@ import { useModal } from "../../../context/Modal";
 import "./ReviewsDisplay.css";
 import { useContext } from "react";
 import { ReviewContext } from "../../../context/UserReviewContext";
+import PriceModal from "../../PriceModal/PriceModal";
 
-function ReviewsDisplay({ stationInfo, onReviewAdded }) {
+function ReviewsDisplay({
+  stationInfo,
+  onReviewAdded,
+  onPriceAdded,
+}) {
   const { setModalContent, closeModal } = useModal();
   const { reviews, setReviews } = useContext(ReviewContext);
 
@@ -26,15 +31,32 @@ function ReviewsDisplay({ stationInfo, onReviewAdded }) {
     closeModal();
   };
 
+  // handle sumbitted price in modal
+  const handleSubmitPrice = (newPrice) => {
+    onPriceAdded(newPrice);
+    closeModal();
+  };
+
   // open the modal for writing a review
   const openCommentModal = (review = null) => {
-    // setOnModalClose(() => closeModal);
     setModalContent(
       <ReviewFormModal
         onClose={closeModal}
         stationId={stationInfo.id}
         onSubmitReview={handleSumbitReview}
         review={review}
+      />,
+    );
+  };
+
+  // open the modal for writing a price
+  const openPriceModal = (price = null) => {
+    setModalContent(
+      <PriceModal
+        onClose={closeModal}
+        stationId={stationInfo.id}
+        onSubmitPrice={handleSubmitPrice}
+        price={price}
       />,
     );
   };
@@ -79,7 +101,9 @@ function ReviewsDisplay({ stationInfo, onReviewAdded }) {
                 </button>
               </span>
               <span>
-                <button>Write Your Price</button>
+                <button onClick={() => openPriceModal()}>
+                  Write Your Price
+                </button>
               </span>
             </>
           )}
