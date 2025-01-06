@@ -12,7 +12,9 @@ function SignupFormModal() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const { closeModal } = useModal();
+  const { closeModal,setSignedUp } = useModal();
+
+
 
   useEffect(() => {
     const errors = {};
@@ -49,6 +51,7 @@ function SignupFormModal() {
     if (serverResponse.type === "session/signup/rejected") {
       setErrors(serverResponse.payload);
     } else {
+      setSignedUp(true);
       closeModal();
     }
   };

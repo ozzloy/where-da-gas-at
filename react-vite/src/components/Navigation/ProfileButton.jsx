@@ -4,12 +4,14 @@ import { FaUserCircle } from "react-icons/fa";
 import { thunkLogout } from "../../redux/session";
 import "./ProfileButton.css";
 import UserMenu from "./UserMenu";
+import { useModal } from "../../context/Modal";
 
 function ProfileButton({ location }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const sessionUser = useSelector((store) => store.session.user);
   const ulRef = useRef();
+  const { setSignedUp } = useModal();
 
   const userMenuClassName =
     location === "side-header" ? "side-header" : "nav-menu";
@@ -38,6 +40,7 @@ function ProfileButton({ location }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(thunkLogout());
+    setSignedUp(false);
     closeMenu();
   };
 

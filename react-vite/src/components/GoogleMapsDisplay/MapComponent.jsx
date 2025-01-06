@@ -6,6 +6,9 @@ import "./MapComponent.css";
 import GoogleMapsNearByLocations from "./GoogleMapsNearByLocations";
 import InfoWindowComponent from "./InfoWindowComponent";
 import { useTheme } from "../../context/ThemeContext";
+import { useModal } from "../../context/Modal";
+import LoginFormModal from "../LoginFormModal";
+
 
 function MapComponent() {
   const {
@@ -21,6 +24,7 @@ function MapComponent() {
   } = useContext(GoogleMapContext);
 
   const { theme } = useTheme();
+  const { signedUp } = useModal();
   const [mapId, setMapId] = useState(
     import.meta.env.VITE_REACT_APP_GOOGLE_MAP_ID_DARK_MODE,
   );
@@ -119,10 +123,16 @@ function MapComponent() {
     };
 
     postUnsavedStations();
+    console.log("sessionUser:", sessionUser);
   }, [nearbyStations, sessionUser, stations]);
 
   return (
     <>
+      {!sessionUser?.nick && signedUp && (
+        <div className="log-in-modal-item-container">
+          <LoginFormModal />
+        </div>
+      )}
       {/* <button onClick={() => toggleTheme}></button> */}
 
       <Map

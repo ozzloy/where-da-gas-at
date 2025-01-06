@@ -10,6 +10,9 @@ export function ModalProvider({ children }) {
   // callback function that will be called when modal is closing
   const [onModalClose, setOnModalClose] = useState(null);
 
+  const [signedUp, setSignedUp] = useState(false);
+
+
   const closeModal = () => {
     setModalContent(null); // clear the modal contents
     // If callback function is truthy, call the callback function and reset it
@@ -26,6 +29,8 @@ export function ModalProvider({ children }) {
     setModalContent, // function to set the React component to render inside modal
     setOnModalClose, // function to set the callback function called when modal is closing
     closeModal, // function to close the modal
+    signedUp, // boolean to check if user has signed up
+    setSignedUp, // function to set the boolean to check if user has signed up
   };
 
   return (
