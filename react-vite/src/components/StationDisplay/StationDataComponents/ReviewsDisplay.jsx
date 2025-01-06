@@ -22,12 +22,6 @@ function ReviewsDisplay({
 
   const sessionUser = useSelector((store) => store.session.user);
 
-  const userReview = reviews.find(
-    (review) =>
-      review.station_id === stationInfo.id &&
-      review.king_id === sessionUser?.id,
-  );
-
   // handle sumbitted reivew in modal
   const handleSumbitReview = (newReview) => {
     onReviewAdded(newReview);
@@ -125,20 +119,16 @@ function ReviewsDisplay({
     return (
       <div className="reviews-container">
         <div className="user-info-display">
-          {!userReview && (
-            <>
-              <span>
-                <button onClick={() => openCommentModal()}>
-                  Write Your Review
-                </button>
-              </span>
-              <span>
-                <button onClick={() => openPriceModal()}>
-                  Set Your Price
-                </button>
-              </span>
-            </>
-          )}
+          <span>
+            <button onClick={() => openCommentModal()}>
+              Write Your Review
+            </button>
+          </span>
+          <span>
+            <button onClick={() => openPriceModal()}>
+              Set Your Price
+            </button>
+          </span>
 
           {prices
             .filter((price) => price.station_id === stationInfo.id)
@@ -168,7 +158,6 @@ function ReviewsDisplay({
                 )}
               </li>
             ))}
-
           {reviews
             .filter((review) => review.station_id === stationInfo.id)
             .map((review) => (
@@ -199,7 +188,6 @@ function ReviewsDisplay({
                 )}
               </li>
             ))}
-
           {stationInfo.reviews.map((review, index) => (
             <div key={index} className="review-container">
               <div className="user-info-display">
