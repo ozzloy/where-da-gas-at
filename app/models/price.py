@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Float, ForeignKey, Integer, String
 
 from .db import add_prefix_for_prod, db, SchemaMixin
+from .king import King
 
 
 class Price(db.Model, SchemaMixin):
@@ -26,10 +27,12 @@ class Price(db.Model, SchemaMixin):
     )
 
     def to_dict(self):
+        king = King.query.get(self.king_id)
         return {
             "id": self.id,
             "price": self.price,
             "station_id": self.station_id,
             "fuel_type": self.fuel_type,
             "king_id": self.king_id,
+            "king_name": king.name,
         }

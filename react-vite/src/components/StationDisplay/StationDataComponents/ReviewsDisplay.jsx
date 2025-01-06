@@ -8,6 +8,7 @@ import "./ReviewsDisplay.css";
 import { useContext } from "react";
 import { ReviewContext } from "../../../context/UserReviewContext";
 import PriceModal from "../../PriceModal/PriceModal";
+import { PriceContext } from "../../../context/PriceContext";
 
 function ReviewsDisplay({
   stationInfo,
@@ -16,6 +17,7 @@ function ReviewsDisplay({
 }) {
   const { setModalContent, closeModal } = useModal();
   const { reviews, setReviews } = useContext(ReviewContext);
+  const { prices, setPrices } = useContext(PriceContext);
 
   const sessionUser = useSelector((store) => store.session.user);
 
@@ -102,11 +104,40 @@ function ReviewsDisplay({
               </span>
               <span>
                 <button onClick={() => openPriceModal()}>
-                  Write Your Price
+                  Set Your Price
                 </button>
               </span>
             </>
           )}
+
+          {prices
+            .filter((price) => price.station_id === stationInfo.id)
+            .map((price) => (
+              <li className="user-info-display" key={price.id}>
+                <div className="name-icon-container">
+                  <FaUser />
+                  <p>{price.king_name}</p>
+                </div>
+                <p>${price.price.toFixed(2)}</p>
+
+                {sessionUser.id === price.king_id && (
+                  <>
+                    <span>
+                      <button onClick={() => openPriceModal(price)}>
+                        Edit
+                      </button>
+                    </span>
+                    <span>
+                      <button
+                        onClick={() => handleDeletedModal(price.id)}
+                      >
+                        Delete
+                      </button>
+                    </span>
+                  </>
+                )}
+              </li>
+            ))}
 
           {reviews
             .filter((review) => review.station_id === stationInfo.id)
