@@ -9,7 +9,6 @@ import { useTheme } from "../../context/ThemeContext";
 import { useModal } from "../../context/Modal";
 import LoginFormModal from "../LoginFormModal";
 
-
 function MapComponent() {
   const {
     center,
@@ -101,7 +100,6 @@ function MapComponent() {
         }
 
         const data = await res.json();
-        console.log("Station saved successfully:", data);
       } catch (error) {
         console.error("Failed to post station:", error);
       }
@@ -111,21 +109,19 @@ function MapComponent() {
       const existingStationIds = stations.map(
         (station) => station.id,
       );
-      console.log("Existing station IDs:", existingStationIds);
       const unsavedStations = nearbyStations.filter(
         (station) => !existingStationIds.includes(station.id),
       );
 
-      console.log("Unsaved stations:", unsavedStations);
       for (const station of unsavedStations) {
         await postStation(station);
       }
     };
 
     postUnsavedStations();
-    console.log("sessionUser:", sessionUser);
   }, [nearbyStations, sessionUser, stations]);
 
+  console.log("mapId", mapId);
   return (
     <>
       {!sessionUser?.nick && signedUp && (
