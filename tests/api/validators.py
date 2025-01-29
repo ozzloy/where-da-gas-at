@@ -1,3 +1,4 @@
+from http import HTTPStatus as http
 from typing import Any, Dict
 import requests
 from sqlalchemy import inspect
@@ -25,7 +26,7 @@ def is_close(a, b, delta=0.000000000000004):
 
 def validate_response(
     response: requests.Response,
-    status: int = 200,
+    status: int = http.OK,
     expect_json: bool = True,
 ) -> Dict[str, Any]:
     assert response.status_code == status

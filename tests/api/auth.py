@@ -1,3 +1,4 @@
+from http import HTTPStatus as http
 import requests
 from typing import Any, Dict, Tuple
 
@@ -20,7 +21,7 @@ def create_authenticated_session(king=DEMO_KING) -> requests.Session:
         headers={"Content-Type": "application/json"},
     )
 
-    if login_response.status_code != 200:
+    if login_response.status_code != http.OK:
         raise Exception("failed to authenticate")
 
     return session
@@ -64,7 +65,7 @@ def create_station(session: requests.Session, king_id: int):
     create_station_response = session.post(
         get_full_url("station"), json=station
     )
-    validate_response(create_station_response)
+    validate_response(create_station_response, http.CREATED)
 
     state = create_station_response.json()
     validate_state(state, ["station"])
