@@ -11,9 +11,8 @@
   z-index: 10;
   background-color: white;
   padding: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
-  border-radius: 8px; 
-  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
 }
 
 .user-marker {

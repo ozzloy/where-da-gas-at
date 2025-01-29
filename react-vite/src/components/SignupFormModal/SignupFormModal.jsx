@@ -12,9 +12,7 @@ function SignupFormModal() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const { closeModal,setSignedUp } = useModal();
-
-
+  const { closeModal, setSignedUp } = useModal();
 
   useEffect(() => {
     const errors = {};

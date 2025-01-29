@@ -1,679 +1,650 @@
 {
-    "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU",
-    "id": "ChIJu28PrqJvkFQRvBiGAaEsDbU",
-    "types": [
-        "gas_station",
-        "convenience_store",
-        "car_repair",
-        "food_store",
-        "food",
-        "point_of_interest",
-        "store",
-        "establishment"
-    ],
-    "nationalPhoneNumber": "(425) 557-0418",
-    "internationalPhoneNumber": "+1 425-557-0418",
-    "formattedAddress": "22121 SE 56th St, Issaquah, WA 98027, USA",
-    "addressComponents": [
-        {
-            "longText": "22121",
-            "shortText": "22121",
-            "types": [
-                "street_number"
-            ],
-            "languageCode": "en-US"
-        },
-        {
-            "longText": "Southeast 56th Street",
-            "shortText": "SE 56th St",
-            "types": [
-                "route"
-            ],
-            "languageCode": "en"
-        },
-        {
-            "longText": "North Issaquah",
-            "shortText": "North Issaquah",
-            "types": [
-                "neighborhood",
-                "political"
-            ],
-            "languageCode": "en"
-        },
-        {
-            "longText": "Issaquah",
-            "shortText": "Issaquah",
-            "types": [
-                "locality",
-                "political"
-            ],
-            "languageCode": "en"
-        },
-        {
-            "longText": "King County",
-            "shortText": "King County",
-            "types": [
-                "administrative_area_level_2",
-                "political"
-            ],
-            "languageCode": "en"
-        },
-        {
-            "longText": "Washington",
-            "shortText": "WA",
-            "types": [
-                "administrative_area_level_1",
-                "political"
-            ],
-            "languageCode": "en"
-        },
-        {
-            "longText": "United States",
-            "shortText": "US",
-            "types": [
-                "country",
-                "political"
-            ],
-            "languageCode": "en"
-        },
-        {
-            "longText": "98027",
-            "shortText": "98027",
-            "types": [
-                "postal_code"
-            ],
-            "languageCode": "en-US"
-        }
-    ],
-    "plusCode": {
-        "globalCode": "84VVHX23+JW",
-        "compoundCode": "HX23+JW Issaquah, WA, USA"
+  "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU",
+  "id": "ChIJu28PrqJvkFQRvBiGAaEsDbU",
+  "types": [
+    "gas_station",
+    "convenience_store",
+    "car_repair",
+    "food_store",
+    "food",
+    "point_of_interest",
+    "store",
+    "establishment"
+  ],
+  "nationalPhoneNumber": "(425) 557-0418",
+  "internationalPhoneNumber": "+1 425-557-0418",
+  "formattedAddress": "22121 SE 56th St, Issaquah, WA 98027, USA",
+  "addressComponents": [
+    {
+      "longText": "22121",
+      "shortText": "22121",
+      "types": ["street_number"],
+      "languageCode": "en-US"
     },
-    "location": {
-        "latitude": 47.551623,
-        "longitude": -122.04517409999998
+    {
+      "longText": "Southeast 56th Street",
+      "shortText": "SE 56th St",
+      "types": ["route"],
+      "languageCode": "en"
     },
-    "viewport": {
-        "low": {
-            "latitude": 47.5502135197085,
-            "longitude": -122.04664278029148
-        },
-        "high": {
-            "latitude": 47.5529114802915,
-            "longitude": -122.0439448197085
-        }
+    {
+      "longText": "North Issaquah",
+      "shortText": "North Issaquah",
+      "types": ["neighborhood", "political"],
+      "languageCode": "en"
     },
-    "rating": 4,
-    "googleMapsUri": "https://maps.google.com/?cid=13046132765589117116",
-    "websiteUri": "https://www.chevronwithtechron.com/station/22121-SE-56th-Issaquah-WA-98027-id201966",
-    "regularOpeningHours": {
-        "openNow": true,
-        "periods": [
-            {
-                "open": {
-                    "day": 0,
-                    "hour": 6,
-                    "minute": 0
-                },
-                "close": {
-                    "day": 0,
-                    "hour": 22,
-                    "minute": 0
-                }
-            },
-            {
-                "open": {
-                    "day": 1,
-                    "hour": 6,
-                    "minute": 0
-                },
-                "close": {
-                    "day": 1,
-                    "hour": 22,
-                    "minute": 0
-                }
-            },
-            {
-                "open": {
-                    "day": 2,
-                    "hour": 6,
-                    "minute": 0
-                },
-                "close": {
-                    "day": 2,
-                    "hour": 22,
-                    "minute": 0
-                }
-            },
-            {
-                "open": {
-                    "day": 3,
-                    "hour": 6,
-                    "minute": 0
-                },
-                "close": {
-                    "day": 3,
-                    "hour": 22,
-                    "minute": 0
-                }
-            },
-            {
-                "open": {
-                    "day": 4,
-                    "hour": 6,
-                    "minute": 0
-                },
-                "close": {
-                    "day": 4,
-                    "hour": 22,
-                    "minute": 0
-                }
-            },
-            {
-                "open": {
-                    "day": 5,
-                    "hour": 6,
-                    "minute": 0
-                },
-                "close": {
-                    "day": 5,
-                    "hour": 22,
-                    "minute": 0
-                }
-            },
-            {
-                "open": {
-                    "day": 6,
-                    "hour": 6,
-                    "minute": 0
-                },
-                "close": {
-                    "day": 6,
-                    "hour": 22,
-                    "minute": 0
-                }
-            }
-        ],
-        "weekdayDescriptions": [
-            "Monday: 6:00 AM – 10:00 PM",
-            "Tuesday: 6:00 AM – 10:00 PM",
-            "Wednesday: 6:00 AM – 10:00 PM",
-            "Thursday: 6:00 AM – 10:00 PM",
-            "Friday: 6:00 AM – 10:00 PM",
-            "Saturday: 6:00 AM – 10:00 PM",
-            "Sunday: 6:00 AM – 10:00 PM"
-        ],
-        "nextCloseTime": "2024-12-27T06:00:00Z"
+    {
+      "longText": "Issaquah",
+      "shortText": "Issaquah",
+      "types": ["locality", "political"],
+      "languageCode": "en"
     },
-    "utcOffsetMinutes": -480,
-    "adrFormatAddress": "<span class=\"street-address\">22121 SE 56th St</span>, <span class=\"locality\">Issaquah</span>, <span class=\"region\">WA</span> <span class=\"postal-code\">98027</span>, <span class=\"country-name\">USA</span>",
-    "businessStatus": "OPERATIONAL",
-    "userRatingCount": 9,
-    "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/gas_pinlet",
-    "iconBackgroundColor": "#909CE1",
-    "displayName": {
-        "text": "Chevron",
-        "languageCode": "en"
+    {
+      "longText": "King County",
+      "shortText": "King County",
+      "types": ["administrative_area_level_2", "political"],
+      "languageCode": "en"
     },
-    "primaryTypeDisplayName": {
-        "text": "Gas Station",
-        "languageCode": "en-US"
+    {
+      "longText": "Washington",
+      "shortText": "WA",
+      "types": ["administrative_area_level_1", "political"],
+      "languageCode": "en"
     },
-    "currentOpeningHours": {
-        "openNow": true,
-        "periods": [
-            {
-                "open": {
-                    "day": 0,
-                    "hour": 6,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 29
-                    }
-                },
-                "close": {
-                    "day": 0,
-                    "hour": 22,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 29
-                    }
-                }
-            },
-            {
-                "open": {
-                    "day": 1,
-                    "hour": 6,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 30
-                    }
-                },
-                "close": {
-                    "day": 1,
-                    "hour": 22,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 30
-                    }
-                }
-            },
-            {
-                "open": {
-                    "day": 2,
-                    "hour": 6,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 31
-                    }
-                },
-                "close": {
-                    "day": 2,
-                    "hour": 22,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 31
-                    }
-                }
-            },
-            {
-                "open": {
-                    "day": 3,
-                    "hour": 6,
-                    "minute": 0,
-                    "date": {
-                        "year": 2025,
-                        "month": 1,
-                        "day": 1
-                    }
-                },
-                "close": {
-                    "day": 3,
-                    "hour": 22,
-                    "minute": 0,
-                    "date": {
-                        "year": 2025,
-                        "month": 1,
-                        "day": 1
-                    }
-                }
-            },
-            {
-                "open": {
-                    "day": 4,
-                    "hour": 6,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 26
-                    }
-                },
-                "close": {
-                    "day": 4,
-                    "hour": 22,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 26
-                    }
-                }
-            },
-            {
-                "open": {
-                    "day": 5,
-                    "hour": 6,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 27
-                    }
-                },
-                "close": {
-                    "day": 5,
-                    "hour": 22,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 27
-                    }
-                }
-            },
-            {
-                "open": {
-                    "day": 6,
-                    "hour": 6,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 28
-                    }
-                },
-                "close": {
-                    "day": 6,
-                    "hour": 22,
-                    "minute": 0,
-                    "date": {
-                        "year": 2024,
-                        "month": 12,
-                        "day": 28
-                    }
-                }
-            }
-        ],
-        "weekdayDescriptions": [
-            "Monday: 6:00 AM – 10:00 PM",
-            "Tuesday: 6:00 AM – 10:00 PM",
-            "Wednesday: 6:00 AM – 10:00 PM",
-            "Thursday: 6:00 AM – 10:00 PM",
-            "Friday: 6:00 AM – 10:00 PM",
-            "Saturday: 6:00 AM – 10:00 PM",
-            "Sunday: 6:00 AM – 10:00 PM"
-        ],
-        "nextCloseTime": "2024-12-27T06:00:00Z"
+    {
+      "longText": "United States",
+      "shortText": "US",
+      "types": ["country", "political"],
+      "languageCode": "en"
     },
-    "primaryType": "gas_station",
-    "shortFormattedAddress": "22121 SE 56th St, Issaquah",
-    "reviews": [
-        {
-            "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/reviews/ChZDSUhNMG9nS0VJQ0FnSUNndV9fbUhBEAE",
-            "relativePublishTimeDescription": "7 years ago",
-            "rating": 5,
-            "text": {
-                "text": "I moved to this area roughly a decade ago. It occurred to me the other day that I've used this gas station to fill up my cars all but a handful of times. There are a few reasons for this:\n\n1. There are multiple filling lanes, so it's rarely difficult to find a pump.\n2. It's an easy location to get in and out of.\n3. The lot across from the station used to be a dilapidated house that sold Christmas Trees during the holiday season. Made for a nice area during the deep dark of the year. Now it's a Taco Time, which is pretty great too.\n4. The car wash is really easy to get into, even on busy days.\n\nFinally, here's a fun tip for anyone that's still reading: it's a good idea to keep the receipt of your last fill-up in the car until your next fill up. From time to time, gas station fuel basins get water in them. When the fuel trucks come to fill up the basins, the gas/water in the containers gets jostled and if you fill up right after, you can get a significant amount of water in your gas tank. This will damage your engine if you run that fuel. It's almost impossible to prove the gas station's liability, but if you keep your receipts, you'll have a much stronger case. Anyway, just a low-inconvenience, high-upside tip of the day.",
-                "languageCode": "en"
-            },
-            "originalText": {
-                "text": "I moved to this area roughly a decade ago. It occurred to me the other day that I've used this gas station to fill up my cars all but a handful of times. There are a few reasons for this:\n\n1. There are multiple filling lanes, so it's rarely difficult to find a pump.\n2. It's an easy location to get in and out of.\n3. The lot across from the station used to be a dilapidated house that sold Christmas Trees during the holiday season. Made for a nice area during the deep dark of the year. Now it's a Taco Time, which is pretty great too.\n4. The car wash is really easy to get into, even on busy days.\n\nFinally, here's a fun tip for anyone that's still reading: it's a good idea to keep the receipt of your last fill-up in the car until your next fill up. From time to time, gas station fuel basins get water in them. When the fuel trucks come to fill up the basins, the gas/water in the containers gets jostled and if you fill up right after, you can get a significant amount of water in your gas tank. This will damage your engine if you run that fuel. It's almost impossible to prove the gas station's liability, but if you keep your receipts, you'll have a much stronger case. Anyway, just a low-inconvenience, high-upside tip of the day.",
-                "languageCode": "en"
-            },
-            "authorAttribution": {
-                "displayName": "Bra Mi",
-                "uri": "https://www.google.com/maps/contrib/101683027802549138416/reviews",
-                "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIzBN8YSePtDQ8CYyg7VWMA3B-wPM8iR-k0v8AVf47mlCY99g=s128-c0x00000000-cc-rp-mo-ba3"
-            },
-            "publishTime": "2017-04-14T17:01:15.303Z",
-            "flagContentUri": "https://www.google.com/local/review/rap/report?postId=ChZDSUhNMG9nS0VJQ0FnSUNndV9fbUhBEAE&d=17924085&t=1",
-            "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSUNndV9fbUhBEAE!2m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
-        },
-        {
-            "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/reviews/ChdDSUhNMG9nS0VJQ0FnSUNweDdXejFBRRAB",
-            "relativePublishTimeDescription": "a year ago",
-            "rating": 2,
-            "text": {
-                "text": "Pump would take my card, said see cashier without any input other than swiping it, cashier said \"it's probably declined\" when I hadn't entered my yet, Went to Shell up the road, worked fine, 32 gallons they lost plus I'll avoid that location now.",
-                "languageCode": "en"
-            },
-            "originalText": {
-                "text": "Pump would take my card, said see cashier without any input other than swiping it, cashier said \"it's probably declined\" when I hadn't entered my yet, Went to Shell up the road, worked fine, 32 gallons they lost plus I'll avoid that location now.",
-                "languageCode": "en"
-            },
-            "authorAttribution": {
-                "displayName": "John Almgren",
-                "uri": "https://www.google.com/maps/contrib/100101392084054834824/reviews",
-                "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIvnxQs6agGSqAo4nfQIj_jaXmyPUYTI3AYXgKi4J6rxDwzPg=s128-c0x00000000-cc-rp-mo-ba4"
-            },
-            "publishTime": "2023-08-11T16:47:24.727422Z",
-            "flagContentUri": "https://www.google.com/local/review/rap/report?postId=ChdDSUhNMG9nS0VJQ0FnSUNweDdXejFBRRAB&d=17924085&t=1",
-            "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUNweDdXejFBRRAB!2m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
-        },
-        {
-            "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/reviews/ChZDSUhNMG9nS0VJQ0FnSURROEsybU5nEAE",
-            "relativePublishTimeDescription": "7 years ago",
-            "rating": 5,
-            "text": {
-                "text": "Clean and easy to get in and out. Bonus: watching the parade of mostly-clean cars streaming into the car wash.",
-                "languageCode": "en"
-            },
-            "originalText": {
-                "text": "Clean and easy to get in and out. Bonus: watching the parade of mostly-clean cars streaming into the car wash.",
-                "languageCode": "en"
-            },
-            "authorAttribution": {
-                "displayName": "Ashley",
-                "uri": "https://www.google.com/maps/contrib/114468195994212424451/reviews",
-                "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLPiKdhhxhENxXeUnzdZkLxa7CnlFRtYNn5vIrygIMP8FA_HMe2=s128-c0x00000000-cc-rp-mo-ba5"
-            },
-            "publishTime": "2017-08-12T23:04:30.302Z",
-            "flagContentUri": "https://www.google.com/local/review/rap/report?postId=ChZDSUhNMG9nS0VJQ0FnSURROEsybU5nEAE&d=17924085&t=1",
-            "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSURROEsybU5nEAE!2m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
-        },
-        {
-            "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/reviews/ChZDSUhNMG9nS0VJQ0FnSUREdFlidmVREAE",
-            "relativePublishTimeDescription": "8 months ago",
-            "rating": 5,
-            "text": {
-                "text": "Fast, Clean and Easy",
-                "languageCode": "en"
-            },
-            "originalText": {
-                "text": "Fast, Clean and Easy",
-                "languageCode": "en"
-            },
-            "authorAttribution": {
-                "displayName": "Sumanth Kothapalli",
-                "uri": "https://www.google.com/maps/contrib/109296141762314790595/reviews",
-                "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjX9GLWNSIk7_Nw3Ub5IkiI5adZ9ToDQ2OJC-dUm-s7u4RhUrUkV=s128-c0x00000000-cc-rp-mo-ba5"
-            },
-            "publishTime": "2024-04-12T14:01:09.592375Z",
-            "flagContentUri": "https://www.google.com/local/review/rap/report?postId=ChZDSUhNMG9nS0VJQ0FnSUREdFlidmVREAE&d=17924085&t=1",
-            "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSUREdFlidmVREAE!2m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
-        },
-        {
-            "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/reviews/ChdDSUhNMG9nS0VJQ0FnSUQyeV9qQ3Z3RRAB",
-            "relativePublishTimeDescription": "2 years ago",
-            "rating": 2,
-            "text": {
-                "text": "Gas is sooo expensive",
-                "languageCode": "en"
-            },
-            "originalText": {
-                "text": "Gas is sooo expensive",
-                "languageCode": "en"
-            },
-            "authorAttribution": {
-                "displayName": "Solomon A",
-                "uri": "https://www.google.com/maps/contrib/105821276785489116814/reviews",
-                "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWjtZjOFgEVXczh-3t8UeefQ6gatQmSaITQcw8api1ENA9lIQPr=s128-c0x00000000-cc-rp-mo-ba2"
-            },
-            "publishTime": "2022-05-25T02:46:36.295980Z",
-            "flagContentUri": "https://www.google.com/local/review/rap/report?postId=ChdDSUhNMG9nS0VJQ0FnSUQyeV9qQ3Z3RRAB&d=17924085&t=1",
-            "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUQyeV9qQ3Z3RRAB!2m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
-        }
-    ],
-    "photos": [
-        {
-            "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/photos/AWYs27zdgt6OBMOuhXeKE2hSHg24jvHfNv_bBP-LQUuDnfIAtWz5l9MzadOJwwq-6TzRFTzgTsnINmxCWh8WFIIQrEX56PBJktpk40UFMPwM_P-xTjD91bK5buKstlGrTlzL6a_xwW0720RJ6NoqWjC_XOXSIuvL1qDyiPFq",
-            "widthPx": 2829,
-            "heightPx": 1591,
-            "authorAttributions": [
-                {
-                    "displayName": "Ann Gusiff",
-                    "uri": "https://maps.google.com/maps/contrib/117994468545850767494",
-                    "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVJH7wJPqu3PAbNbsfvXTIVDcA93U3fR0q4yeA6I_-1SLXIYmCHjA=s100-p-k-no-mo"
-                }
-            ],
-            "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sAF1QipOz9xc06obx2MNmO-19ie0RCdBnTRm2lY_L-Wms&hl=en-US",
-            "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sAF1QipOz9xc06obx2MNmO-19ie0RCdBnTRm2lY_L-Wms!2e10!4m2!3m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
-        }
-    ],
-    "restroom": true,
-    "paymentOptions": {
-        "acceptsDebitCards": true,
-        "acceptsNfc": true
-    },
-    "accessibilityOptions": {
-        "wheelchairAccessibleRestroom": true
-    },
-    "fuelOptions": {
-        "fuelPrices": [
-            {
-                "type": "PREMIUM",
-                "price": {
-                    "currencyCode": "USD",
-                    "units": "5",
-                    "nanos": 150000000
-                },
-                "updateTime": "2024-12-23T13:18:00Z"
-            },
-            {
-                "type": "DIESEL",
-                "price": {
-                    "currencyCode": "USD",
-                    "units": "5"
-                },
-                "updateTime": "2024-12-26T08:46:24Z"
-            },
-            {
-                "type": "MIDGRADE",
-                "price": {
-                    "currencyCode": "USD",
-                    "units": "4",
-                    "nanos": 990000000
-                },
-                "updateTime": "2024-12-23T12:39:00Z"
-            },
-            {
-                "type": "REGULAR_UNLEADED",
-                "price": {
-                    "currencyCode": "USD",
-                    "units": "4",
-                    "nanos": 700000000
-                },
-                "updateTime": "2024-11-16T06:25:00Z"
-            }
-        ]
-    },
-    "pureServiceAreaBusiness": false,
-    "addressDescriptor": {
-        "landmarks": [
-            {
-                "name": "places/ChIJQboLuaJvkFQRvpTUKMd-4rs",
-                "placeId": "ChIJQboLuaJvkFQRvpTUKMd-4rs",
-                "displayName": {
-                    "text": "Taco Time NW",
-                    "languageCode": "en"
-                },
-                "types": [
-                    "establishment",
-                    "food",
-                    "point_of_interest",
-                    "restaurant"
-                ],
-                "straightLineDistanceMeters": 61.40744,
-                "travelDistanceMeters": 80.06839
-            },
-            {
-                "name": "places/ChIJ6SOTbr1vkFQRvIQo3ydg6ww",
-                "placeId": "ChIJ6SOTbr1vkFQRvIQo3ydg6ww",
-                "displayName": {
-                    "text": "Value Village",
-                    "languageCode": "en"
-                },
-                "types": [
-                    "book_store",
-                    "clothing_store",
-                    "establishment",
-                    "furniture_store",
-                    "home_goods_store",
-                    "point_of_interest",
-                    "store"
-                ],
-                "straightLineDistanceMeters": 262.06216,
-                "travelDistanceMeters": 305.659
-            },
-            {
-                "name": "places/ChIJu28PrqJvkFQRK5vjUMiuHXM",
-                "placeId": "ChIJu28PrqJvkFQRK5vjUMiuHXM",
-                "displayName": {
-                    "text": "Brown Bear Car Wash",
-                    "languageCode": "en"
-                },
-                "types": [
-                    "car_wash",
-                    "establishment",
-                    "point_of_interest"
-                ],
-                "spatialRelationship": "ACROSS_THE_ROAD",
-                "straightLineDistanceMeters": 64.69883,
-                "travelDistanceMeters": 3.1537209
-            },
-            {
-                "name": "places/ChIJ1wWRKb1vkFQRzPiEiIARdq4",
-                "placeId": "ChIJ1wWRKb1vkFQRzPiEiIARdq4",
-                "displayName": {
-                    "text": "FedEx Ship Center",
-                    "languageCode": "en"
-                },
-                "types": [
-                    "establishment",
-                    "point_of_interest",
-                    "store"
-                ],
-                "straightLineDistanceMeters": 158.39493,
-                "travelDistanceMeters": 291.68912
-            },
-            {
-                "name": "places/ChIJVyV8Fb1vkFQRTkGNQGsn8FI",
-                "placeId": "ChIJVyV8Fb1vkFQRTkGNQGsn8FI",
-                "displayName": {
-                    "text": "McDonald's",
-                    "languageCode": "en"
-                },
-                "types": [
-                    "cafe",
-                    "establishment",
-                    "food",
-                    "point_of_interest",
-                    "restaurant",
-                    "store"
-                ],
-                "straightLineDistanceMeters": 179.06268,
-                "travelDistanceMeters": 302.18576
-            }
-        ],
-        "areas": [
-            {
-                "name": "places/ChIJY5rqsaJvkFQRQiOaJY4PpBY",
-                "placeId": "ChIJY5rqsaJvkFQRQiOaJY4PpBY",
-                "displayName": {
-                    "text": "Chevron",
-                    "languageCode": "en"
-                },
-                "containment": "WITHIN"
-            },
-            {
-                "name": "places/ChIJLxHBdJZvkFQRjsBB-6HGtQA",
-                "placeId": "ChIJLxHBdJZvkFQRjsBB-6HGtQA",
-                "displayName": {
-                    "text": "North Issaquah",
-                    "languageCode": "en"
-                },
-                "containment": "OUTSKIRTS"
-            }
-        ]
-    },
-    "googleMapsLinks": {
-        "directionsUri": "https://www.google.com/maps/dir//''/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc!3e0",
-        "placeUri": "https://maps.google.com/?cid=13046132765589117116",
-        "writeAReviewUri": "https://www.google.com/maps/place//data=!4m3!3m2!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc!12e1",
-        "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc!9m1!1b1",
-        "photosUri": "https://www.google.com/maps/place//data=!4m3!3m2!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc!10e5"
+    {
+      "longText": "98027",
+      "shortText": "98027",
+      "types": ["postal_code"],
+      "languageCode": "en-US"
     }
+  ],
+  "plusCode": {
+    "globalCode": "84VVHX23+JW",
+    "compoundCode": "HX23+JW Issaquah, WA, USA"
+  },
+  "location": {
+    "latitude": 47.551623,
+    "longitude": -122.04517409999998
+  },
+  "viewport": {
+    "low": {
+      "latitude": 47.5502135197085,
+      "longitude": -122.04664278029148
+    },
+    "high": {
+      "latitude": 47.5529114802915,
+      "longitude": -122.0439448197085
+    }
+  },
+  "rating": 4,
+  "googleMapsUri": "https://maps.google.com/?cid=13046132765589117116",
+  "websiteUri": "https://www.chevronwithtechron.com/station/22121-SE-56th-Issaquah-WA-98027-id201966",
+  "regularOpeningHours": {
+    "openNow": true,
+    "periods": [
+      {
+        "open": {
+          "day": 0,
+          "hour": 6,
+          "minute": 0
+        },
+        "close": {
+          "day": 0,
+          "hour": 22,
+          "minute": 0
+        }
+      },
+      {
+        "open": {
+          "day": 1,
+          "hour": 6,
+          "minute": 0
+        },
+        "close": {
+          "day": 1,
+          "hour": 22,
+          "minute": 0
+        }
+      },
+      {
+        "open": {
+          "day": 2,
+          "hour": 6,
+          "minute": 0
+        },
+        "close": {
+          "day": 2,
+          "hour": 22,
+          "minute": 0
+        }
+      },
+      {
+        "open": {
+          "day": 3,
+          "hour": 6,
+          "minute": 0
+        },
+        "close": {
+          "day": 3,
+          "hour": 22,
+          "minute": 0
+        }
+      },
+      {
+        "open": {
+          "day": 4,
+          "hour": 6,
+          "minute": 0
+        },
+        "close": {
+          "day": 4,
+          "hour": 22,
+          "minute": 0
+        }
+      },
+      {
+        "open": {
+          "day": 5,
+          "hour": 6,
+          "minute": 0
+        },
+        "close": {
+          "day": 5,
+          "hour": 22,
+          "minute": 0
+        }
+      },
+      {
+        "open": {
+          "day": 6,
+          "hour": 6,
+          "minute": 0
+        },
+        "close": {
+          "day": 6,
+          "hour": 22,
+          "minute": 0
+        }
+      }
+    ],
+    "weekdayDescriptions": [
+      "Monday: 6:00 AM – 10:00 PM",
+      "Tuesday: 6:00 AM – 10:00 PM",
+      "Wednesday: 6:00 AM – 10:00 PM",
+      "Thursday: 6:00 AM – 10:00 PM",
+      "Friday: 6:00 AM – 10:00 PM",
+      "Saturday: 6:00 AM – 10:00 PM",
+      "Sunday: 6:00 AM – 10:00 PM"
+    ],
+    "nextCloseTime": "2024-12-27T06:00:00Z"
+  },
+  "utcOffsetMinutes": -480,
+  "adrFormatAddress": "<span class=\"street-address\">22121 SE 56th St</span>, <span class=\"locality\">Issaquah</span>, <span class=\"region\">WA</span> <span class=\"postal-code\">98027</span>, <span class=\"country-name\">USA</span>",
+  "businessStatus": "OPERATIONAL",
+  "userRatingCount": 9,
+  "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/gas_pinlet",
+  "iconBackgroundColor": "#909CE1",
+  "displayName": {
+    "text": "Chevron",
+    "languageCode": "en"
+  },
+  "primaryTypeDisplayName": {
+    "text": "Gas Station",
+    "languageCode": "en-US"
+  },
+  "currentOpeningHours": {
+    "openNow": true,
+    "periods": [
+      {
+        "open": {
+          "day": 0,
+          "hour": 6,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 29
+          }
+        },
+        "close": {
+          "day": 0,
+          "hour": 22,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 29
+          }
+        }
+      },
+      {
+        "open": {
+          "day": 1,
+          "hour": 6,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 30
+          }
+        },
+        "close": {
+          "day": 1,
+          "hour": 22,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 30
+          }
+        }
+      },
+      {
+        "open": {
+          "day": 2,
+          "hour": 6,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 31
+          }
+        },
+        "close": {
+          "day": 2,
+          "hour": 22,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 31
+          }
+        }
+      },
+      {
+        "open": {
+          "day": 3,
+          "hour": 6,
+          "minute": 0,
+          "date": {
+            "year": 2025,
+            "month": 1,
+            "day": 1
+          }
+        },
+        "close": {
+          "day": 3,
+          "hour": 22,
+          "minute": 0,
+          "date": {
+            "year": 2025,
+            "month": 1,
+            "day": 1
+          }
+        }
+      },
+      {
+        "open": {
+          "day": 4,
+          "hour": 6,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 26
+          }
+        },
+        "close": {
+          "day": 4,
+          "hour": 22,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 26
+          }
+        }
+      },
+      {
+        "open": {
+          "day": 5,
+          "hour": 6,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 27
+          }
+        },
+        "close": {
+          "day": 5,
+          "hour": 22,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 27
+          }
+        }
+      },
+      {
+        "open": {
+          "day": 6,
+          "hour": 6,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 28
+          }
+        },
+        "close": {
+          "day": 6,
+          "hour": 22,
+          "minute": 0,
+          "date": {
+            "year": 2024,
+            "month": 12,
+            "day": 28
+          }
+        }
+      }
+    ],
+    "weekdayDescriptions": [
+      "Monday: 6:00 AM – 10:00 PM",
+      "Tuesday: 6:00 AM – 10:00 PM",
+      "Wednesday: 6:00 AM – 10:00 PM",
+      "Thursday: 6:00 AM – 10:00 PM",
+      "Friday: 6:00 AM – 10:00 PM",
+      "Saturday: 6:00 AM – 10:00 PM",
+      "Sunday: 6:00 AM – 10:00 PM"
+    ],
+    "nextCloseTime": "2024-12-27T06:00:00Z"
+  },
+  "primaryType": "gas_station",
+  "shortFormattedAddress": "22121 SE 56th St, Issaquah",
+  "reviews": [
+    {
+      "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/reviews/ChZDSUhNMG9nS0VJQ0FnSUNndV9fbUhBEAE",
+      "relativePublishTimeDescription": "7 years ago",
+      "rating": 5,
+      "text": {
+        "text": "I moved to this area roughly a decade ago. It occurred to me the other day that I've used this gas station to fill up my cars all but a handful of times. There are a few reasons for this:\n\n1. There are multiple filling lanes, so it's rarely difficult to find a pump.\n2. It's an easy location to get in and out of.\n3. The lot across from the station used to be a dilapidated house that sold Christmas Trees during the holiday season. Made for a nice area during the deep dark of the year. Now it's a Taco Time, which is pretty great too.\n4. The car wash is really easy to get into, even on busy days.\n\nFinally, here's a fun tip for anyone that's still reading: it's a good idea to keep the receipt of your last fill-up in the car until your next fill up. From time to time, gas station fuel basins get water in them. When the fuel trucks come to fill up the basins, the gas/water in the containers gets jostled and if you fill up right after, you can get a significant amount of water in your gas tank. This will damage your engine if you run that fuel. It's almost impossible to prove the gas station's liability, but if you keep your receipts, you'll have a much stronger case. Anyway, just a low-inconvenience, high-upside tip of the day.",
+        "languageCode": "en"
+      },
+      "originalText": {
+        "text": "I moved to this area roughly a decade ago. It occurred to me the other day that I've used this gas station to fill up my cars all but a handful of times. There are a few reasons for this:\n\n1. There are multiple filling lanes, so it's rarely difficult to find a pump.\n2. It's an easy location to get in and out of.\n3. The lot across from the station used to be a dilapidated house that sold Christmas Trees during the holiday season. Made for a nice area during the deep dark of the year. Now it's a Taco Time, which is pretty great too.\n4. The car wash is really easy to get into, even on busy days.\n\nFinally, here's a fun tip for anyone that's still reading: it's a good idea to keep the receipt of your last fill-up in the car until your next fill up. From time to time, gas station fuel basins get water in them. When the fuel trucks come to fill up the basins, the gas/water in the containers gets jostled and if you fill up right after, you can get a significant amount of water in your gas tank. This will damage your engine if you run that fuel. It's almost impossible to prove the gas station's liability, but if you keep your receipts, you'll have a much stronger case. Anyway, just a low-inconvenience, high-upside tip of the day.",
+        "languageCode": "en"
+      },
+      "authorAttribution": {
+        "displayName": "Bra Mi",
+        "uri": "https://www.google.com/maps/contrib/101683027802549138416/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIzBN8YSePtDQ8CYyg7VWMA3B-wPM8iR-k0v8AVf47mlCY99g=s128-c0x00000000-cc-rp-mo-ba3"
+      },
+      "publishTime": "2017-04-14T17:01:15.303Z",
+      "flagContentUri": "https://www.google.com/local/review/rap/report?postId=ChZDSUhNMG9nS0VJQ0FnSUNndV9fbUhBEAE&d=17924085&t=1",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSUNndV9fbUhBEAE!2m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
+    },
+    {
+      "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/reviews/ChdDSUhNMG9nS0VJQ0FnSUNweDdXejFBRRAB",
+      "relativePublishTimeDescription": "a year ago",
+      "rating": 2,
+      "text": {
+        "text": "Pump would take my card, said see cashier without any input other than swiping it, cashier said \"it's probably declined\" when I hadn't entered my yet, Went to Shell up the road, worked fine, 32 gallons they lost plus I'll avoid that location now.",
+        "languageCode": "en"
+      },
+      "originalText": {
+        "text": "Pump would take my card, said see cashier without any input other than swiping it, cashier said \"it's probably declined\" when I hadn't entered my yet, Went to Shell up the road, worked fine, 32 gallons they lost plus I'll avoid that location now.",
+        "languageCode": "en"
+      },
+      "authorAttribution": {
+        "displayName": "John Almgren",
+        "uri": "https://www.google.com/maps/contrib/100101392084054834824/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIvnxQs6agGSqAo4nfQIj_jaXmyPUYTI3AYXgKi4J6rxDwzPg=s128-c0x00000000-cc-rp-mo-ba4"
+      },
+      "publishTime": "2023-08-11T16:47:24.727422Z",
+      "flagContentUri": "https://www.google.com/local/review/rap/report?postId=ChdDSUhNMG9nS0VJQ0FnSUNweDdXejFBRRAB&d=17924085&t=1",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUNweDdXejFBRRAB!2m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
+    },
+    {
+      "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/reviews/ChZDSUhNMG9nS0VJQ0FnSURROEsybU5nEAE",
+      "relativePublishTimeDescription": "7 years ago",
+      "rating": 5,
+      "text": {
+        "text": "Clean and easy to get in and out. Bonus: watching the parade of mostly-clean cars streaming into the car wash.",
+        "languageCode": "en"
+      },
+      "originalText": {
+        "text": "Clean and easy to get in and out. Bonus: watching the parade of mostly-clean cars streaming into the car wash.",
+        "languageCode": "en"
+      },
+      "authorAttribution": {
+        "displayName": "Ashley",
+        "uri": "https://www.google.com/maps/contrib/114468195994212424451/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLPiKdhhxhENxXeUnzdZkLxa7CnlFRtYNn5vIrygIMP8FA_HMe2=s128-c0x00000000-cc-rp-mo-ba5"
+      },
+      "publishTime": "2017-08-12T23:04:30.302Z",
+      "flagContentUri": "https://www.google.com/local/review/rap/report?postId=ChZDSUhNMG9nS0VJQ0FnSURROEsybU5nEAE&d=17924085&t=1",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSURROEsybU5nEAE!2m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
+    },
+    {
+      "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/reviews/ChZDSUhNMG9nS0VJQ0FnSUREdFlidmVREAE",
+      "relativePublishTimeDescription": "8 months ago",
+      "rating": 5,
+      "text": {
+        "text": "Fast, Clean and Easy",
+        "languageCode": "en"
+      },
+      "originalText": {
+        "text": "Fast, Clean and Easy",
+        "languageCode": "en"
+      },
+      "authorAttribution": {
+        "displayName": "Sumanth Kothapalli",
+        "uri": "https://www.google.com/maps/contrib/109296141762314790595/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjX9GLWNSIk7_Nw3Ub5IkiI5adZ9ToDQ2OJC-dUm-s7u4RhUrUkV=s128-c0x00000000-cc-rp-mo-ba5"
+      },
+      "publishTime": "2024-04-12T14:01:09.592375Z",
+      "flagContentUri": "https://www.google.com/local/review/rap/report?postId=ChZDSUhNMG9nS0VJQ0FnSUREdFlidmVREAE&d=17924085&t=1",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSUREdFlidmVREAE!2m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
+    },
+    {
+      "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/reviews/ChdDSUhNMG9nS0VJQ0FnSUQyeV9qQ3Z3RRAB",
+      "relativePublishTimeDescription": "2 years ago",
+      "rating": 2,
+      "text": {
+        "text": "Gas is sooo expensive",
+        "languageCode": "en"
+      },
+      "originalText": {
+        "text": "Gas is sooo expensive",
+        "languageCode": "en"
+      },
+      "authorAttribution": {
+        "displayName": "Solomon A",
+        "uri": "https://www.google.com/maps/contrib/105821276785489116814/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWjtZjOFgEVXczh-3t8UeefQ6gatQmSaITQcw8api1ENA9lIQPr=s128-c0x00000000-cc-rp-mo-ba2"
+      },
+      "publishTime": "2022-05-25T02:46:36.295980Z",
+      "flagContentUri": "https://www.google.com/local/review/rap/report?postId=ChdDSUhNMG9nS0VJQ0FnSUQyeV9qQ3Z3RRAB&d=17924085&t=1",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUQyeV9qQ3Z3RRAB!2m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
+    }
+  ],
+  "photos": [
+    {
+      "name": "places/ChIJu28PrqJvkFQRvBiGAaEsDbU/photos/AWYs27zdgt6OBMOuhXeKE2hSHg24jvHfNv_bBP-LQUuDnfIAtWz5l9MzadOJwwq-6TzRFTzgTsnINmxCWh8WFIIQrEX56PBJktpk40UFMPwM_P-xTjD91bK5buKstlGrTlzL6a_xwW0720RJ6NoqWjC_XOXSIuvL1qDyiPFq",
+      "widthPx": 2829,
+      "heightPx": 1591,
+      "authorAttributions": [
+        {
+          "displayName": "Ann Gusiff",
+          "uri": "https://maps.google.com/maps/contrib/117994468545850767494",
+          "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVJH7wJPqu3PAbNbsfvXTIVDcA93U3fR0q4yeA6I_-1SLXIYmCHjA=s100-p-k-no-mo"
+        }
+      ],
+      "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sAF1QipOz9xc06obx2MNmO-19ie0RCdBnTRm2lY_L-Wms&hl=en-US",
+      "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sAF1QipOz9xc06obx2MNmO-19ie0RCdBnTRm2lY_L-Wms!2e10!4m2!3m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc"
+    }
+  ],
+  "restroom": true,
+  "paymentOptions": {
+    "acceptsDebitCards": true,
+    "acceptsNfc": true
+  },
+  "accessibilityOptions": {
+    "wheelchairAccessibleRestroom": true
+  },
+  "fuelOptions": {
+    "fuelPrices": [
+      {
+        "type": "PREMIUM",
+        "price": {
+          "currencyCode": "USD",
+          "units": "5",
+          "nanos": 150000000
+        },
+        "updateTime": "2024-12-23T13:18:00Z"
+      },
+      {
+        "type": "DIESEL",
+        "price": {
+          "currencyCode": "USD",
+          "units": "5"
+        },
+        "updateTime": "2024-12-26T08:46:24Z"
+      },
+      {
+        "type": "MIDGRADE",
+        "price": {
+          "currencyCode": "USD",
+          "units": "4",
+          "nanos": 990000000
+        },
+        "updateTime": "2024-12-23T12:39:00Z"
+      },
+      {
+        "type": "REGULAR_UNLEADED",
+        "price": {
+          "currencyCode": "USD",
+          "units": "4",
+          "nanos": 700000000
+        },
+        "updateTime": "2024-11-16T06:25:00Z"
+      }
+    ]
+  },
+  "pureServiceAreaBusiness": false,
+  "addressDescriptor": {
+    "landmarks": [
+      {
+        "name": "places/ChIJQboLuaJvkFQRvpTUKMd-4rs",
+        "placeId": "ChIJQboLuaJvkFQRvpTUKMd-4rs",
+        "displayName": {
+          "text": "Taco Time NW",
+          "languageCode": "en"
+        },
+        "types": [
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant"
+        ],
+        "straightLineDistanceMeters": 61.40744,
+        "travelDistanceMeters": 80.06839
+      },
+      {
+        "name": "places/ChIJ6SOTbr1vkFQRvIQo3ydg6ww",
+        "placeId": "ChIJ6SOTbr1vkFQRvIQo3ydg6ww",
+        "displayName": {
+          "text": "Value Village",
+          "languageCode": "en"
+        },
+        "types": [
+          "book_store",
+          "clothing_store",
+          "establishment",
+          "furniture_store",
+          "home_goods_store",
+          "point_of_interest",
+          "store"
+        ],
+        "straightLineDistanceMeters": 262.06216,
+        "travelDistanceMeters": 305.659
+      },
+      {
+        "name": "places/ChIJu28PrqJvkFQRK5vjUMiuHXM",
+        "placeId": "ChIJu28PrqJvkFQRK5vjUMiuHXM",
+        "displayName": {
+          "text": "Brown Bear Car Wash",
+          "languageCode": "en"
+        },
+        "types": ["car_wash", "establishment", "point_of_interest"],
+        "spatialRelationship": "ACROSS_THE_ROAD",
+        "straightLineDistanceMeters": 64.69883,
+        "travelDistanceMeters": 3.1537209
+      },
+      {
+        "name": "places/ChIJ1wWRKb1vkFQRzPiEiIARdq4",
+        "placeId": "ChIJ1wWRKb1vkFQRzPiEiIARdq4",
+        "displayName": {
+          "text": "FedEx Ship Center",
+          "languageCode": "en"
+        },
+        "types": ["establishment", "point_of_interest", "store"],
+        "straightLineDistanceMeters": 158.39493,
+        "travelDistanceMeters": 291.68912
+      },
+      {
+        "name": "places/ChIJVyV8Fb1vkFQRTkGNQGsn8FI",
+        "placeId": "ChIJVyV8Fb1vkFQRTkGNQGsn8FI",
+        "displayName": {
+          "text": "McDonald's",
+          "languageCode": "en"
+        },
+        "types": [
+          "cafe",
+          "establishment",
+          "food",
+          "point_of_interest",
+          "restaurant",
+          "store"
+        ],
+        "straightLineDistanceMeters": 179.06268,
+        "travelDistanceMeters": 302.18576
+      }
+    ],
+    "areas": [
+      {
+        "name": "places/ChIJY5rqsaJvkFQRQiOaJY4PpBY",
+        "placeId": "ChIJY5rqsaJvkFQRQiOaJY4PpBY",
+        "displayName": {
+          "text": "Chevron",
+          "languageCode": "en"
+        },
+        "containment": "WITHIN"
+      },
+      {
+        "name": "places/ChIJLxHBdJZvkFQRjsBB-6HGtQA",
+        "placeId": "ChIJLxHBdJZvkFQRjsBB-6HGtQA",
+        "displayName": {
+          "text": "North Issaquah",
+          "languageCode": "en"
+        },
+        "containment": "OUTSKIRTS"
+      }
+    ]
+  },
+  "googleMapsLinks": {
+    "directionsUri": "https://www.google.com/maps/dir//''/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc!3e0",
+    "placeUri": "https://maps.google.com/?cid=13046132765589117116",
+    "writeAReviewUri": "https://www.google.com/maps/place//data=!4m3!3m2!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc!12e1",
+    "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc!9m1!1b1",
+    "photosUri": "https://www.google.com/maps/place//data=!4m3!3m2!1s0x54906fa2ae0f6fbb:0xb50d2ca1018618bc!10e5"
+  }
 }

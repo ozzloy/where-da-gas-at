@@ -22,4 +22,16 @@ repos:
     hooks:
       - id: prettier
         types_or:
-          [javascript, jsx, ts, tsx, css, scss, html, json, markdown, yaml]
+          [
+            javascript,
+            jsx,
+            ts,
+            tsx,
+            css,
+            scss,
+            html,
+            json,
+            markdown,
+            toml,
+            yaml,
+          ]

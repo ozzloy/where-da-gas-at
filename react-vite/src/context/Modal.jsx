@@ -12,7 +12,6 @@ export function ModalProvider({ children }) {
 
   const [signedUp, setSignedUp] = useState(false);
 
-
   const closeModal = () => {
     setModalContent(null); // clear the modal contents
     // If callback function is truthy, call the callback function and reset it
