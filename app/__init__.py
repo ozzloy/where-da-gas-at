@@ -83,11 +83,16 @@ def inject_csrf_token(response):
             else False
         ),
         samesite=(
-            "Strict"
+            "None"
             if os.environ.get("FLASK_ENV") == "production"
-            else None
+            else "Lax"
         ),
         httponly=True,
+        domain=(
+            None
+            if os.environ.get("FLASK_ENV") != "production"
+            else os.environ.get("PRODUCTION_HOST")
+        ),
     )
     return response
 
