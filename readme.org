@@ -72,16 +72,22 @@ bash
 
   ##########################################################
   # systemd services
-  sudo cp conf/etc/systemd/system/where-da-gas-at-back.service \
+  sudo cp /var/www/where-da-gas-at.example.com/conf/etc/systemd/system/where-da-gas-at-back.service \
        /etc/systemd/system/where-da-gas-at-back.service
   # edit /etc/systemd/system/where-da-gas-at-back.service
+
+  sudo cp /var/www/where-da-gas-at.example.com/conf/etc/systemd/system/where-da-gas-at-front.service \
+       /etc/systemd/system/where-da-gas-at-front.service
+  # edit /etc/systemd/system/where-da-gas-at-front.service
 
   # load the new services into systemd
   sudo systemctl daemon-reload
   # make sure back start on boot
   sudo systemctl enable where-da-gas-at-back.service
+  sudo systemctl enable where-da-gas-at-front.service
   # turn on the backend right now
   sudo systemctl start where-da-gas-at-back.service
+  sudo systemctl start where-da-gas-at-front.service
 
   ##########################################################
   # configure apache
