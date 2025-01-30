@@ -73,7 +73,7 @@ bash
        /var/www/where-da-gas-at.example.com/conf/etc/sudoers.d/where-da-gas-at \
        /etc/sudoers.d/where-da-gas-at
   sudo chmod 440 /etc/sudoers.d/where-da-gas-at
-  visudo -c -f /etc/sudoers.d/where-da-gas-at
+  sudo visudo -c -f /etc/sudoers.d/where-da-gas-at
   # /etc/sudoers.d/where-da-gas-at: parsed OK
 
   ##########################################################
@@ -95,6 +95,9 @@ bash
        conf/etc/apache2/sites-available/where-da-gas-at.example.com.conf \
        /etc/apache2/sites-available/where-da-gas-at.example.com.conf
   # edit /etc/apache2/sites-available/where-da-gas-at.example.com.conf
+
+  # add apache user to where-da-gas-at group to use socket
+  sudo usermod -a -G where-da-gas-at www-data
 
   sudo a2ensite where-da-gas-at.example.com
   sudo systemctl reload apache2

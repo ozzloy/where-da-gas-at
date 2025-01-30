@@ -1,11 +1,11 @@
 [Unit]
-Description=Vite React Application
+Description=where-da-gas-at front
 After=network.target
 
 [Service]
 Type=simple
 User=where-da-gas-at
-WorkingDirectory=/var/www/where-da-gas-at/react-vite
+WorkingDirectory=/var/www/where-da-gas-at.example.com/react-vite
 Environment=NODE_ENV=production
 Environment=PORT=3001
 ExecStart=/usr/bin/node server.js
