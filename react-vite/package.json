@@ -1,5 +1,5 @@
 {
-  "name": "authenticate-me",
+  "name": "where-da-gas-at-front",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -14,6 +14,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "@vis.gl/react-google-maps": "^1.4.2",
     "authenticate-me": "file:",
+    "express": "^4.21.2",
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
