@@ -74,25 +74,22 @@ def https_redirect():
 
 @app.after_request
 def inject_csrf_token(response):
+    flask_env = os.environ.get("FLASK_ENV")
+    production_host = os.environ.get("PRODUCTION_HOST")
+    is_production = flask_env == "production"
+    secure, samesite, domain = (
+        (True, "None", production_host)
+        if is_production
+        else (False, "Lax", None)
+    )
+    csrf = generate_csrf()
     response.set_cookie(
         "csrf_token",
-        generate_csrf(),
-        secure=(
-            True
-            if os.environ.get("FLASK_ENV") == "production"
-            else False
-        ),
-        samesite=(
-            "None"
-            if os.environ.get("FLASK_ENV") == "production"
-            else "Lax"
-        ),
+        csrf,
+        secure=secure,
+        samesite=samesite,
         httponly=True,
-        domain=(
-            None
-            if os.environ.get("FLASK_ENV") != "production"
-            else os.environ.get("PRODUCTION_HOST")
-        ),
+        domain=domain,
     )
     return response
 
