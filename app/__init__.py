@@ -18,6 +18,9 @@ from .models import db, drop_databases, King, reset_databases
 from .seeds import seed_commands
 from .config import Config
 
+FLASK_ENV = os.environ.get("FLASK_ENV")
+IS_PRODUCTION = FLASK_ENV == "production"
+
 app = Flask(
     __name__, static_folder="../react-vite/dist", static_url_path="/"
 )
@@ -65,7 +68,7 @@ CORS(app)
 # Well.........
 @app.before_request
 def https_redirect():
-    if os.environ.get("FLASK_ENV") == "production":
+    if IS_PRODUCTION:
         if request.headers.get("X-Forwarded-Proto") == "http":
             url = request.url.replace("http://", "https://", 1)
             code = 301
@@ -74,12 +77,10 @@ def https_redirect():
 
 @app.after_request
 def inject_csrf_token(response):
-    flask_env = os.environ.get("FLASK_ENV")
     production_host = os.environ.get("PRODUCTION_HOST")
-    is_production = flask_env == "production"
     secure, samesite, domain = (
         (True, "None", production_host)
-        if is_production
+        if IS_PRODUCTION
         else (False, "Lax", None)
     )
     csrf = generate_csrf()
