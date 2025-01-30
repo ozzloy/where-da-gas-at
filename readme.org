@@ -58,12 +58,6 @@ bash
        /var/www/where-da-gas-at.example.com/react-vite/.env
   # edit /var/www/where-da-gas-at.example.com/react-vite/.env
 
-  ##########################################################
-  # set up future deployment script
-  sudo cp /var/www/where-da-gas-at.example.com/example.deploy.bash \
-       /var/www/where-da-gas-at.example.com/deploy.bash
-  # edit /var/www/where-da-gas-at.example.com/deploy.bash
-
   sudo chown -R where-da-gas-at:where-da-gas-at \
        /var/www/where-da-gas-at.example.com
 
