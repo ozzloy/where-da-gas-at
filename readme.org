@@ -10,23 +10,23 @@ bash
 
 psql
 #+begin_src sql
-    CREATE USER where_da_gas_at_user WITH PASSWORD 'where da gas at password';
-    -- CREATE ROLE
+  CREATE USER where_da_gas_at_user WITH PASSWORD 'password';
+  -- CREATE ROLE
 
-    CREATE DATABASE where_da_gas_at_db OWNER where_da_gas_at_user;
-    -- CREATE DATABASE
+  CREATE DATABASE where_da_gas_at_db OWNER where_da_gas_at_user;
+  -- CREATE DATABASE
 
-    \c where_da_gas_at_db
-    -- You are now connected to database "where_da_gas_at_db" as user "postgres".
+  \c where_da_gas_at_db
+  -- You are now connected to database "where_da_gas_at_db" as user "postgres".
 
-    CREATE SCHEMA where_da_gas_at_schema AUTHORIZATION where_da_gas_at_user;
-    -- CREATE SCHEMA
+  CREATE SCHEMA where_da_gas_at_schema AUTHORIZATION where_da_gas_at_user;
+  -- CREATE SCHEMA
 
-    GRANT ALL ON SCHEMA where_da_gas_at_schema TO where_da_gas_at_user;
-    -- GRANT
+  GRANT ALL ON SCHEMA where_da_gas_at_schema TO where_da_gas_at_user;
+  -- GRANT
 
-    \q
-    -- back to bash
+  \q
+  -- back to bash
 #+end_src
 
 ** system user
