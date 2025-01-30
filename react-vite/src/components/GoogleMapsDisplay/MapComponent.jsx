@@ -121,7 +121,6 @@ function MapComponent() {
     postUnsavedStations();
   }, [nearbyStations, sessionUser, stations]);
 
-  console.log("mapId", mapId);
   return (
     <>
       {!sessionUser?.nick && signedUp && (
