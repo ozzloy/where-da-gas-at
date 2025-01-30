@@ -99,7 +99,8 @@ function MapComponent() {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        const data = await res.json();
+        // TODO: find out what this was for
+        // const data = await res.json();
       } catch (error) {
         console.error("Failed to post station:", error);
       }
