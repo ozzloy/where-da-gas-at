@@ -75,26 +75,34 @@ bash
   sudo cp /var/www/where-da-gas-at.example.com/conf/etc/systemd/system/where-da-gas-at-back.service \
        /etc/systemd/system/where-da-gas-at-back.service
   # edit /etc/systemd/system/where-da-gas-at-back.service
+  # double check syntax
+  systemd-analyze verify /etc/systemd/system/where-da-gas-at-back.service
+  # should print nothing
 
   sudo cp /var/www/where-da-gas-at.example.com/conf/etc/systemd/system/where-da-gas-at-front.service \
        /etc/systemd/system/where-da-gas-at-front.service
   # edit /etc/systemd/system/where-da-gas-at-front.service
+  # double check syntax
+  systemd-analyze verify /etc/systemd/system/where-da-gas-at-front.service
+  # should print nothing
 
   # load the new services into systemd
   sudo systemctl daemon-reload
-  # make sure back start on boot
+  # make sure front and back start on boot
   sudo systemctl enable where-da-gas-at-back.service
   sudo systemctl enable where-da-gas-at-front.service
-  # turn on the backend right now
+  # turn on the services right now without rebooting
   sudo systemctl start where-da-gas-at-back.service
   sudo systemctl start where-da-gas-at-front.service
 
   ##########################################################
   # configure apache
   sudo cp \
-       conf/etc/apache2/sites-available/where-da-gas-at.example.com.conf \
+       /var/www/where-da-gas-at.example.com/conf/etc/apache2/sites-available/where-da-gas-at.example.com.conf \
        /etc/apache2/sites-available/where-da-gas-at.example.com.conf
   # edit /etc/apache2/sites-available/where-da-gas-at.example.com.conf
+  apache2ctl -t
+  # Syntax OK
 
   # add apache user to where-da-gas-at group to use socket
   sudo usermod -a -G where-da-gas-at www-data
