@@ -1,0 +1,2 @@
+where-da-gas-at ALL=NOPASSWD: /bin/systemctl restart where-da-gas-at-back
+where-da-gas-at ALL=NOPASSWD: /bin/systemctl restart where-da-gas-at-front

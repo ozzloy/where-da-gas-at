@@ -1,0 +1,22 @@
+[Unit]
+Description=where-da-gas-at back
+After=network.target
+
+[Service]
+User=where-da-gas-at
+Group=where-da-gas-at
+WorkingDirectory=/var/www/where-da-gas-at.example.com/
+ExecStart=/usr/bin/pipenv run gunicorn \
+  --workers 3 \
+  --bind unix:/var/www/where-da-gas-at.example.com/where-da-gas-at.sock \
+  --access-logfile /var/www/where-da-gas-at.example.com/logs/access.log \
+  --error-logfile /var/www/where-da-gas-at.example.com/logs/error.log \
+  wsgi:app
+Restart=always
+RestartSec=5
+
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
