@@ -6,8 +6,7 @@ After=network.target
 Type=simple
 User=where-da-gas-at
 WorkingDirectory=/var/www/where-da-gas-at.example.com/react-vite
-Environment=NODE_ENV=production
-Environment=PORT=3001
+EnvironmentFile=/var/www/where-da-gas-at.example.com/react-vite/.env
 ExecStart=/usr/bin/node server.js
 Restart=on-failure
 RestartSec=10
