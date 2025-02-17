@@ -6,9 +6,17 @@ After=network.target
 User=where-da-gas-at
 Group=where-da-gas-at
 WorkingDirectory=/var/www/where-da-gas-at.example.com/
+
+# set default value for environment variables
+Environment="GUNICORN_HOST=localhost"
+Environment="GUNICORN_PORT=8002"
+
+# this might override the default values for those variables
+EnvironmentFile=/var/www/where-da-gas-at.example.com/.env
+
 ExecStart=/usr/bin/pipenv run gunicorn \
   --workers 3 \
-  --bind unix:/var/www/where-da-gas-at.example.com/where-da-gas-at.sock \
+  --bind ${GUNICORN_HOST}:${GUNICORN_PORT} \
   --access-logfile /var/www/where-da-gas-at.example.com/logs/access.log \
   --error-logfile /var/www/where-da-gas-at.example.com/logs/error.log \
   wsgi:app
