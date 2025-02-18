@@ -28,11 +28,8 @@ def login():
     Logs a king in
     """
     form = LoginForm()
-    # Get the csrf_token from the request cookie and put it into the
-    # form manually to validate_on_submit can be used
-    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    if not form.validate_on_submit():
+    if not form.validate():
         return form.errors, 401
 
     # Add the king to the session, we are logged in!
@@ -56,21 +53,18 @@ def sign_up():
     Creates a new king and logs them in
     """
     form = SignUpForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    if form.validate_on_submit():
-        print('b')
+    if form.validate():
         king = King(
             nick=form.data["nick"],
             email=form.data["email"],
             password=form.data["password"],
-            name=form.data["name"]
+            name=form.data["name"],
         )
         db.session.add(king)
         db.session.commit()
         login_king(king)
         return {"king": {king.id: king.to_dict()}}
-    print(f"what does show", form.errors)
     return form.errors, 401
 
 

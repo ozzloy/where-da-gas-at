@@ -9,6 +9,9 @@ from wtforms.validators import DataRequired
 
 
 class ReviewForm(FlaskForm):
+    class Meta:
+        csrf = False
+
     station_id = StringField(
         "station_id", validators=[DataRequired()]
     )

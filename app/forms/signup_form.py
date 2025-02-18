@@ -21,13 +21,14 @@ def nickname_exists(_form, field):
 
 
 class SignUpForm(FlaskForm):
+    class Meta:
+        csrf = False
+
     nick = StringField(
         "nick", validators=[DataRequired(), nickname_exists]
     )
     email = StringField(
         "email", validators=[DataRequired(), king_exists]
     )
-    name = StringField(
-        "name", validators=[DataRequired()]
-    )
+    name = StringField("name", validators=[DataRequired()])
     password = StringField("password", validators=[DataRequired()])

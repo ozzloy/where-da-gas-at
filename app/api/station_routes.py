@@ -35,9 +35,8 @@ def read_station(id):
 def create_station():
     """insert new station, or update extant station"""
     form = StationForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    if not form.validate_on_submit():
+    if not form.validate():
         return form.errors, 400
 
     created_status = 201

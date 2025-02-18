@@ -13,9 +13,8 @@ review_routes = Blueprint("review", __name__)
 @login_required
 def create_review():
     created_form = ReviewForm()
-    created_form["csrf_token"].data = request.cookies["csrf_token"]
     created_form["king_id"].data = current_king.id
-    if created_form.validate_on_submit():
+    if created_form.validate():
         station_id = created_form.data.get("station_id")
         text = created_form.data.get("text")
         errors = {}
@@ -42,9 +41,8 @@ def create_review():
         db.session.commit()
 
         return {"review": {str(review.id): review.to_dict()}}, 200
-    
-    return created_form.errors, 401
 
+    return created_form.errors, 401
 
 
 # Read one review
@@ -84,20 +82,19 @@ def read_reviews():
 def update_review(review_id):
     try:
         updated_form = ReviewForm()
-        updated_form["csrf_token"].data = request.cookies[
-            "csrf_token"
-        ]
         updated_form["king_id"].data = current_king.id
 
         review = Review.query.get(review_id)
         if not review:
-            return {"message": f"review {review_id} couldn't be found"}, 404
-        if not updated_form.validate_on_submit():
+            return {
+                "message": f"review {review_id} couldn't be found"
+            }, 404
+        if not updated_form.validate():
             return updated_form.errors, 400
-        
+
         if not review.king_id == current_king.id:
             return {"error": {"message": "Unauthorized"}}, 401
-        
+
         review.station_id = updated_form.data["station_id"]
         review.text = updated_form.data["text"]
 

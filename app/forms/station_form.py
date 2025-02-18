@@ -5,6 +5,9 @@ from app.models import Station
 
 
 class StationForm(FlaskForm):
+    class Meta:
+        csrf = False
+
     id = StringField("id", validators=[DataRequired()])
     address = StringField("address", validators=[DataRequired()])
     lat = StringField("lat", validators=[DataRequired()])
@@ -14,6 +17,9 @@ class StationForm(FlaskForm):
 
 
 class EditStationForm(FlaskForm):
+    class Meta:
+        csrf = False
+
     id = StringField("id", validators=[DataRequired()])
     address = StringField("address", validators=[DataRequired()])
     lat = StringField("lat", validators=[DataRequired()])

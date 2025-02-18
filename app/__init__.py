@@ -6,7 +6,6 @@ import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
 from flask_migrate import Migrate
-from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
 from .api.king_routes import king_routes
@@ -73,26 +72,6 @@ def https_redirect():
             url = request.url.replace("http://", "https://", 1)
             code = 301
             return redirect(url, code=code)
-
-
-@app.after_request
-def inject_csrf_token(response):
-    production_host = os.environ.get("PRODUCTION_HOST")
-    secure, samesite, domain = (
-        (True, "None", production_host)
-        if IS_PRODUCTION
-        else (False, "Lax", None)
-    )
-    csrf = generate_csrf()
-    response.set_cookie(
-        "csrf_token",
-        csrf,
-        secure=secure,
-        samesite=samesite,
-        httponly=True,
-        domain=domain,
-    )
-    return response
 
 
 @app.route("/api/docs")
