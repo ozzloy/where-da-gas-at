@@ -5,6 +5,7 @@ load_dotenv()
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
+from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
