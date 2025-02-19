@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required, current_user as current_king
+from flask_jwt_extended import get_jwt_identity, jwt_required
 
 from ..models import db, Review
 from ..forms import ReviewForm
@@ -10,10 +10,11 @@ review_routes = Blueprint("review", __name__)
 
 # #Create Review
 @review_routes.route("/", methods=["POST"])
-@login_required
+@jwt_required()
 def create_review():
+    king_id = int(get_jwt_identity())
     created_form = ReviewForm()
-    created_form["king_id"].data = current_king.id
+    created_form["king_id"].data = king_id
     if created_form.validate():
         station_id = created_form.data.get("station_id")
         text = created_form.data.get("text")
@@ -33,7 +34,7 @@ def create_review():
 
         review = Review(
             station_id=station_id,
-            king_id=current_king.id,
+            king_id=king_id,
             text=text,
         )
 
@@ -78,11 +79,12 @@ def read_reviews():
 
 # Edit a review(require king login)
 @review_routes.route("/<int:review_id>", methods=["PUT"])
-@login_required
+@jwt_required()
 def update_review(review_id):
+    king_id = int(get_jwt_identity())
     try:
         updated_form = ReviewForm()
-        updated_form["king_id"].data = current_king.id
+        updated_form["king_id"].data = king_id
 
         review = Review.query.get(review_id)
         if not review:
@@ -92,7 +94,7 @@ def update_review(review_id):
         if not updated_form.validate():
             return updated_form.errors, 400
 
-        if not review.king_id == current_king.id:
+        if not review.king_id == king_id:
             return {"error": {"message": "Unauthorized"}}, 401
 
         review.station_id = updated_form.data["station_id"]
@@ -110,13 +112,14 @@ def update_review(review_id):
 
 # Delete a review(require king login)
 @review_routes.route("/<int:review_id>", methods=["DELETE"])
-@login_required
+@jwt_required()
 def deleted_review(review_id):
+    king_id = int(get_jwt_identity())
     try:
         review = Review.query.filter(Review.id == review_id).one()
 
         # unathorized
-        if not current_king.id == review.king_id:
+        if not king_id == review.king_id:
             return {"error": {"message": "Unauthorized"}}, 401
 
         # failure

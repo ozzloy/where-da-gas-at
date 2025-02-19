@@ -1,9 +1,5 @@
 from flask import Blueprint, request
-from flask_login import (
-    current_user as current_king,
-    login_required,
-    logout_user as logout_king,
-)
+from flask_jwt_extended import get_jwt_identity, jwt_required
 
 from app.models import db, King, Station
 
@@ -14,7 +10,7 @@ king_routes = Blueprint("king", __name__)
 
 
 @king_routes.route("/", methods=["GET"])
-@login_required
+@jwt_required()
 def read_kings():
     """
     Query for all kings and returns them in a list of king dictionaries
@@ -24,7 +20,7 @@ def read_kings():
 
 
 @king_routes.route("/<int:id>", methods=["GET"])
-@login_required
+@jwt_required()
 def read_king(id):
     """
     Query for a king by id and returns that king in a dictionary
@@ -34,7 +30,7 @@ def read_king(id):
 
 
 @king_routes.route("/<int:id>", methods=["PUT"])
-@login_required
+@jwt_required()
 def update_king(id):
     """
     Query for a king by id and returns that king in a dictionary
@@ -60,28 +56,30 @@ def update_king(id):
 
 
 @king_routes.route("/", methods=["DELETE"])
-@login_required
+@jwt_required()
 def delete_king():
     """
     delete and log out currently logged in king
     """
 
+    king_id = int(get_jwt_identity())
+    current_king = King.query.get(king_id)
     db.session.delete(current_king)
     db.session.commit()
 
-    king_id = current_king.id
-    logout_king()
     return {"message": f"deleted king {king_id} successfully"}
 
 
 @king_routes.route(
     "/current/station/<string:station_id>", methods=["POST"]
 )
-@login_required
+@jwt_required()
 def create_current_king_station(station_id):
     """
     save a station for the current king
     """
+    king_id = int(get_jwt_identity())
+    current_king = King.query.get(king_id)
     # make sure there is a station with station id.
     station = Station.query.get(station_id)
 
@@ -103,11 +101,13 @@ def create_current_king_station(station_id):
 
 
 @king_routes.route("/current/stations", methods=["GET"])
-@login_required
+@jwt_required()
 def get_current_king_stations():
     """
     get all stations for the current king
     """
+    king_id = int(get_jwt_identity())
+    current_king = King.query.get(king_id)
     # make sure there is a station with station id.
     stations = current_king.saved_stations
 
@@ -120,11 +120,13 @@ def get_current_king_stations():
 @king_routes.route(
     "/current/station/<string:station_id>", methods=["DELETE"]
 )
-@login_required
+@jwt_required()
 def delete_current_king_station(station_id):
     """
     delete a station for the current king
     """
+    king_id = int(get_jwt_identity())
+    current_king = King.query.get(king_id)
     # make sure there is a station with station id.
     station = Station.query.get(station_id)
 

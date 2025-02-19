@@ -9,41 +9,29 @@ export const authActionTypes = {
 
 const initialState = {
   user: null,
+  token: null,
   loading: false,
   errors: false,
 };
-
-export const thunkAuthenticate = createAsyncThunk(
-  authActionTypes.auth,
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await fetch("/api/auth/");
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return rejectWithValue(
-        error.message || {
-          server: "Something went wrong. Please try again",
-        },
-      );
-    }
-  },
-);
 
 export const thunkLogin = createAsyncThunk(
   authActionTypes.login,
   async (credentials, { rejectWithValue }) => {
     try {
+      const token = localStorage.getItem("token");
       const response = await fetch("/api/auth/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
         body: JSON.stringify(credentials),
       });
+      const data = await response.json();
       if (!response.ok) {
-        const data = await response.json();
         return rejectWithValue(data);
       }
-      const data = await response.json();
+      localStorage.setItem("token", data.token);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -59,9 +47,13 @@ export const thunkSignup = createAsyncThunk(
   authActionTypes.signup,
   async ({ email, nick, password, name }, { rejectWithValue }) => {
     try {
+      const token = localStorage.getItem("token");
       const response = await fetch("/api/auth/signup", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
         body: JSON.stringify({
           email,
           nick,
@@ -89,7 +81,7 @@ export const thunkLogout = createAsyncThunk(
   authActionTypes.logout,
   async (_, { rejectWithValue }) => {
     try {
-      await fetch("/api/auth/logout");
+      localStorage.removeItem("token");
       return null;
     } catch (error) {
       return rejectWithValue(
@@ -114,18 +106,6 @@ const sessionSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(thunkAuthenticate.pending, (state) => {
-        state.loading = true;
-        state.errors = false;
-      })
-      .addCase(thunkAuthenticate.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
-      })
-      .addCase(thunkAuthenticate.rejected, (state, action) => {
-        state.loading = false;
-        state.errors = action.payload;
-      })
       .addCase(thunkLogin.pending, (state) => {
         state.loading = true;
         state.errors = false;
@@ -136,7 +116,8 @@ const sessionSlice = createSlice({
       })
       .addCase(thunkLogin.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.user = action.payload.king;
+        state.token = action.payload.token;
       })
       .addCase(thunkSignup.pending, (state) => {
         state.loading = true;
@@ -160,6 +141,7 @@ const sessionSlice = createSlice({
       })
       .addCase(thunkLogout.fulfilled, (state) => {
         state.loading = false;
+        state.token = null;
         state.user = null;
       });
   },

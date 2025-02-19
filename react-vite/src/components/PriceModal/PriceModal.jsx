@@ -35,12 +35,16 @@ export default function PriceModal({
 
     setLoading(true);
 
+    const token = localStorage.getItem("token");
     try {
       const method = price ? "PUT" : "POST";
       const path = "/api/price/" + (price ? `${price.id}` : "");
       const res = await fetch(path, {
         method,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
         body: JSON.stringify(newPrice),
       });
 

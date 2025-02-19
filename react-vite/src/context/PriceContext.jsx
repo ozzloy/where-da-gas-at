@@ -21,7 +21,10 @@ export default function PriceProvider({ children }) {
   useEffect(() => {
     const fetchPrices = async () => {
       try {
-        const res = await fetch("/api/price/");
+        const token = localStorage.getItem("token");
+        const res = await fetch("/api/price/", {
+          headers: { Authorization: "Bearer " + token },
+        });
         const data = await res.json();
         if (!res.ok) {
           throw new Error("Failed to fetch prices");

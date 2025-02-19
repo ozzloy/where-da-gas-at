@@ -1,25 +1,10 @@
 from flask import Blueprint, request
-from flask_login import (
-    current_user as current_king,
-    login_user as login_king,
-    logout_user as logout_king,
-    login_required,
-)
+from flask_jwt_extended import create_access_token
 
 from app.forms import LoginForm, SignUpForm
 from app.models import db, King
 
 auth_routes = Blueprint("auth", __name__)
-
-
-@auth_routes.route("/")
-def authenticate():
-    """
-    Authenticates a king.
-    """
-    if current_king.is_authenticated:
-        return current_king.to_dict()
-    return {"errors": {"message": "Unauthorized"}}, 401
 
 
 @auth_routes.route("/login", methods=["POST"])
@@ -34,17 +19,8 @@ def login():
 
     # Add the king to the session, we are logged in!
     king = King.query.filter(King.email == form.data["email"]).first()
-    login_king(king)
-    return king.to_dict()
-
-
-@auth_routes.route("/logout")
-def logout():
-    """
-    Logs a king out
-    """
-    logout_king()
-    return {"message": "King logged out"}
+    access_token = create_access_token(identity=str(king.id))
+    return {"token": access_token, "king": king.to_dict()}
 
 
 @auth_routes.route("/signup", methods=["POST"])

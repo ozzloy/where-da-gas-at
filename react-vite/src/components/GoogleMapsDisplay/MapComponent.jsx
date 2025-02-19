@@ -57,8 +57,16 @@ function MapComponent() {
     if (sessionUser === null || sessionUser.errors) return;
 
     const fetchStations = async () => {
+      const token = localStorage.getItem("token");
+      const options = token
+        ? {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        : undefined;
       try {
-        const res = await fetch("/api/station/");
+        const res = await fetch("/api/station/", options);
 
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -74,6 +82,7 @@ function MapComponent() {
   }, [sessionUser]);
 
   useEffect(() => {
+    if (!sessionUser) return;
     if (sessionUser?.errors) return;
 
     const postStation = async (station) => {
@@ -87,11 +96,13 @@ function MapComponent() {
       };
 
       try {
+        const token = localStorage.getItem("token");
+        const headers = {};
+        headers["Content-Type"] = "application/json";
+        if (token) headers["Authorization"] = "Bearer " + token;
         const res = await fetch("/api/station/", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers,
           body: JSON.stringify(body),
         });
 

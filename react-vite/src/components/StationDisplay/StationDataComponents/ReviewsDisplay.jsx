@@ -82,9 +82,13 @@ function ReviewsDisplay({
 
   // for review
   const deletedReview = async (review_id) => {
+    const token = localStorage.getItem("token");
     try {
       const res = await fetch(`/api/review/${review_id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       });
       if (!res.ok) {
         throw new Error("Failed to delete review");
@@ -99,9 +103,13 @@ function ReviewsDisplay({
   };
 
   const deletedPrice = async (price_id) => {
+    const token = localStorage.getItem("token");
     try {
       const res = await fetch(`/api/price/${price_id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
       });
       if (!res.ok) {
         throw new Error("Failed to delete price");

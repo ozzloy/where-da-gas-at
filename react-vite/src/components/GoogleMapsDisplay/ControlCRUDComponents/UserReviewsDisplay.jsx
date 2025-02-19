@@ -15,7 +15,15 @@ export default function UserReviewsDisplay({ onReviewAdded }) {
 
   useEffect(() => {
     async function fetchStation() {
-      const res = await fetch(`/api/station/`);
+      const token = localStorage.getItem("token");
+      const options = token
+        ? {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        : undefined;
+      const res = await fetch(`/api/station/`, options);
       const data = await res.json();
 
       if (!res.ok) {
@@ -26,7 +34,7 @@ export default function UserReviewsDisplay({ onReviewAdded }) {
     fetchStation();
   }, []);
 
-  // handle sumbitted reivew in modal
+  // handle sumbitted review in modal
   const handleSumbitReview = (newReview) => {
     onReviewAdded(newReview);
     closeModal();
@@ -44,7 +52,7 @@ export default function UserReviewsDisplay({ onReviewAdded }) {
     );
   };
 
-  // handle for deleting a reivew
+  // handle for deleting a review
   const onReviewDeleted = (review_id) => {
     setModalContent(
       <DeletedReviewFormModal
@@ -56,8 +64,12 @@ export default function UserReviewsDisplay({ onReviewAdded }) {
   };
 
   const deleteReview = async (review_id) => {
+    const token = localStorage.getItem("token");
     try {
       const res = await fetch(`/api/review/${review_id}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
         method: "DELETE",
       });
       if (!res.ok) {
@@ -67,7 +79,7 @@ export default function UserReviewsDisplay({ onReviewAdded }) {
         prevReviews.filter((review) => review.id !== review_id),
       );
     } catch (e) {
-      console.error("Error deleting reivew", e);
+      console.error("Error deleting review", e);
     }
     closeModal();
   };

@@ -32,6 +32,7 @@ export default function ReviewFormModal({
 
     setLoading(true);
 
+    const token = localStorage.getItem("token");
     try {
       let res;
       if (review) {
@@ -40,6 +41,7 @@ export default function ReviewFormModal({
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
           },
           body: JSON.stringify(newReview),
         });
@@ -49,6 +51,7 @@ export default function ReviewFormModal({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
           },
           body: JSON.stringify(newReview),
         });

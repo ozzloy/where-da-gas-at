@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import current_user as current_king, login_required
+from flask_jwt_extended import jwt_required
 
 from app.forms import EditStationForm, StationForm
 from app.models import Station, db
@@ -8,7 +8,6 @@ station_routes = Blueprint("station", __name__)
 
 
 @station_routes.route("/", methods=["GET"])
-@login_required
 def read_stations():
     stations = Station.query.all()
     return {
@@ -19,7 +18,6 @@ def read_stations():
 
 
 @station_routes.route("/<string:id>", methods=["GET"])
-@login_required
 def read_station(id):
     """
     get a station by id
@@ -31,7 +29,7 @@ def read_station(id):
 
 
 @station_routes.route("/", methods=["POST"])
-@login_required
+@jwt_required()
 def create_station():
     """insert new station, or update extant station"""
     form = StationForm()
@@ -68,7 +66,7 @@ def create_station():
 
 
 @station_routes.route("/<string:id>", methods=["PUT"])
-@login_required
+@jwt_required()
 def update_station(id):
     data = request.get_json()
 
@@ -89,7 +87,7 @@ def update_station(id):
 
 
 @station_routes.route("/<string:id>", methods=["DELETE"])
-@login_required
+@jwt_required()
 def delete_station(id):
     station = Station.query.get(id)
 

@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from flask_login import login_required, current_user as current_king
+from flask_jwt_extended import get_jwt_identity, jwt_required
 
 from app.models import db
 from app.models.price import Price
@@ -9,12 +9,13 @@ price_routes = Blueprint("price", __name__)
 
 
 @price_routes.route("/", methods=["POST"])
-@login_required
+@jwt_required()
 def create_price():
     """
     create a new price for logged in king.
     request body requires keys: fuel_type, price, station_id
     """
+    king_id = int(get_jwt_identity())
     # get current logged in king's id
     # use that to create a price object
     # the fields fuel_type, price, and station_id should
@@ -41,7 +42,7 @@ def create_price():
         price=data["price"],
         station_id=data["station_id"],
         fuel_type=data["fuel_type"],
-        king_id=current_king.id,
+        king_id=king_id,
     )
 
     db.session.add(price)
@@ -86,9 +87,9 @@ def read_price(id):
 
 
 @price_routes.route("/<int:id>", methods=["PUT"])
-@login_required
+@jwt_required()
 def update_price(id):
-    king_id = current_king.id
+    king_id = int(get_jwt_identity())
     price = Price.query.get(id)
     if not price.king_id == king_id:
         return {"message": "forbidden"}, 403
@@ -105,9 +106,9 @@ def update_price(id):
 
 
 @price_routes.route("/<int:id>", methods=["DELETE"])
-@login_required
+@jwt_required()
 def delete_price(id):
-    king_id = current_king.id
+    king_id = int(get_jwt_identity())
     price = Price.query.get(id)
     if not price:
         return {"message": f"price {id} not found"}, 404

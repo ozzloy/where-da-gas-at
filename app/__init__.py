@@ -7,7 +7,6 @@ from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
-from flask_login import LoginManager
 
 from .api.king_routes import king_routes
 from .api.auth_routes import auth_routes
@@ -25,15 +24,6 @@ app = Flask(
     __name__, static_folder="../react-vite/dist", static_url_path="/"
 )
 
-# Setup login manager
-login = LoginManager(app)
-login.login_view = "auth.unauthorized"
-
-
-@login.user_loader
-def load_king(id):
-    return King.query.get(int(id))
-
 
 @app.cli.command("db-reset")
 def reset_dbs_command():
@@ -49,6 +39,10 @@ def drop_dbs_command():
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
+
+
+jwt = JWTManager(app)
+
 app.register_blueprint(king_routes, url_prefix="/api/king")
 app.register_blueprint(auth_routes, url_prefix="/api/auth")
 app.register_blueprint(review_routes, url_prefix="/api/review")

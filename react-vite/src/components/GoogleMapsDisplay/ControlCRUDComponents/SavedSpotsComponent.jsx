@@ -66,8 +66,12 @@ function SavedSpotsComponent() {
   };
 
   const onDeleteHandler = async (id) => {
+    const token = localStorage.getItem("token");
     try {
       const res = await fetch(`/api/king/current/station/${id}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
         method: "DELETE",
       });
 
@@ -87,9 +91,14 @@ function SavedSpotsComponent() {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     const fetchUserStationData = async () => {
       try {
-        const res = await fetch(`/api/king/current/stations`);
+        const res = await fetch("/api/king/current/stations", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
